@@ -34,30 +34,29 @@
 </div>
   <!-- end nav -->
       @yield('content');
-        <footer class="footer navbar-fixed-bottom" style="background-color: #E6E6FA; height: 70px;">
+<footer style="background-color: #E6E6FA;" class="footer navbar-fixed-bottom">
             <div class="footer-main">
                <div class="container-fluid">
                    <div class="row-fluid">
-                      <div class="span4">
-                          <div  class="infoarea">
-                            <div  class="footer-logo">
-                              <a  href="https://strathmore.edu">
-                                  <img  src="//elearning.strathmore.edu/pluginfile.php?file=%2F1%2Ftheme_klass%2Ffooterlogo%2F1446031855%2FPicture16.png" alt="strathmore logo" height="80" width="183">
+                      <div class="span2">
+                          <div class="infoarea">
+                            <div class="footer-logo">
+                              <a href="https://strathmore.edu">
+                                  <img src="//elearning.strathmore.edu/pluginfile.php?file=%2F1%2Ftheme_klass%2Ffooterlogo%2F1446031855%2FPicture16.png" alt="strathmore logo" height="80" width="183">
                               </a>
-                            </div>
-                              <p>Strathmore university online graduation clearance form</p>
+                              <p style="color: #B0C4DE; float: right;">DAA-03-01-09/12</p>
+                              </div>
+                               
                           </div>
                       </div>
-                         <div class="span2" style="float:right;">
-                             <p style="color: #B0C4DE;">DAA-03-01-09/12</p>
-                         </div>
-                         <div class="span3"></div>
+                         
+                         
                    </div>
                 </div>
             </div>
           <div class="footer-foot">
                 <div class="container-fluid">
-                      <p>Copyright © {{ date('y-m-d') }} - <a href="http://www.strathmore.edu/en/">Strathmore University</a>. All Rights Reserved.</p>
+                      <center><p>Copyright © 15-12-17 - <a href="http://www.strathmore.edu/en/">Strathmore University</a>. All Rights Reserved.</p></center>
                 </div>
           </div>
       </footer>

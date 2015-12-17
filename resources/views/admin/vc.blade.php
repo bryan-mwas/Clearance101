@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.vcmaster')
 @section('content')
 
 <div class="container" style="background-color: #fff">
@@ -23,8 +23,8 @@
 			<div class="tab-content">
 				<!--tab pane for general information-->
 				<!--start gen tab-->
-				<div role="tabpanel" class="tab-pane active" id="general" data-spy="scroll" data-target="#navbar-example">
-					<div class="table-responsive">
+				<div role="tabpanel" class="tab-pane active" id="general" style="overflow-y: scroll;">
+					<div class="table-responsive" >
 						<table class=" table table-hover table-bordered" >
 							<thead bgcolor="#FF9900">
 								<tr>
@@ -144,9 +144,6 @@
 						</table>
 					</div>
 				</div>
-				<script>
-					$('body').scrollspy({ target: '#navbar-example' })
-				</script>
 				<!--end gen tab-->
 				
 				<!-- tab pane for financial information -->
