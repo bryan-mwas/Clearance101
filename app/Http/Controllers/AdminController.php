@@ -70,7 +70,24 @@ class AdminController extends Controller{
        $reqStudentSBS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SBS')->count();
        $clearedStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SBS')->count();
        $pendingStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SBS')->count();
-      # return $clearedStudentsFac;
+       
+       //financial report 
+       //facuty
+       $totalDep = DB::table('charge')->sum('department_value');
+       //cafeteria
+       $totalCaf = DB::table('charge')->sum('cafeteria_value');
+       // library
+       $totalLib = DB::table('charge')->sum('library_value');
+       //Extra Cal  
+       $totalExc = DB::table('charge')->sum('extra_curricular_value');
+       //games
+       $totalGam = DB::table('charge')->sum('games_value');
+       //financial aid 
+       $totalFna = DB::table('charge')->sum('financial_aid_value');
+       //finance 
+       $totalFin = DB::table('charge')->sum('finance_value');
+       
+       #return $clearedStudentsFac;
         return view('admin/vc')->with('std', $appliedStudents)
                                ->with('stdFacClear', $clearedStudentsFac)
                                ->with('stdFacPend', $pendingStudentsFac)
@@ -108,6 +125,15 @@ class AdminController extends Controller{
                                ->with('stdShssPend',$pendingStudentsSHSS)
                                ->with('stdSbs', $reqStudentSBS)
                                ->with('stdSbsClear', $clearedStudentsSBS)
-                               ->with('stdSbsPend',$pendingStudentsSBS);
+                               ->with('stdSbsPend',$pendingStudentsSBS)
+                               ->with('moneyOwedFac', $totalDep)
+                               ->with('moneyOwedCaf', $totalCaf)
+                               ->with('moneyOwedLib', $totalLib)
+                               ->with('moneyOwedExc', $totalExc)
+                               ->with('moneyOwedGam', $totalGam)
+                               ->with('moneyOwedFna', $totalFna)
+                               ->with('moneyOwedFin', $totalFin);                              
     }
+
 }
+       

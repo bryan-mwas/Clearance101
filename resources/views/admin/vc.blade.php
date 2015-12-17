@@ -23,7 +23,7 @@
 			<div class="tab-content">
 				<!--tab pane for general information-->
 				<!--start gen tab-->
-				<div role="tabpanel" class="tab-pane active" id="general" style="overflow-y: scroll;">
+				<div role="tabpanel" class="tab-pane active" id="general">
 					<div class="table-responsive" >
 						<table class=" table table-hover table-bordered" >
 							<thead bgcolor="#FF9900">
@@ -154,83 +154,41 @@
 							<thead bgcolor="#FF9900">
 								<tr>
 									<th>Department Name</th>
-									<th># Total Amount</th>
+									<th># Total Amount Owed</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<th>Facultys</th>
-									<th>200</th>
+									<th>{{ $moneyOwedFac }}</th>
 								</tr>
 								<tr>
 									<th>Cafeteria</th>
-									<th>200</th>
+									<th>{{ $moneyOwedCaf }}</th>
 								</tr>
 								<tr>
 									<th>Library</th>
-									<th>200</th>
+									<th>{{ $moneyOwedLib }}</th>
 								</tr>
 								<tr>
 									<th>Games</th>
-									<th>200</th>
+									<th>{{ $moneyOwedGam }}</th>
 								</tr>
 								<tr>
-									<th>Sports</th>
-									<th>200</th>
+									<th>Extra Curricular Activities</th>
+									<th>{{ $moneyOwedExc }}</th>
 								</tr>
 								<tr>
 									<th>Fiancial Aid</th>
-									<th>200</th>
+									<th>{{ $moneyOwedFna }}</th>
 								</tr>
 								<tr>
 									<th>finance</th>
-									<th>200</th>
+									<th>{{ $moneyOwedFin }}</th>
 								</tr>
 							</tbody>
 						</table>
-						
-						
 						<hr style="color: blue;">
-						<br>
-						<center><h4>Faculty</h4></center>
-						<table class=" table table-hover table-bordered" >
-							<thead bgcolor="#FF9900">
-								<tr>
-									<th>Faculty Name</th>
-									<th>Total Amount</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th>FIT</th>
-									<th>200</th>
-								</tr>
-								<tr>
-									<th>SOA</th>
-									<th>200</th>
-								</tr>
-								<tr>
-									<th>SLS</th>
-									<th>200</th>
-								</tr>
-								<tr>
-									<th>SBS</th>
-									<th>200</th>
-								</tr>
-								<tr>
-									<th>SFAE</th>
-									<th>200</th>
-								</tr>
-								<tr>
-									<th>CHT</th>
-									<th>200</th>
-								</tr>
-								<tr>
-									<th>SHSS</th>
-									<th>200</th>
-								</tr>
-							</tbody>
-						</table>
 					</div>
 				</div>
 				<!--end fin pan-->
