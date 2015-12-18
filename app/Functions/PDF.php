@@ -148,5 +148,167 @@ class PDF
         return $blah;
     }
 
-
+    public static function report($appliedStudents, $clearedStudentsFac, $pendingStudentsFac, $clearedStudentsCaf, $pendingStudentsCaf, $clearedStudentsGam, $pendingStudentsGam, $clearedStudentsExa, $pendingStudentsExa, $clearedStudentsFna, $pendingStudentsFna, $clearedStudentsFin, $pendingStudentsFin, $clearedStudentsLib, $pendingStudentsLib, $totalStudentsCleared, $totalStudentsPending, $reqStudentFIT, $clearedStudentsFIT,$pendingStudentsFIT, $reqStudentSOA, $clearedStudentsSOA,$pendingStudentsSOA, $reqStudentSLS, $clearedStudentsSLS,$pendingStudentsSLS, $reqStudentSFAE, $clearedStudentsSFAE,$pendingStudentsSFAE, $reqStudentCHT, $clearedStudentsCHT,$pendingStudentsCHT, $reqStudentSHSS, $clearedStudentsSHSS, $pendingStudentsSHSS, $reqStudentSBS, $clearedStudentsSBS,$pendingStudentsSBS, $totalDep, $totalCaf, $totalLib, $totalExc, $totalGam, $totalFna, $totalFin){
+        
+         $end = '
+    	   <body>
+            <table class=" table table-hover table-bordered" >
+                <thead bgcolor="#FF9900">
+                    <tr>
+                    <th>Department Name</th>
+                    <th># Requests from students</th>
+                    <th># cleared Student</th>
+                    <th># Pending Students</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Facultys</th>
+                        <th>'.$appliedStudents.'</th>
+                        <th>'.$clearedStudentsFac.'</th>
+                        <th>'.$pendingStudentsFac.'</th>
+                    </tr>
+                    <tr>
+                        <th>Cafeteria</th>
+                        <th>'.$appliedStudents.'</th>
+                        <th>'.$clearedStudentsCaf.'</th>
+                        <th>'.$pendingStudentsCaf.'</th>
+                    </tr>
+                    <tr>
+                        <th>Library</th>
+                        <th>'.$appliedStudents.'</th>
+                        <th>'.$clearedStudentsLib.'</th>
+                        <th>'.$pendingStudentsLib.'</th>
+                    </tr>
+                    <tr>
+                        <th>Games</th>
+                        <th>'.$appliedStudents.'</th>
+                        <th>'.$clearedStudentsGam.'</th>
+                        <th>'.$pendingStudentsGam.'</th>
+                    </tr>
+                    <tr>
+                        <th>Sports</th>
+                        <th>'.$appliedStudents.'</th>
+                        <th>'.$clearedStudentsExa.'</th>
+                        <th>'.$pendingStudentsExa.'</th>
+                    </tr>		
+                    <tr>
+                        <th>Fiancial Aid</th>
+                        <th>'.$appliedStudents.'</th>
+                        <th>'.$clearedStudentsFna.'</th>
+                        <th>'.$pendingStudentsFna.'</th>
+                    </tr>
+                    <tr>
+                        <th>finance</th>
+                        <th>'.$appliedStudents.'</th>
+                        <th>'.$clearedStudentsFin.'</th>
+                        <th>'.$pendingStudentsFin.'</th>
+                    </tr>
+                    <tr style="border-top: 2px solid black;">
+                    <th>Total Students</th>
+                    <th>'.$appliedStudents.'</th>
+                    <th>'.$totalStudentsCleared.'</th>
+                    <th>'.$totalStudentsPending.'</th>
+                    </tr>
+                </tbody>
+            </table>					
+            <hr ><br><br>
+            <center><h4>Faculty</h4></center>
+            <table class=" table table-hover table-bordered" >
+                <thead bgcolor="#FF9900">
+                    <tr>
+                        <th>Faculty Name</th>
+                        <th># Requests from students</th>
+                        <th># cleared Student</th>
+                        <th># Pending Students</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th>FIT</th>
+                    <th>'.$reqStudentFIT.'</th>
+                    <th>'.$clearedStudentsFIT.'</th>
+                    <th>'.$pendingStudentsFIT.'</th>
+                    </tr>
+                    <tr>
+                    <th>SOA</th>
+                    <th>'.$reqStudentSOA.'</th>
+                    <th>'.$clearedStudentsSLS.'</th>
+                    <th>'.$pendingStudentsSLS.'</th>
+                    </tr>	
+                    <tr>
+                    <th>SLS</th>
+                    <th>'.$reqStudentSLS.'</th>
+                    <th>'.$clearedStudentsSLS.'</th>
+                    <th>'.$pendingStudentsSLS.'</th>
+                    </tr>
+                    <tr>
+                    <th>SBS</th>
+                    <th>'.$reqStudentSBS.'</th>
+                    <th>'.$clearedStudentsSBS.'</th>
+                    <th>'.$pendingStudentsSBS.'</th>
+                    </tr>
+                    <tr>
+                    <th>SFAE</th>
+                    <th>'.$reqStudentSFAE.'</th>
+                    <th>'.$clearedStudentsSFAE.'</th>
+                    <th>'.$pendingStudentsSFAE.'</th>
+                    </tr>
+                    <tr>
+                    <th>CHT</th>
+                    <th>'.$reqStudentCHT.'</th>
+                    <th>'.$clearedStudentsCHT.'</th>
+                    <th>'.$pendingStudentsCHT.'</th>
+                    </tr>
+                    <tr>
+                    <th>SHSS</th>
+                    <th>'.$reqStudentSHSS.'</th>
+                    <th>'.$clearedStudentsSHSS.'</th>
+                    <th>'.$pendingStudentsSHSS.'</th>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class=" table table-hover table-bordered" >
+                <thead bgcolor="#FF9900">
+                    <tr>
+                        <th>Department Name</th>
+                        <th># Total Amount Owed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Facultys</th>
+                        <th>'.$totalDep.'</th>
+                    </tr>
+                    <tr>
+                        <th>Cafeteria</th>
+                        <th>'.$totalCaf.'</th>
+                    </tr>
+                    <tr>
+                        <th>Library</th>
+                        <th>'.$totalLib.'</th>
+                    </tr>
+                    <tr>
+                        <th>Games</th>
+                        <th>'.$totalGam.'</th>
+                    </tr>
+                    <tr>
+                        <th>Extra Curricular Activities</th>
+                        <th>'.$totalExc.'</th>
+                    </tr>
+                    <tr>
+                        <th>Fiancial Aid</th>
+                        <th>'.$totalFna.'</th>
+                    </tr>
+                    <tr>
+                        <th>finance</th>
+                        <th>'.$totalFin.'</th>
+                    </tr>
+                </tbody>
+            </table>
+    	   </body>';
+        return $end;
+        
+    }
 }

@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use App\Functions\PDF;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use mPDF;
 
 class AdminController extends Controller{
     public function index(){
@@ -133,6 +134,91 @@ class AdminController extends Controller{
                                ->with('moneyOwedGam', $totalGam)
                                ->with('moneyOwedFna', $totalFna)
                                ->with('moneyOwedFin', $totalFin);                              
+    }
+    
+    
+    public static function report(){
+        $appliedStudents = DB::table('clearstatus')->count();
+       
+       $clearedStudentsFac = DB::table('charge')->where('charge.department_value', '=', '0')->count();
+       $pendingStudentsFac = DB::table('charge')->where('charge.department_value', '>', '0')->count();
+       //cafeteria
+       $clearedStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '=', '0')->count();
+       $pendingStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '>', '0')->count();
+       //library
+       $clearedStudentsLib = DB::table('charge')->where('charge.library_value', '=', '0')->count();
+       $pendingStudentsLib = DB::table('charge')->where('charge.library_value', '>', '0')->count();
+       //Ex-Act
+       $clearedStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '=', '0')->count();
+       $pendingStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '>', '0')->count();
+       //Games
+       $clearedStudentsGam = DB::table('charge')->where('charge.games_value', '=', '0')->count();
+       $pendingStudentsGam = DB::table('charge')->where('charge.games_value', '>', '0')->count();
+       //F-Aid
+       $clearedStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '=', '0')->count();
+       $pendingStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '>', '0')->count();
+       //Fin
+       $clearedStudentsFin = DB::table('charge')->where('charge.finance_value', '=', '0')->count();
+       $pendingStudentsFin = DB::table('charge')->where('charge.finance_value', '>', '0')->count();
+       //total Students
+       $totalStudentsCleared = DB::table('clearstatus')->where('status', '=', 'Cleared')->count();
+       $totalStudentsPending = DB::table('clearstatus')->where('status', '=', 'Pending')->count();
+       
+       //faculty
+       //FIT 
+       $reqStudentFIT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'FIT')->count();
+       $clearedStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'FIT')->count();
+       $pendingStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'FIT')->count();
+       //SLS 
+       $reqStudentSLS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SLS')->count();
+       $clearedStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SLS')->count();
+       $pendingStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SLS')->count();
+       //SOA 
+       $reqStudentSOA = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SOA')->count();
+       $clearedStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SOA')->count();
+       $pendingStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SOA')->count();
+       //SHSS 
+       $reqStudentSHSS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SHSS')->count();
+       $clearedStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SHSS')->count();
+       $pendingStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SHSS')->count();
+       //SFAE 
+       $reqStudentSFAE = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SFAE')->count();
+       $clearedStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SFAE')->count();
+       $pendingStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SFAE')->count();
+       //SOA 
+       $reqStudentCHT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'CHT')->count();
+       $clearedStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'CHT')->count();
+       $pendingStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'CHT')->count();
+       //SOA 
+       $reqStudentSBS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SBS')->count();
+       $clearedStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SBS')->count();
+       $pendingStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SBS')->count();
+       
+       //financial report 
+       //facuty
+       $totalDep = DB::table('charge')->sum('department_value');
+       //cafeteria
+       $totalCaf = DB::table('charge')->sum('cafeteria_value');
+       // library
+       $totalLib = DB::table('charge')->sum('library_value');
+       //Extra Cal  
+       $totalExc = DB::table('charge')->sum('extra_curricular_value');
+       //games
+       $totalGam = DB::table('charge')->sum('games_value');
+       //financial aid 
+       $totalFna = DB::table('charge')->sum('financial_aid_value');
+       //finance 
+       $totalFin = DB::table('charge')->sum('finance_value');
+       
+       
+       
+       
+       
+        $html = PDF::report($appliedStudents, $clearedStudentsFac, $pendingStudentsFac, $clearedStudentsCaf, $pendingStudentsCaf, $clearedStudentsGam, $pendingStudentsGam, $clearedStudentsExa, $pendingStudentsExa, $clearedStudentsFna, $pendingStudentsFna, $clearedStudentsFin, $pendingStudentsFin, $clearedStudentsLib, $pendingStudentsLib, $totalStudentsCleared, $totalStudentsPending, $reqStudentFIT, $clearedStudentsFIT,$pendingStudentsFIT, $reqStudentSOA, $clearedStudentsSOA,$pendingStudentsSOA, $reqStudentSLS, $clearedStudentsSLS,$pendingStudentsSLS, $reqStudentSFAE, $clearedStudentsSFAE,$pendingStudentsSFAE, $reqStudentCHT, $clearedStudentsCHT,$pendingStudentsCHT, $reqStudentSHSS, $clearedStudentsSHSS, $pendingStudentsSHSS, $reqStudentSBS, $clearedStudentsSBS,$pendingStudentsSBS, $totalDep, $totalCaf, $totalLib, $totalExc, $totalGam, $totalFna, $totalFin);
+        
+        $mpdf=new mpdf();
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
     }
 
 }
