@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Validator;
 use App\Http\Controllers\Controller;
 #use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -26,8 +27,7 @@ class AuthController extends Controller
     //If authentication fails redirect to the login page!
     protected $loginPath = '/auth/login';
 
-    #use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    use AuthenticatesAndRegistersUsers;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
     /**
      * Create a new authentication controller instance.
      *

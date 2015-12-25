@@ -37,9 +37,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary">Sign in</button>
-                                <br><br>
-                                <a href="/auth/register"><u><b>First time to interact with the system? Click here pal.<b></b></u></a>
+                                <button id="element" type="submit" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="right" data-content="Invalid username or password!">Sign in</button>
+                                   <br><br>
+                                <a href="/auth/register"><u><b>First time to interact with the system? Click here pal.</b></u></a>
                             </div>
                         </div>
                     </form>
@@ -51,5 +51,18 @@
         <div class="alert alert-success col-md-8 col-md-offset-2" role="alert" style="font-family: 'Trebuchet MS';font-size: large">
             <center>{{Session::get('flash_message')}}</center>
         </div>
+    @endif
+    @if($errors->any())
+        {{--<ul class="alert alert-danger">--}}
+            {{--@foreach($errors->all() as $error)--}}
+                {{--<li>{{$error}}</li>--}}
+            {{--@endforeach--}}
+        {{--</ul>--}}
+
+        {{--The following script enables the popover notification to appear--}}
+
+        <script type="text/javascript">
+            $('#element').popover('show');
+        </script>
     @endif
 @endsection
