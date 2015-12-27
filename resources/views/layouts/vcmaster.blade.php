@@ -3,6 +3,7 @@
 <head>
 	<title>Clearance Report</title>
       <meta charset="UTF-8">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="description" content="Strathmore University Graduation clearance web interface">
       <meta name="author" content="Angela Namikoye, Brian Mwathi, Brian Phiri">
       

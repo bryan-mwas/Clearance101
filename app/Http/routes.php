@@ -22,6 +22,7 @@ Route::get('/apply', function () {
 //This is for the VC view 
 Route::get('/vc', 'AdminController@index');
 Route::get('/vcpdf', 'AdminController@report');
+Route::get('/vcex', 'AdminController@exReport');
 //This is for the email functionality.
 Route::get('/mail','MailsController@index');
 
