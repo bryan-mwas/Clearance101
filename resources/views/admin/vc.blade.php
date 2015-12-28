@@ -9,7 +9,7 @@
 	<br><br>
 	<div id="view">
 		<div>
-            <a href="/vcpdf" class="btn btn-info">PDF</a> <a href="/vcex" class="btn btn-success">MS Excel</a>
+            <a href="/vcpdf" class="btn btn-info">PDF</a> <a href="" class="btn btn-success">MS Excel</a>
 		</div><br><br>
 		<div>
 			<!-- Nav tabs -->
