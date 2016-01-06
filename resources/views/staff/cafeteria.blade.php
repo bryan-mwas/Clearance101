@@ -12,7 +12,7 @@
 				<tr>
 					<th>Registration Number</th>
 					<th>First Name</th>
-					<th>Last Name</th>
+					<th>Last</th>
 					<th>Faculty</th>
 					<th>Course</th>
 					<th style="border-right:hidden"></th>
@@ -42,7 +42,7 @@
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>	</button>
 				        <h4 class="modal-title" id="myModalLabel{{$student->studentNo}}">CAFETERIA DEPARTMENT</h4>
 				      </div>
-				      <div class="modal-body">
+				      < class="modal-body">
 						  <!--start student information display-->
 						  <div class="">
 							<label for="name"> STUDENT NAME</label>
@@ -95,7 +95,6 @@
 										<p>Value: </p><input type="text" class="form-control" name="amount" placeholder="Please Enter Amount Owed" > 
 										Date: <u>{!! date('Y-m-d') !!}</u> 
 								</div>
-								</div>
 								<div class="modal-footer">
 							        <button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							        <input title="Save changes and Clear student" type="submit" class="btn btn-primary" value="Save changes">
@@ -112,5 +111,8 @@
 		{!! $students->render() !!}
 	</table>
 	</div>
-  </div>	
+  </div>
+  {{--@foreach($pendingStudents as $mwas)--}}
+      {{--{{$mwas->studentNo}}--}}
+      {{--@endforeach--}}
  @endsection

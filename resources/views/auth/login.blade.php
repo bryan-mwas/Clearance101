@@ -15,7 +15,7 @@
                     <form method="POST" action="/auth/login" class="form-horizontal">
                         {!! csrf_field() !!}
                         <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Username</label>
+                            <label for="regNo" class="col-sm-2 control-label">Username</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="regNo" placeholder="Enter your registration number">
                             </div>
@@ -53,13 +53,8 @@
         </div>
     @endif
     @if($errors->any())
-        {{--<ul class="alert alert-danger">--}}
-            {{--@foreach($errors->all() as $error)--}}
-                {{--<li>{{$error}}</li>--}}
-            {{--@endforeach--}}
-        {{--</ul>--}}
 
-        {{--The following script enables the popover notification to appear--}}
+       {{--The following script enables the popover notification to appear--}}
 
         <script type="text/javascript">
             $('#element').popover('show');

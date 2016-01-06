@@ -14,12 +14,19 @@ use App\Http\Controllers\Controller;
 
 class CafeteriaController extends Controller{
     public function index(){
+        $name = 'Brian Mwathi';
         $students = DB::table('students')
                      ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                      ->select('students.*', 'charge.queueFlag')
                      ->where('charge.queueFlag', '=', '1')
                      ->paginate(15);
-         return view('staff/cafeteria', compact('students'));  
+        $pending = DB::table('students')
+                            ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
+                            ->select('students.*', 'charge.*')
+                            ->where('charge.cafeteria_value','>','0')
+                            ->paginate(15);
+         return view('staff/cafeteria', compact('students','pending','name'));
+
     }
 
     public function clear(Request $request){
