@@ -9,7 +9,7 @@
 
       {{--Navigation Tabs!--}}
 
-      <ul class="nav nav-tabs" role="tablist">
+      <ul class="nav nav-tabs" role="tablist" id="myTab">
           <li role="presentation" class="active"><a href="#urgent" aria-controls="general" role="tab" data-toggle="tab">Urgent!Clear Now</a></li>
           <li role="presentation"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending Students</a></li>
       </ul>
@@ -124,8 +124,16 @@
                   </table>
               </div>
           </div>
+          <!--pending nav-->
           <div role="tabpanel" class="tab-pane" id="pending">
               <div id="view">
+                  <form method="post" action="{{ action('CafeteriaController@index') }}" style="padding-top: 10px; padding-bottom:15px;">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <div class="col-md-4">
+                          <input type="text" class="form-control glyphicon glyphicon-search" placeholder="Search Student..." name="lookfor" id="lookfor" >
+                      </div>
+                      <input type="submit" class="btn btn-default btn-sm" value="search">
+                  </form>
                   <table class=" table table-hover table-bordered" >
                       <thead bgcolor="#FF9900">
                       <tr>
@@ -237,4 +245,20 @@
       </div>
 
   </div>
+  <script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    // store the currently selected tab in the hash value
+    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+        var id = $(e.target).attr("href").substr(1);
+        window.location.hash = id;
+    });
+
+    // on load of the page: switch to the currently selected tab
+    var hash = window.location.hash;
+    $('#myTab a[href="' + hash + '"]').tab('show');
+</script>
  @endsection

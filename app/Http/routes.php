@@ -41,6 +41,7 @@ Route::get('student',['middleware' => 'auth', 'uses' => 'ViewsController@index']
 Route::get('pdf',['middleware' => 'auth','uses' => 'ViewsController@show']);
 
 Route::get('/cafeteria', ['middleware' => 'caf','uses' =>'CafeteriaController@index']);
+Route::post('/cafeteria', ['middleware' => 'caf','uses' =>'CafeteriaController@index']);
 Route::post('/caftclear', 'CafeteriaController@clear');
 
 Route::get('/library', ['middleware' => 'lib','uses' =>'LibraryController@index']);
