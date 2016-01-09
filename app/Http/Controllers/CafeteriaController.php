@@ -13,21 +13,34 @@ use App\Http\Controllers\Controller;
 
 
 class CafeteriaController extends Controller{
-    public function index(){
+    public function index(Request $request){
+        $post = $request->all(); 
+        $search = $post['lookfor'];
+      
         $students = DB::table('students')
                      ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                      ->select('students.*', 'charge.queueFlag')
                      ->where('charge.queueFlag', '=', '1')
                      ->paginate(15);
-        $pending = DB::table('students')
+        if($search == ''){
+             $pending = DB::table('students')
                             ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                             ->select('students.*', 'charge.*')
                             ->where('charge.cafeteria_value','>','0')
                             ->paginate(15);
+        }else{
+            $pending = DB::table('students')
+                            ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
+                            ->select('students.*', 'charge.*')
+                            ->where('charge.cafeteria_value','>','0')->where('charge.students_studentNo', 'LIKE', '%'.$search.'%')
+                            ->paginate(15);
+        }
+        
          return view('staff/cafeteria', compact('students','pending'));
-
     }
-
+    
+    
+    
     public function clear(Request $request){
     	$post = $request->all();
 
