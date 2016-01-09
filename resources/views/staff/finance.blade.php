@@ -122,6 +122,7 @@
 			</table>
 		</div>
 		</div>
+        <!--pending tab-->
 		<div role="tabpanel" class="tab-pane" id="pending">
 			<div id="view">
 				<table class=" table table-hover table-bordered" >
@@ -208,11 +209,35 @@
 													<input type="hidden" name="_token" value="{{ csrf_token() }}">
 													<input type="hidden" name="magic_value" value="0">
 													<input type="hidden" name="regNo" value="{{$student->studentNo}}">
-													<p>The above named student is supposed to pay the university
-													<div class="input-group"><div class="input-group-addon">Kshs</div>
-														<input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount" placeholder="Amount">
-														<div class="input-group-addon">.00</div></div> before he leaves.</p>
-													Date: <u>{!! date('Y-m-d') !!}</u>
+												<!--start statment summary-->
+                                                     <div>
+                                                         <!--school-->
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <label for="schoolBalance">Schools</label>
+                                                            </div>
+                                                            <div class="col-xs-6 .col-sm-3">
+                                                                <input class="form-control" type="text">
+                                                            </div>
+                                                            <div class="col-xs-6 .col-sm-3">
+                                                                <input class="form-control" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <!--caft-->
+                                                        <div class="row"></div>
+                                                        <!--lib-->
+                                                        <div class="row"></div>
+                                                        <!--ex-->
+                                                        <div class="row"></div>
+                                                        <!--gm-->
+                                                        <div class="row"></div>
+                                                        <!--finA-->
+                                                        <div class="row"></div>
+                                                        <!--fin-->
+                                                        <div class="row"></div>
+                                                        <!--total-->
+                                                     </div>
+                                                <!--end statment summary-->
 												</div>
 												<div class="modal-footer">
 													<button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>
