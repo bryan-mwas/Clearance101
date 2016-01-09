@@ -19,12 +19,6 @@ class FinancialAidController extends Controller{
                     ->select('students.*', 'charge.queueFlag')
                     ->where('charge.queueFlag', '=', '5')
                     ->paginate(15);
-        $pending = DB::table('students')
-            ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
-            ->select('students.*', 'charge.*')
-            ->where('charge.financial_aid_value','>','0')
-            ->paginate(15);
-   
          return view('staff/financialAid', compact('students','pending'));
     }
 
@@ -35,22 +29,6 @@ class FinancialAidController extends Controller{
     	$student = $post['regNo'];
         $loan = $post['amountTaken'];
         $repaid = $post['amountRepaid'];
-        $magic_val = $post['magic_value'];
-        /*
-         * NOTE!!!
-         * The magic value below is a hidden input that
-         * helps in evaluating which type of query is to be executed.
-         * */
-        if($magic_val == 0){
-            DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo
-        SET comments.financial_aid = '$comment',
-        comments.loan = '$loan',
-        comments.repaid = '$repaid',
-        charge.financial_aid_value = '$value'
-        WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-
-        }
-        elseif($magic_val == 1){
             
             $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
@@ -68,7 +46,6 @@ class FinancialAidController extends Controller{
         charge.financial_aid_value = '$value',
         charge.queueFlag = '6'
         WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-        }
 
         return redirect('/financialAid');
     }

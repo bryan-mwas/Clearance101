@@ -19,12 +19,6 @@ class LibraryController extends Controller{
                     ->select('students.*', 'charge.queueFlag')
                     ->where('charge.queueFlag', '=', '2')
                     ->paginate(15);
-        $pending = DB::table('students')
-            ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
-            ->select('students.*', 'charge.*')
-            ->where('charge.library_value','>','0')
-            ->paginate(15);
-        
          return view('staff/library', compact('students','pending'));
     }
     public function clear(Request $request){
@@ -32,18 +26,6 @@ class LibraryController extends Controller{
     	$comment = $post['comment'];
     	$value = $post['amount'];
     	$student = $post['regNo'];
-        /*
-         * NOTE!!!
-         * The magic value below is a hidden input that
-         * helps in evaluating which type of query is to be executed.
-         * */
-
-        $magic_val = $post['magic_value'];
-
-        if($magic_val == 0){
-            DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.library = '$comment', charge.library_value = '$value' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-        }
-        elseif($magic_val == 1){
 
             $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
@@ -56,7 +38,6 @@ class LibraryController extends Controller{
 
             $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.library = '$comment', charge.library_value = '$value', charge.queueFlag = '3' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
 
-        }
 
         return redirect('/library');
     }

@@ -19,13 +19,7 @@ class GamesController extends Controller{
                     ->select('students.*', 'charge.queueFlag')
                     ->where('charge.queueFlag', '=', '4')
                     ->paginate(15);
-      $pending = DB::table('students')
-          ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
-          ->select('students.*', 'charge.*')
-          ->where('charge.games_value','>','0')
-          ->paginate(15);
-        
-        
+
          return view('staff/games', compact('students','pending'));
     }
     public function clear(Request $request){
@@ -33,17 +27,6 @@ class GamesController extends Controller{
     	$comment = "N/A";
     	$value = 0;
     	$student = $post['regNo'];
-        /*
-         * NOTE!!!
-         * The magic value below is a hidden input that
-         * helps in evaluating which type of query is to be executed.
-         * */
-        $magic_val = $post['magic_value'];
-
-        if($magic_val == 0){
-            DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.games = '$comment', charge.games_value = '$value' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-        }
-        elseif($magic_val == 1){
             $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
                 ->select('administrators.email')->where('schools.department_name','=','Financial Aid')
@@ -54,7 +37,6 @@ class GamesController extends Controller{
             });
 
             $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.games = '$comment', charge.games_value = '$value', charge.queueFlag = '5' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-        }
 
         return redirect('/games');
     }

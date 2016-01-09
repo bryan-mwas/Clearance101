@@ -43,7 +43,7 @@ class FinanceController extends Controller{
 			ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value'
 			WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
         }
-        elseif($magic_val == 1){
+
             /**
              * Sends mail, but to whom?
              */
@@ -60,7 +60,6 @@ class FinanceController extends Controller{
 			ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value', charge.queueFlag = '7'
 			WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
 
-        }
 		return redirect('/finance');
     }
 }
