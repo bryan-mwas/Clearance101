@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    <div class="row">
+    <div class="row" style="font-family: 'Segoe UI'">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -39,11 +39,12 @@
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button id="element" type="submit" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="right" data-content="Invalid username or password!">Sign in</button>
                                    <br><br>
-                                <a href="/auth/register"><u><b>First time to interact with the system? Click here pal.</b></u></a>
+                                <a href="/auth/register"><u>First time to interact with the system? Click here pal.</u></a>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     </div>

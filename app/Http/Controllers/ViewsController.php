@@ -94,7 +94,7 @@ class ViewsController extends Controller
                 /*
                  * For test purposes! Nerds ONLY!! ;-)
                  * */
-                return $admin;
+                return redirect()->intended('/vc');
             }
         }
     }
@@ -182,5 +182,13 @@ class ViewsController extends Controller
         $user = Auth::user()->regNo;
         $admin = DB::table('schools')->where('schools.administrator','=',$user)->pluck('department_name');
         return $admin;
+    }
+    /**
+     * This is for the management
+     */
+    public function leadership(){
+        $user = Auth::user()->regNo;
+        $leader = DB::table('management')->where('id','=',$user)->pluck('role');
+        return $leader;
     }
 }

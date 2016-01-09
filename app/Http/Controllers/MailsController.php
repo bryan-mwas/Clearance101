@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use\App\Models\Student;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use DB;
 class MailsController extends Controller
 {
     /**
@@ -18,15 +19,22 @@ class MailsController extends Controller
      */
     public function index(Request $request)
     {
-        $emails = ['mwathibrian7@gmail.com'];
-        Mail::send('mails.welcome', ['name' => 'Angela Namikoye, Brian Phiri'], function($message) use($emails)
-        {
-            $message->to($emails)->from('strath.clearance@gmail.com', 'strath')->subject('This is test email');
-        });
         $user = Auth::user()->regNo;
+        $res = DB::table('students')->select('faculty')->where('studentNo','=',$user)->pluck('faculty');
+        //Query below gets the email of the specific administrator
+        $admin = DB::table('schools')
+                        ->join('administrators','schools.administrator','=','administrators.admin_id')
+                        ->select('administrators.email')->where('schools.department_name','=',$res)
+                        ->pluck('email');
+        Mail::send('mails.welcome', ['name' => 'Angela Namikoye, Brian Phiri'], function($message) use($admin)
+        {
+            $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance Request');
+        });
+
         student::where('studentNo','=',$user)->update(['state' => 'Activated']);
         Session::flash('flash_msg','You have initiated the clearance process');
         return redirect('/student');
+
     }
 
     /**

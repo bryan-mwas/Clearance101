@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('mwas','ViewsController@leadership');
 
 Route::get('/home',function(){return 'HELLO THERE! YOU ARE ALREADY LOGGED IN';});
 Route::get('/', 'Auth\AuthController@getLogin');
@@ -20,8 +21,8 @@ Route::get('/apply', function () {
 });
 
 //This is for the VC view 
-Route::get('/vc', 'AdminController@index');
-Route::get('/vcpdf', 'AdminController@report');
+Route::get('/vc', ['middleware'=>'vc','uses'=>'AdminController@index']);
+Route::get('/vcpdf', ['middleware'=>'vc','uses'=>'AdminController@report']);
 //This is for the email functionality.
 Route::get('/mail','MailsController@index');
 

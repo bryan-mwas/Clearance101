@@ -33,7 +33,9 @@ class ExtraCurricularActivitiesController extends Controller{
     	$student = $post['regNo'];
         $magic_val = $post['magic_value'];
         /*
-         * Condition is used to determine the query to be executed.
+         * NOTE!!!
+         * The magic value below is a hidden input that
+         * helps in evaluating which type of query is to be executed.
          * */
         if($magic_val == 0){
             DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.extra_curricular = '$comment', charge.extra_curricular_value = '$value' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
@@ -41,11 +43,13 @@ class ExtraCurricularActivitiesController extends Controller{
         elseif($magic_val == 1){
             $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.extra_curricular = '$comment', charge.extra_curricular_value = '$value', charge.queueFlag = '4' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
 
+            $admin = DB::table('schools')
+                ->join('administrators','schools.administrator','=','administrators.admin_id')
+                ->select('administrators.email')->where('schools.department_name','=','Games')
+                ->pluck('email');
             //Send Mail
-            $emails = ['mwathibrian7@gmail.com','brianphiri.9523@gmail.com', 'anamikoye52@gmail.com'];
-            Mail::send('mails.clear', ['student' => $student ], function($message) use($emails)
-            {
-                $message->to($emails)->from('strath.clearance@gmail.com', 'strath')->subject('Clearance');
+            Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
             });
         }
 

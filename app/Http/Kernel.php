@@ -44,5 +44,6 @@ class Kernel extends HttpKernel
         'financial_aid' => \App\Http\Middleware\SpecificFinancialAid::class,
         'extra' => \App\Http\Middleware\SpecificExtraCurricular::class,
         'mail' => \App\Http\Middleware\SpecificMail::class,
+        'vc' => \App\Http\Middleware\VC::class,
     ];
 }

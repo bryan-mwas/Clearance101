@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    <div class="row">
+    <div class="row" style="font-family: 'Segoe UI'">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -49,10 +49,10 @@
         </div>
     </div>
     @if($errors->any())
-        <ul class="alert alert-danger">
+        <div class="well well-sm col-md-8 col-md-offset-2">
             @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
+                <span style="font-family: 'Segoe UI';font-size: 110%; color: red"><center>{{$error}}</center></span><br>
             @endforeach
-        </ul>
+        </div>
     @endif
 @endsection

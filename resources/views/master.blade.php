@@ -12,8 +12,22 @@
     <link rel="stylesheet" href="../jquery-ui-1.11.4.custom/jquery-ui.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="../jquery-ui-1.11.4.custom/jquery-ui.theme.min.css" media="screen" title="no title" charset="utf-8">
 
-    <style>th{background-color:#FF9900;}</style>
+    <style>
+        th{
+            background-color:#FF9900;
+        }
+        footer {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background-color: #0000ff;
+            color: #fff;
+            font-family: 'Segoe UI';
+            font-size: 16px;
+        }
+    </style>
     <title>@yield('title')</title>
+
 </head>
 <body>
 <div class="container">
@@ -53,4 +67,9 @@
     $('div.alert').delay(3000).slideUp(300);
 </script>
 </body>
+<footer>
+    <center>
+        Strathmore University. Copyright <span class="glyphicon glyphicon-copyright-mark"></span> {{date('Y')}}. All rights reserved.
+    </center>
+</footer>
 </html>

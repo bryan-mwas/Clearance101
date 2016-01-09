@@ -33,18 +33,27 @@ class GamesController extends Controller{
     	$comment = "N/A";
     	$value = 0;
     	$student = $post['regNo'];
+        /*
+         * NOTE!!!
+         * The magic value below is a hidden input that
+         * helps in evaluating which type of query is to be executed.
+         * */
         $magic_val = $post['magic_value'];
+
         if($magic_val == 0){
             DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.games = '$comment', charge.games_value = '$value' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
         }
         elseif($magic_val == 1){
-            $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.games = '$comment', charge.games_value = '$value', charge.queueFlag = '5' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
+            $admin = DB::table('schools')
+                ->join('administrators','schools.administrator','=','administrators.admin_id')
+                ->select('administrators.email')->where('schools.department_name','=','Financial Aid')
+                ->pluck('email');
             //Send Mail
-            $emails = ['mwathibrian7@gmail.com','brianphiri.9523@gmail.com', 'anamikoye52@gmail.com'];
-            Mail::send('mails.clear', ['student' => $student ], function($message) use($emails)
-            {
-                $message->to($emails)->from('strath.clearance@gmail.com', 'strath')->subject('Clearance');
+            Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
             });
+
+            $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.games = '$comment', charge.games_value = '$value', charge.queueFlag = '5' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
         }
 
         return redirect('/games');
