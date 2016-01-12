@@ -209,39 +209,99 @@
 													<input type="hidden" name="_token" value="{{ csrf_token() }}">
 													<input type="hidden" name="magic_value" value="0">
 													<input type="hidden" name="regNo" value="{{$student->studentNo}}">
-												<!--start statment summary-->
-                                                     <div>
-                                                         <!--school-->
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <label for="schoolBalance">Schools</label>
-                                                            </div>
-                                                            <div class="col-xs-6 .col-sm-3">
-                                                                <input class="form-control" type="text">
-                                                            </div>
-                                                            <div class="col-xs-6 .col-sm-3">
-                                                                <input class="form-control" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <!--caft-->
-                                                        <div class="row"></div>
-                                                        <!--lib-->
-                                                        <div class="row"></div>
-                                                        <!--ex-->
-                                                        <div class="row"></div>
-                                                        <!--gm-->
-                                                        <div class="row"></div>
-                                                        <!--finA-->
-                                                        <div class="row"></div>
-                                                        <!--fin-->
-                                                        <div class="row"></div>
-                                                        <!--total-->
-                                                     </div>
-                                                <!--end statment summary-->
+												  <!--start statment summary-->
+                            <div class="">
+                              <hr>
+                              <!-- depts -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">School</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">2000</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text">
+      													</div>
+      												</div><br>
+                              <!-- caft -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Cafetria</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">2000</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text">
+      													</div>
+      												</div><br>
+                              <!-- lib -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Library</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">2000</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text">
+      													</div>
+      												</div><br>
+                              <!-- extAct -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Extra Curricular Activites</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">2000</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text">
+      													</div>
+      												</div><br>
+                              <!-- gms -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Games</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">2000</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text">
+      													</div>
+      												</div><br>
+                              <!-- FinA -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Financial Aid</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">2000</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text">
+      													</div>
+      												</div><br>
+                              <!-- fin -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Finance</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">2000</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text">
+      													</div>
+      												</div><br>
+                            </div>
+                          <!--end statment summary-->
 												</div>
 												<div class="modal-footer">
 													<button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-													<input title="Save changes and Clear student" type="submit" class="btn btn-primary" value="Save changes">
+													<input title="Save changes and Clear student" type="submit" class="btn btn-primary" value="Update Balance">
 												</div>
 											</form>
 											<!-- end form display -->
@@ -259,5 +319,5 @@
 		</div>
 	</div>
 
-  </div>	
+  </div>
 @endsection
