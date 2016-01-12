@@ -9,7 +9,7 @@
 	<br><br>
 	<div id="view">
 		<div>
-            <a href="/vcpdf" class="btn btn-info">PDF</a> <a href="" class="btn btn-success">MS Excel</a>
+            <a href="/vcpdf" class="btn btn-info">PDF</a> <a href="vcxls" class="btn btn-success">MS Excel</a>
 		</div><br><br>
 		<div>
 			<!-- Nav tabs -->
@@ -17,7 +17,7 @@
 				<li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Clear Information</a></li>
 				<li role="presentation"><a href="#financial" aria-controls="financial" role="tab" data-toggle="tab">Financial Information</a></li>
 			</ul>
-			
+
 			<!-- Tab panes -->
 			<br><br>
 			<div class="tab-content">
@@ -85,7 +85,7 @@
 								</tr>
 							</tbody>
 						</table>
-						
+
 						<hr ><br><br>
 						<center><h4>Faculty</h4></center>
 						<table class=" table table-hover table-bordered" >
@@ -145,7 +145,7 @@
 					</div>
 				</div>
 				<!--end gen tab-->
-				
+
 				<!-- tab pane for financial information -->
 				<!--start fin tab-->
 				<div role="tabpanel" class="tab-pane" id="financial">

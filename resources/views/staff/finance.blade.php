@@ -203,7 +203,7 @@
 											</div>
 											<!--end student information display-->
 											<!-- display form -->
-											<form method="post" action="{{ action('FinanceController@clear') }}">
+											<form method="post" action="{{ action('FinanceController@update') }}">
 												<h3><b>FINANCE</b></h3>
 												<div>
 													<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -218,7 +218,7 @@
       														<label for="name">School</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">2000</label>
+      														<label for="">{{$student->department_value}}</label>
       													</div>
                                 <div class="col-md-4">
       														<input class="form-control" type="text">
@@ -230,7 +230,7 @@
       														<label for="name">Cafetria</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">2000</label>
+      														<label for="">{{$student->cafeteria_value}}</label>
       													</div>
                                 <div class="col-md-4">
       														<input class="form-control" type="text">
@@ -242,7 +242,7 @@
       														<label for="name">Library</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">2000</label>
+      														<label for="name">{{$student->library_value}}</label>
       													</div>
                                 <div class="col-md-4">
       														<input class="form-control" type="text">
@@ -254,7 +254,7 @@
       														<label for="name">Extra Curricular Activites</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">2000</label>
+      														<label for="name">{{$student->extra_curricular_value}}</label>
       													</div>
                                 <div class="col-md-4">
       														<input class="form-control" type="text">
@@ -266,7 +266,7 @@
       														<label for="name">Games</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">2000</label>
+      														<label for="name">{{$student->games_value}}</label>
       													</div>
                                 <div class="col-md-4">
       														<input class="form-control" type="text">
@@ -278,7 +278,7 @@
       														<label for="name">Financial Aid</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">2000</label>
+      														<label for="name">{{$student->finance_aid_value}}</label>
       													</div>
                                 <div class="col-md-4">
       														<input class="form-control" type="text">
@@ -290,7 +290,7 @@
       														<label for="name">Finance</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">2000</label>
+      														<label for="name">{{$student->finance_value}}</label>
       													</div>
                                 <div class="col-md-4">
       														<input class="form-control" type="text">

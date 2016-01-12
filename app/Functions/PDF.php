@@ -15,7 +15,7 @@ class PDF
     	   <img src="img/Strathmore_OK.png" align="middle" style="width:250px;height:80px; margin-left: auto; margin-right: auto">
     	   </div>
                <h2 align=center>STUDENT CLEARANCE CERTIFICATE</h2>
-			
+
     <div>
       <table width="100%">
         <tbody>
@@ -88,7 +88,7 @@ class PDF
            <img src="img/Strathmore_OK.png" align="middle" style="width:250px;height:80px; margin-left: auto; margin-right: auto">
            </div>
                <h2 align=center>STUDENT CLEARANCE INVOICE</h2>
-            
+
     <div>
       <table width="100%">
         <tbody>
@@ -117,7 +117,7 @@ class PDF
             </tbody>
         </table>
       <div>
-      
+
             <hr>
         <p></p>
         <table width="100%" style="border: 1px solid black">
@@ -149,11 +149,12 @@ class PDF
     }
 
     public static function report($appliedStudents, $clearedStudentsFac, $pendingStudentsFac, $clearedStudentsCaf, $pendingStudentsCaf, $clearedStudentsGam, $pendingStudentsGam, $clearedStudentsExa, $pendingStudentsExa, $clearedStudentsFna, $pendingStudentsFna, $clearedStudentsFin, $pendingStudentsFin, $clearedStudentsLib, $pendingStudentsLib, $totalStudentsCleared, $totalStudentsPending, $reqStudentFIT, $clearedStudentsFIT,$pendingStudentsFIT, $reqStudentSOA, $clearedStudentsSOA,$pendingStudentsSOA, $reqStudentSLS, $clearedStudentsSLS,$pendingStudentsSLS, $reqStudentSFAE, $clearedStudentsSFAE,$pendingStudentsSFAE, $reqStudentCHT, $clearedStudentsCHT,$pendingStudentsCHT, $reqStudentSHSS, $clearedStudentsSHSS, $pendingStudentsSHSS, $reqStudentSBS, $clearedStudentsSBS,$pendingStudentsSBS, $totalDep, $totalCaf, $totalLib, $totalExc, $totalGam, $totalFna, $totalFin){
-        
+
          $end = '
     	   <body>
-            <table class=" table table-hover table-bordered" >
-                <thead bgcolor="#FF9900">
+            <h4>Departments Report</h4>
+            <table class="table">
+                <thead>
                     <tr>
                     <th>Department Name</th>
                     <th># Requests from students</th>
@@ -191,7 +192,7 @@ class PDF
                         <th>'.$appliedStudents.'</th>
                         <th>'.$clearedStudentsExa.'</th>
                         <th>'.$pendingStudentsExa.'</th>
-                    </tr>		
+                    </tr>
                     <tr>
                         <th>Fiancial Aid</th>
                         <th>'.$appliedStudents.'</th>
@@ -211,9 +212,9 @@ class PDF
                     <th>'.$totalStudentsPending.'</th>
                     </tr>
                 </tbody>
-            </table>					
+            </table>
             <hr ><br><br>
-            <center><h4>Faculty</h4></center>
+            <center><h4>Faculty Report</h4></center>
             <table class=" table table-hover table-bordered" >
                 <thead bgcolor="#FF9900">
                     <tr>
@@ -235,7 +236,7 @@ class PDF
                     <th>'.$reqStudentSOA.'</th>
                     <th>'.$clearedStudentsSLS.'</th>
                     <th>'.$pendingStudentsSLS.'</th>
-                    </tr>	
+                    </tr>
                     <tr>
                     <th>SLS</th>
                     <th>'.$reqStudentSLS.'</th>
@@ -268,8 +269,8 @@ class PDF
                     </tr>
                 </tbody>
             </table>
-            
-            <table class=" table table-hover table-bordered" >
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <table class=" table" >
                 <thead bgcolor="#FF9900">
                     <tr>
                         <th>Department Name</th>
@@ -309,6 +310,6 @@ class PDF
             </table>
     	   </body>';
         return $end;
-        
+
     }
 }

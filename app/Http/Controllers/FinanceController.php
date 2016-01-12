@@ -12,7 +12,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class FinanceController extends Controller{
- 
+
     public function index(){
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
@@ -32,7 +32,7 @@ class FinanceController extends Controller{
     	$comment = "N/A";
     	$value = $post['amount'];
     	$student = $post['regNo'];
-        $magic_val = $post['magic_value'];
+      $magic_val = $post['magic_value'];
         /*
           * NOTE!!!
           * The magic value below is a hidden input that
@@ -40,8 +40,8 @@ class FinanceController extends Controller{
           * */
         if($magic_val == 0){
             DB::update("UPDATE charge INNER JOIN comments
-			ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value'
-			WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
+      			ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value'
+      			WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
         }
 
             /**
@@ -56,10 +56,14 @@ class FinanceController extends Controller{
 //                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
 //            });
 
-            DB::update("UPDATE charge INNER JOIN comments
+      DB::update("UPDATE charge INNER JOIN comments
 			ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value', charge.queueFlag = '7'
 			WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
 
-		return redirect('/finance');
+		  return redirect('/finance');
+    }
+
+    public function update(){
+      
     }
 }

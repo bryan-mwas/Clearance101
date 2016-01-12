@@ -20,9 +20,10 @@ Route::get('/apply', function () {
     return view('clearance.init');
 });
 
-//This is for the VC view 
+//This is for the VC view
 Route::get('/vc', ['middleware'=>'vc','uses'=>'AdminController@index']);
 Route::get('/vcpdf', ['middleware'=>'vc','uses'=>'AdminController@report']);
+Route::get('/vcxls', ['middleware'=>'vc','uses'=>'AdminController@exReport']);
 //This is for the email functionality.
 Route::get('/mail','MailsController@index');
 
@@ -56,6 +57,7 @@ Route::post('/extraCurricularActivitiesclear', 'ExtraCurricularActivitiesControl
 
 Route::get('/finance', ['middleware' => 'finance','uses' =>'FinanceController@index']);
 Route::post('/financeclear', 'FinanceController@clear');
+Route::post('/financeupdate', 'FinanceController@update');
 
 Route::get('/financialAid', ['middleware' => 'financial_aid','uses' =>'FinancialAidController@index']);
 Route::post('/financialAidclear', 'FinancialAidController@clear');
