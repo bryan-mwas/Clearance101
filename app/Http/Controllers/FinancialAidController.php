@@ -19,7 +19,7 @@ class FinancialAidController extends Controller{
                     ->select('students.*', 'charge.queueFlag')
                     ->where('charge.queueFlag', '=', '5')
                     ->paginate(15);
-         return view('staff/financialAid', compact('students','pending'));
+         return view('staff/financialAid', compact('students'));
     }
 
     public function clear(Request $request){
@@ -29,7 +29,7 @@ class FinancialAidController extends Controller{
     	$student = $post['regNo'];
         $loan = $post['amountTaken'];
         $repaid = $post['amountRepaid'];
-            
+
             $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
                 ->select('administrators.email')->where('schools.department_name','=','Finance')

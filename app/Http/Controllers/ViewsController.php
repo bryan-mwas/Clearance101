@@ -80,6 +80,7 @@ class ViewsController extends Controller
             }
             else if($admin == "Finance"){
                 return redirect()->intended('/finance');
+                // return Redirect::route('/finance', array('id' => $admin));
             }
             else if($admin == "Financial Aid"){
                 return redirect()->intended('/financialAid');

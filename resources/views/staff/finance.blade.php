@@ -5,6 +5,7 @@
     <br><br>
     <div>
     	<center><u><H3>FINANCE DEPARTMENT</H3></u></center>
+      <center><i>{{$FinanceGuy->id}}</i></center>
     </div>
     <br><br>
 	  <ul class="nav nav-tabs" role="tablist">
@@ -212,6 +213,18 @@
 												  <!--start statment summary-->
                             <div class="">
                               <hr>
+                              <!-- help -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Name of Department</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="">Current Amount</label>
+      													</div>
+                                <div class="col-md-4">
+      														<label for="">Amount Payed</label>
+      													</div>
+      												</div><br>
                               <!-- depts -->
                               <div class="row">
       													<div class="col-md-4">
@@ -221,7 +234,7 @@
       														<label for="">{{$student->department_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" type="text">
+      														<input class="form-control" placeholder="{{$student->department_value}}" type="text" name="school">
       													</div>
       												</div><br>
                               <!-- caft -->
@@ -233,69 +246,58 @@
       														<label for="">{{$student->cafeteria_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" type="text">
+      														<input class="form-control" placeholder="{{$student->cafeteria_value}}" type="text" name="cafetria">
       													</div>
       												</div><br>
                               <!-- lib -->
                               <div class="row">
       													<div class="col-md-4">
-      														<label for="name">Library</label>
+      														<label for="">Library</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">{{$student->library_value}}</label>
+      														<label for="">{{$student->library_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" type="text">
-      													</div>
-      												</div><br>
-                              <!-- extAct -->
-                              <div class="row">
-      													<div class="col-md-4">
-      														<label for="name">Extra Curricular Activites</label>
-      													</div>
-      													<div class="col-md-1">
-      														<label for="name">{{$student->extra_curricular_value}}</label>
-      													</div>
-                                <div class="col-md-4">
-      														<input class="form-control" type="text">
-      													</div>
-      												</div><br>
-                              <!-- gms -->
-                              <div class="row">
-      													<div class="col-md-4">
-      														<label for="name">Games</label>
-      													</div>
-      													<div class="col-md-1">
-      														<label for="name">{{$student->games_value}}</label>
-      													</div>
-                                <div class="col-md-4">
-      														<input class="form-control" type="text">
+      														<input class="form-control" placeholder="{{$student->library_value}}" type="text" name="library">
       													</div>
       												</div><br>
                               <!-- FinA -->
                               <div class="row">
       													<div class="col-md-4">
-      														<label for="name">Financial Aid</label>
+      														<label for="">Financial Aid</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">{{$student->finance_aid_value}}</label>
+      														<label for="">{{$student->financial_aid_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" type="text">
+      														<input class="form-control" placeholder="{{$student->financial_aid_value}}" type="text" name="financialAid">
       													</div>
       												</div><br>
                               <!-- fin -->
                               <div class="row">
       													<div class="col-md-4">
-      														<label for="name">Finance</label>
+      														<label for="">Finance</label>
       													</div>
       													<div class="col-md-1">
-      														<label for="name">{{$student->finance_value}}</label>
+      														<label for="">{{$student->finance_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" type="text">
+      														<input class="form-control" placeholder="{{$student->finance_value}}" type="text" name="finance">
       													</div>
       												</div><br>
+                              <!-- total -->
+                              <div class="row">
+      													<div class="col-md-4">
+      														<label for="name">Total</label>
+      													</div>
+      													<div class="col-md-1">
+      														<label for="name">{{$student->total}}</label>
+      													</div>
+                                <div class="col-md-4">
+      														<input class="form-control" type="text" value="{{$student->total}}" readonly>
+      													</div>
+      												</div><br>
+                              <!-- end report form -->
                             </div>
                           <!--end statment summary-->
 												</div>
