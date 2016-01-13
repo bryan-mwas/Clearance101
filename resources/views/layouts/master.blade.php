@@ -5,12 +5,14 @@
       <meta charset="UTF-8">
       <meta name="description" content="Strathmore University Graduation clearance web interface">
       <meta name="author" content="Angela Namikoye, Brian Mwathi, Brian Phiri">
-      
+
       <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
       <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
 
       <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
       <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+			<script type="text/javascript" src="{{asset('js/clearanceValidation.js')}}"></script>
+			
 </head>
 <body style="background-color: #F2F2F2;">
   <!-- start nav -->
@@ -46,11 +48,11 @@
                               </a>
                               <p style="color: #B0C4DE; float: right;">DAA-03-01-09/12</p>
                               </div>
-                               
+
                           </div>
                       </div>
-                         
-                         
+
+
                    </div>
                 </div>
             </div>

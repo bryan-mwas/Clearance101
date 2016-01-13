@@ -93,7 +93,7 @@
 										</div>
 										<!--end student information display-->
 										<!-- display form -->
-										<form method="post" action="{{ action('FinanceController@clear') }}">
+										<form id="financeClearForm" method="post" action="{{ action('FinanceController@clear') }}">
 											<h3><b>FINANCE</b></h3>
 											<div>
 												<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -101,8 +101,12 @@
 												<input type="hidden" name="regNo" value="{{$student->studentNo}}">
 												<p>The above named student is supposed to pay the university
 												<div class="input-group"><div class="input-group-addon">Kshs</div>
-													<input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount" placeholder="Amount">
-													<div class="input-group-addon">.00</div></div> before he leaves.</p>
+													<input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount" id="clearAmount" placeholder="Amount">
+													<div class="input-group-addon">.00</div>
+                        </div>before he leaves.</p><br>
+                        <div class="row">
+                          <span class="error_form" id="amount_error_message"></span>
+                        </div>
 												Date: <u>{!! date('Y-m-d') !!}</u>
 											</div>
 											<div class="modal-footer">
@@ -320,6 +324,5 @@
 			</div>
 		</div>
 	</div>
-
   </div>
 @endsection

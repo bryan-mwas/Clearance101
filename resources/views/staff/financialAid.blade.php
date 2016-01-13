@@ -93,13 +93,42 @@
 											  <p><br>
 
 											  <div class="">
-												  Loan Taken<input type="text" placeholder="Please Enter the amount originaly borrowed" class="form-control" placeholder="Amount" name="amountTaken" id="loan">
-												  Amount Repaid<input type="text" class="form-control" placeholder="Please enter the Amount repaid" name="amountRepaid" id="paid">
-												  Balance<input type="text" class="form-control" placeholder="Balance" name="balance" id="balance">
+                          <div class="row">
+                            <div class="col-md-6">
+                              Loan Taken<input type="text" id="finAidLoan" placeholder="Please Enter the amount originaly borrowed" class="form-control" placeholder="Amount" name="amountTaken" id="loan">
+                            </div>
+                            <div class="col-md-4">
+                              <span class="label label-warning" id="finAidLoan_error_message"></span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              Amount Repaid<input type="text" class="form-control" placeholder="Please enter the Amount repaid" name="amountRepaid" id="finAidPaid">
+                            </div>
+                            <div class="col-md-4">
+                              <span class="label label-warning" id="finAidPaid_error_message"></span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              Balance<input type="text" class="form-control" placeholder="Balance" name="balance" id="finAidBal" disabled>
+                            </div>
+                            <div class="col-md-4">
+                              <span class="label label-warning" id="finAidBal_error_message"></span>
+                            </div>
+                          </div>
 												  <br>
-												  Lender <input type="text" class="form-control" placeholder="Please state the lender" name="lender"> <br>
+                          <div class="row">
+                            <div class="col-md-6">
+                                Lender <input type="text" id="finAidLender" class="form-control" placeholder="Please state the lender" name="lender">
+                            </div>
+                            <div class="col-md-4">
+                              <span class="label label-warning" id="finAidLender_error_message"></span>
+                            </div>
+                          </div>
+												 <br>
 												  If there is an outstanding balance, show confirmation of registering with CRB <br> <input type="radio" class="" name="crbChoice" id="choiceYes" value="Yes"> Yes <input type="radio" class="" name="crbChoice" id="choiceNo" value="No"> No <br>
-												  Name of Credit Reference Bureau Agency <input type="text" class="form-control" placeholder="Please enter the name of Credit Reference Bureau Agency" name="crbName" id="crbName">.</p><br>
+												  Name of Credit Reference Bureau Agency <input type="text" class="form-control" placeholder="Please enter the name of Credit Reference Bureau Agency" name="crbName" id="crbName" disabled>.</p><br>
 											  Date: <u>{!! date('Y-m-d') !!}</u>
 										  </div>
 										  <div class="modal-footer">

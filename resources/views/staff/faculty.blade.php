@@ -91,8 +91,19 @@
                                               <input type="hidden" name="regNo" value="{{$student->studentNo}}">
                                               <p>The above named student has handed over to me in good order all keys, equipment and University property for which he/she
                                                   was responsible and which is under my Department with the exception of-</p>
-                                              <input type="text" class="form-control" name="comment" placeholder="Please enter any items not returned(if any)">.<br>
-                                              <p>Value: </p><input type="text" class="form-control" name="amount" placeholder="Please Enter Amount Owed">
+                                              <input type="text" id="schoolComment" class="form-control" name="comment" placeholder="Please enter any items not returned(if any)">.<br>
+                                              <span id="schoolComment_error_message"></span>
+                                              <div class="row">
+                                                <div class="col-sm-1">
+                                                  <p>Value: </p>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                  <input type="text" id="schoolValue" class="form-control" name="amount" placeholder="Please Enter Amount Owed">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                  <span id="schoolValue_error_message"></span>
+                                                </div>
+                                              </div>
                                               Date: <u>{!! date('Y-m-d') !!}</u>
                                           </div>
                                           <div class="modal-footer">

@@ -91,17 +91,19 @@
                                               <input type="hidden" name="regNo" value="{{$student->studentNo}}">
                                               <p>The above named student has accounted for all cutlery and crockery items on his/her charge, with the
                                                   exception of -</p>
-                                              <input type="text" class="form-control" name="comment" placeholder="Please enter any items not returned (if any)">.<br>
-                                              <p>Value: </p><input type="text" class="form-control" name="amount" placeholder="Please Enter Amount Owed" >
+                                              <input type="text" class="form-control" id="cafeteriaComment" name="comment" placeholder="Please enter any items not returned (if any)">.<br>
+                                              <span class="alert alert-danger" id="cafeteriaComment_error_message"></span><br>
+                                              <p>Value: </p><input type="text" class="form-control" id="cafeteriaValue" name="amount" placeholder="Please Enter Amount Owed" >
+                                              <br><span class="alert alert-danger" id="cafeteriaValue_error_message"></span>
                                               Date: <u>{!! date('Y-m-d') !!}</u>
                                           </div>
                                           <div class="modal-footer">
                                               <button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                               <input title="Save changes and Clear student" type="submit" class="btn btn-primary" value="Save changes">
                                           </div>
-
                                       </form>
                                       <!-- end form display -->
+
                                   </div>
                               </div>
                           </div>

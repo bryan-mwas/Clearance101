@@ -92,8 +92,10 @@
 											  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 											  <input type="hidden" name="regNo" value="{{$student->studentNo}}">
 											  <p>The above named student has accounted for all the Library items on his/her charge, with the exception of: </p>
-											  <input type="text" class="form-control" placeholder="Please enter any items not returned(if any)" name="comment">
-											  <p>Value: </p><input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount">
+											  <input type="text" class="form-control" placeholder="Please enter any items not returned(if any)" name="comment" id="libraryComment"><br>
+                        <span class="" id="libraryComment_error_message"></span>
+											  <p>Value: </p><input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount" id="libraryValue"><br>
+                        <span class="" id="libraryValue_error_message"></span>
 											  Date: <u>{!! date('Y-m-d') !!}</u>
 										  </div>
 										  <div class="modal-footer">
@@ -112,5 +114,5 @@
 			  {!! $students-> render() !!}
 		  </table>
 	  </div>
-  </div>	
+  </div>
 @endsection
