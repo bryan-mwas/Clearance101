@@ -93,9 +93,21 @@
 											  <input type="hidden" name="regNo" value="{{$student->studentNo}}">
 											  <p>The above named student has accounted for all the Library items on his/her charge, with the exception of: </p>
 											  <input type="text" class="form-control" placeholder="Please enter any items not returned(if any)" name="comment" id="libraryComment"><br>
-                        <span class="" id="libraryComment_error_message"></span>
-											  <p>Value: </p><input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount" id="libraryValue"><br>
-                        <span class="" id="libraryValue_error_message"></span>
+                        <span class="error_report" id="libraryComment_error_message"></span>
+                        <div class="row">
+                          <div class="col-sm-1">
+                            <p>Value: </p>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="input-group"><div class="input-group-addon">Kshs</div>
+                              <input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount" id="libraryValue">
+                              <div class="input-group-addon">.00</div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <span class="error_report" id="libraryValue_error_message"></span>
+                          </div>
+                        </div><br>
 											  Date: <u>{!! date('Y-m-d') !!}</u>
 										  </div>
 										  <div class="modal-footer">

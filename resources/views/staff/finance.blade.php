@@ -99,11 +99,20 @@
 												<input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<input type="hidden" name="magic_value" value="1">
 												<input type="hidden" name="regNo" value="{{$student->studentNo}}">
-												<p>The above named student is supposed to pay the university
-												<div class="input-group"><div class="input-group-addon">Kshs</div>
-													<input type="text" class="form-control" placeholder="Please Enter Amount Owed" name="amount" id="clearAmount" placeholder="Amount">
-													<div class="input-group-addon">.00</div>
-                        </div>before he leaves.</p><br>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <p>The above named student is supposed to pay the university</p>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="input-group"><div class="input-group-addon">Kshs</div>
+    													<input type="text" class="form-control" placeholder="Enter Amount Owed" name="amount" id="clearAmount" placeholder="Amount">
+    													<div class="input-group-addon">.00</div>
+                            </div>
+                          </div>
+                          <div class="col-sm-1">
+                            </div>before he leaves.<br>
+                          </div>
+                        </div>
                         <div class="row">
                           <span class="error_form" id="amount_error_message"></span>
                         </div>
@@ -116,7 +125,6 @@
 										</form>
 										<!-- end form display -->
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -238,8 +246,14 @@
       														<label for="">{{$student->department_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" placeholder="{{$student->department_value}}" type="text" name="school">
+                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+          													<input class="form-control" placeholder="{{$student->department_value}}" type="text" id="finPendschool" name="finAidPendschool">
+          													<div class="input-group-addon">.00</div>
+                                  </div>
       													</div>
+                                <div class="col-sm-1">
+                                  <span class="error_report" id="finPendschool_error_message"></span>
+                                </div>
       												</div><br>
                               <!-- caft -->
                               <div class="row">
@@ -250,8 +264,14 @@
       														<label for="">{{$student->cafeteria_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" placeholder="{{$student->cafeteria_value}}" type="text" name="cafetria">
+                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+          													<input class="form-control" placeholder="{{$student->cafeteria_value}}" type="text" name="cafetria">
+          													<div class="input-group-addon">.00</div>
+                                  </div>
       													</div>
+                                <!-- <div class="col-sm-1">
+                                  <span class="error_report" id="finAidLoan_error_message"></span>
+                                </div> -->
       												</div><br>
                               <!-- lib -->
                               <div class="row">
@@ -262,7 +282,10 @@
       														<label for="">{{$student->library_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" placeholder="{{$student->library_value}}" type="text" name="library">
+                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+          													<input class="form-control" placeholder="{{$student->library_value}}" type="text" name="library">
+          													<div class="input-group-addon">.00</div>
+                                  </div>
       													</div>
       												</div><br>
                               <!-- FinA -->
@@ -274,7 +297,10 @@
       														<label for="">{{$student->financial_aid_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" placeholder="{{$student->financial_aid_value}}" type="text" name="financialAid">
+                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+          													<input class="form-control" placeholder="{{$student->financial_aid_value}}" type="text" name="financialAid">
+          													<div class="input-group-addon">.00</div>
+                                  </div>
       													</div>
       												</div><br>
                               <!-- fin -->
@@ -286,7 +312,10 @@
       														<label for="">{{$student->finance_value}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" placeholder="{{$student->finance_value}}" type="text" name="finance">
+                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+          													<input class="form-control" placeholder="{{$student->finance_value}}" type="text" name="finance">
+          													<div class="input-group-addon">.00</div>
+                                  </div>
       													</div>
       												</div><br>
                               <!-- total -->
@@ -298,7 +327,10 @@
       														<label for="name">{{$student->total}}</label>
       													</div>
                                 <div class="col-md-4">
-      														<input class="form-control" type="text" value="{{$student->total}}" readonly>
+                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+          													<input class="form-control" type="text" value="{{$student->total}}" readonly>
+          													<div class="input-group-addon">.00</div>
+                                  </div>
       													</div>
       												</div><br>
                               <!-- end report form -->

@@ -8,11 +8,12 @@
 
       <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
       <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
+			<link rel="stylesheet" href="css/app.css" media="screen" title="no title" charset="utf-8">
 
       <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
       <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 			<script type="text/javascript" src="{{asset('js/clearanceValidation.js')}}"></script>
-			
+
 </head>
 <body style="background-color: #F2F2F2;">
   <!-- start nav -->

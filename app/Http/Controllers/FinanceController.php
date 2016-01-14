@@ -16,13 +16,13 @@ class FinanceController extends Controller{
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                     ->select('students.*', 'charge.queueFlag')
-                    ->where('charge.queueFlag', '=', '6')
+                    ->where('charge.queueFlag', '=', '6')->where('charge.finance_value', '<', '1')
                     ->paginate(15);
         $pending = DB::table('students')
-            ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
-            ->select('students.*', 'charge.*')
-            ->where('charge.total','>','0')
-            ->paginate(15);
+                    ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
+                    ->select('students.*', 'charge.*')
+                    ->where('charge.total','>','0')->where('charge.queueFlag', '=', '7')
+                    ->paginate(15);
 
          return view('staff/finance', compact('students','pending'));
     }

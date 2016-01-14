@@ -90,11 +90,29 @@
                                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                               <input type="hidden" name="regNo" value="{{$student->studentNo}}">
                                               <p>The above named student has accounted for all cutlery and crockery items on his/her charge, with the
-                                                  exception of -</p>
-                                              <input type="text" class="form-control" id="cafeteriaComment" name="comment" placeholder="Please enter any items not returned (if any)">.<br>
-                                              <span class="alert alert-danger" id="cafeteriaComment_error_message"></span><br>
-                                              <p>Value: </p><input type="text" class="form-control" id="cafeteriaValue" name="amount" placeholder="Please Enter Amount Owed" >
-                                              <br><span class="alert alert-danger" id="cafeteriaValue_error_message"></span>
+                                                exception of -</p>
+                                              <input type="text" class="form-control" id="cafeteriaComment" name="comment" placeholder="Please enter any items not returned (if any)">
+                                              <br>
+                                              <div class="row">
+                                                <span class="error_report" id="cafeteriaComment_error_message"></span>
+                                              </div>
+                                              <div class="row">
+                                                <div class="col-sm-1">
+                                                  <p>Value: </p>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+                          													<input type="text" class="form-control" id="cafeteriaValue" name="amount" placeholder="Please Enter Amount Owed" >
+                          													<div class="input-group-addon">.00</div>
+                                                  </div>
+
+                                                </div>
+                                                <div class="col-sm-4">
+                                                  <br><span class="error_report" id="cafeteriaValue_error_message"></span>
+                                                </div>
+                                              </div>
+
+
                                               Date: <u>{!! date('Y-m-d') !!}</u>
                                           </div>
                                           <div class="modal-footer">

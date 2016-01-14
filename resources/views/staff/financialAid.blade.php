@@ -95,35 +95,49 @@
 											  <div class="">
                           <div class="row">
                             <div class="col-md-6">
-                              Loan Taken<input type="text" id="finAidLoan" placeholder="Please Enter the amount originaly borrowed" class="form-control" placeholder="Amount" name="amountTaken" id="loan">
+                              Loan Taken
+                              <div class="input-group"><div class="input-group-addon">Kshs</div>
+                                <input type="text" id="finAidLoan" placeholder="Please Enter the amount originaly borrowed" class="form-control" placeholder="Amount" name="amountTaken" id="loan">
+                                <div class="input-group-addon">.00</div>
+                              </div>
+
                             </div>
                             <div class="col-md-4">
-                              <span class="label label-warning" id="finAidLoan_error_message"></span>
+                              <span class="error_report" id="finAidLoan_error_message"></span>
                             </div>
-                          </div>
+                          </div><br>
                           <div class="row">
                             <div class="col-md-6">
-                              Amount Repaid<input type="text" class="form-control" placeholder="Please enter the Amount repaid" name="amountRepaid" id="finAidPaid">
+                              Amount Repaid
+                              <div class="input-group"><div class="input-group-addon">Kshs</div>
+                                  <input type="text" class="form-control" placeholder="Please enter the Amount repaid" name="amountRepaid" id="finAidPaid">
+                                <div class="input-group-addon">.00</div>
+                              </div>
                             </div>
                             <div class="col-md-4">
-                              <span class="label label-warning" id="finAidPaid_error_message"></span>
+                              <span class="error_report" id="finAidPaid_error_message"></span>
                             </div>
-                          </div>
+                          </div><br>
                           <div class="row">
                             <div class="col-md-6">
-                              Balance<input type="text" class="form-control" placeholder="Balance" name="balance" id="finAidBal" disabled>
-                            </div>
+                              Balance
+                              <div class="input-group"><div class="input-group-addon">Kshs</div>
+                                <input type="text" class="form-control" placeholder="Balance" name="balance" id="finAidBal" disabled>
+                                <div class="input-group-addon">.00</div>
+                              </div>
+
+                            </div><br>
                             <div class="col-md-4">
-                              <span class="label label-warning" id="finAidBal_error_message"></span>
+                              <span class="error_report" id="finAidBal_error_message"></span>
                             </div>
                           </div>
 												  <br>
                           <div class="row">
                             <div class="col-md-6">
                                 Lender <input type="text" id="finAidLender" class="form-control" placeholder="Please state the lender" name="lender">
-                            </div>
+                            </div><br>
                             <div class="col-md-4">
-                              <span class="label label-warning" id="finAidLender_error_message"></span>
+                              <span class="error_report" id="finAidLender_error_message"></span>
                             </div>
                           </div>
 												 <br>
@@ -154,15 +168,15 @@
   		var bal = 0;
     	var loan = 0;
     	var paid = 0;
-    	$( "#loan" ).keyup(function(){
+    	$( "#finAidLoan" ).keyup(function(){
     		loan = $(this).val();
     		bal = (loan - paid);
-  			$('#balance').val(bal);
+  			$('#finAidBal').val(bal);
   		}).keyup();
-  		$( "#paid" ).keyup(function(){
+  		$( "#finAidPaid" ).keyup(function(){
     		paid = $(this).val();
     		bal = (loan - paid);
-  			$('#balance').val(bal);
+  			$('#finAidBal').val(bal);
   		}).keyup();
 
   		$("#choiceNo, #choiceYes").change(function(){

@@ -92,16 +92,20 @@
                                               <p>The above named student has handed over to me in good order all keys, equipment and University property for which he/she
                                                   was responsible and which is under my Department with the exception of-</p>
                                               <input type="text" id="schoolComment" class="form-control" name="comment" placeholder="Please enter any items not returned(if any)">.<br>
-                                              <span id="schoolComment_error_message"></span>
+                                              <span id="schoolComment_error_message" class="error_report"></span>
                                               <div class="row">
                                                 <div class="col-sm-1">
                                                   <p>Value: </p>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                  <input type="text" id="schoolValue" class="form-control" name="amount" placeholder="Please Enter Amount Owed">
+                                                  <div class="input-group"><div class="input-group-addon">Kshs</div>
+                          													<input type="text" id="schoolValue" class="form-control" name="amount" placeholder="Please Enter Amount Owed">
+                          													<div class="input-group-addon">.00</div>
+                                                  </div>
+
                                                 </div>
                                                 <div class="col-sm-4">
-                                                  <span id="schoolValue_error_message"></span>
+                                                  <span id="schoolValue_error_message" class="error_report"></span>
                                                 </div>
                                               </div>
                                               Date: <u>{!! date('Y-m-d') !!}</u>
