@@ -109,12 +109,15 @@
     													<div class="input-group-addon">.00</div>
                             </div>
                           </div>
-                          <div class="col-sm-1">
-                            </div>before he leaves.<br>
+                          <div class="col-sm-2">
+                            before he leaves.
+                          </div><br>
                           </div>
                         </div>
                         <div class="row">
-                          <span class="error_form" id="amount_error_message"></span>
+                          <div class="col-sm-6">
+                            <span class="error_report" id="amount_error_message"></span>
+                          </div>
                         </div>
 												Date: <u>{!! date('Y-m-d') !!}</u>
 											</div>
@@ -130,6 +133,8 @@
 						</div>
 					</tr>
 				@endforeach
+        <tr><td></td></tr>
+        <tr><td></td></tr>
 				</tbody>
 				{!! $students->render() !!}
 			</table>
@@ -251,7 +256,7 @@
           													<div class="input-group-addon">.00</div>
                                   </div>
       													</div>
-                                <div class="col-sm-1">
+                                <div class="col-sm-2">
                                   <span class="error_report" id="finPendschool_error_message"></span>
                                 </div>
       												</div><br>
@@ -265,13 +270,13 @@
       													</div>
                                 <div class="col-md-4">
                                   <div class="input-group"><div class="input-group-addon">Kshs</div>
-          													<input class="form-control" placeholder="{{$student->cafeteria_value}}" type="text" name="cafetria">
+          													<input class="form-control" placeholder="{{$student->cafeteria_value}}" id="cafPendschool" type="text" name="cafetria">
           													<div class="input-group-addon">.00</div>
                                   </div>
       													</div>
-                                <!-- <div class="col-sm-1">
-                                  <span class="error_report" id="finAidLoan_error_message"></span>
-                                </div> -->
+                                <div class="col-sm-2">
+                                  <span class="error_report" id="finPendcaft_error_message"></span>
+                                </div>
       												</div><br>
                               <!-- lib -->
                               <div class="row">
@@ -283,10 +288,13 @@
       													</div>
                                 <div class="col-md-4">
                                   <div class="input-group"><div class="input-group-addon">Kshs</div>
-          													<input class="form-control" placeholder="{{$student->library_value}}" type="text" name="library">
+          													<input class="form-control" placeholder="{{$student->library_value}}" type="text" name="library" id="finPendLib">
           													<div class="input-group-addon">.00</div>
                                   </div>
       													</div>
+                                <div class="col-sm-2">
+                                  <span class="error_report" id="finPendLib_error_message"></span>
+                                </div>
       												</div><br>
                               <!-- FinA -->
                               <div class="row">
@@ -298,10 +306,13 @@
       													</div>
                                 <div class="col-md-4">
                                   <div class="input-group"><div class="input-group-addon">Kshs</div>
-          													<input class="form-control" placeholder="{{$student->financial_aid_value}}" type="text" name="financialAid">
+          													<input class="form-control" placeholder="{{$student->financial_aid_value}}" type="text" name="financialAid" id="finPendFinAid">
           													<div class="input-group-addon">.00</div>
                                   </div>
       													</div>
+                                <div class="col-sm-2">
+                                  <span class="error_report" id="finPendFinAid_error_message"></span>
+                                </div>
       												</div><br>
                               <!-- fin -->
                               <div class="row">
@@ -313,10 +324,13 @@
       													</div>
                                 <div class="col-md-4">
                                   <div class="input-group"><div class="input-group-addon">Kshs</div>
-          													<input class="form-control" placeholder="{{$student->finance_value}}" type="text" name="finance">
+          													<input class="form-control" placeholder="{{$student->finance_value}}" type="text" name="finance" id="finPendFin">
           													<div class="input-group-addon">.00</div>
                                   </div>
       													</div>
+                                <div class="col-sm-2">
+                                  <span class="error_report" id="finPendFin_error_message"></span>
+                                </div>
       												</div><br>
                               <!-- total -->
                               <div class="row">
@@ -350,6 +364,8 @@
 							</div>
 						</tr>
 					@endforeach
+          <tr><td></td></tr>
+          <tr><td></td></tr>
 					</tbody>
 					{!! $students->render() !!}
 				</table>

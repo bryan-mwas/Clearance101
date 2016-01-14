@@ -106,9 +106,11 @@
 					  </div>
 				  </tr>
 			  @endforeach
+        <tr><td></td></tr>
+        <tr><td></td></tr>
 			  </tbody>
 			  {!! $students->render() !!}
 		  </table>
 	  </div>
-  </div>	
+  </div>
 @endsection

@@ -44,12 +44,8 @@
                       <div class="span2">
                           <div class="infoarea">
                             <div class="footer-logo">
-                              <a href="https://strathmore.edu">
-                                  <img src="//elearning.strathmore.edu/pluginfile.php?file=%2F1%2Ftheme_klass%2Ffooterlogo%2F1446031855%2FPicture16.png" alt="strathmore logo" height="80" width="183">
-                              </a>
                               <p style="color: #B0C4DE; float: right;">DAA-03-01-09/12</p>
                               </div>
-
                           </div>
                       </div>
 
@@ -57,11 +53,11 @@
                    </div>
                 </div>
             </div>
-          <div class="footer-foot">
-                <div class="container-fluid">
-                      <center><p>Copyright © 15-12-17 - <a href="http://www.strathmore.edu/en/">Strathmore University</a>. All Rights Reserved.</p></center>
-                </div>
-          </div>
+						<div class="footer-foot">
+	                <div class="container-fluid">
+	                      <center><p>Copyright © 15-12-17 - <a href="http://www.strathmore.edu/en/">Strathmore University</a>. All Rights Reserved.</p></center>
+	                </div>
+	          </div>
       </footer>
 </body>
 </html>

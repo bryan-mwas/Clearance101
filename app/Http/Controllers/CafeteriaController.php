@@ -18,12 +18,12 @@ class CafeteriaController extends Controller{
                      ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                      ->select('students.*', 'charge.queueFlag')
                      ->where('charge.queueFlag', '=', '1')
-                     ->paginate(15);
+                     ->paginate(10);
          return view('staff/cafeteria', compact('students','pending'));
     }
-    
-    
-    
+
+
+
     public function clear(Request $request){
     	$post = $request->all();
 
@@ -31,17 +31,15 @@ class CafeteriaController extends Controller{
         $value = $post['amount'];
         $student = $post['regNo'];
 
-
-            $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.cafeteria = '$comment', charge.cafeteria_value = '$value', charge.queueFlag = '2' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-            $admin = DB::table('schools')
+        $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.cafeteria = '$comment', charge.cafeteria_value = '$value', charge.queueFlag = '2' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
+        $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
                 ->select('administrators.email')->where('schools.department_name','=','Library')
                 ->pluck('email');
             //Send Mail
-            Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
-                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
-            });
-
+        Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+            $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
+        });
 
         return redirect('/cafeteria');
     }

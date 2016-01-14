@@ -94,7 +94,9 @@
                                               <input type="text" class="form-control" id="cafeteriaComment" name="comment" placeholder="Please enter any items not returned (if any)">
                                               <br>
                                               <div class="row">
-                                                <span class="error_report" id="cafeteriaComment_error_message"></span>
+                                                <div class="col-sm-6">
+                                                  <span class="error_report" id="cafeteriaComment_error_message"></span>
+                                                </div>
                                               </div>
                                               <div class="row">
                                                 <div class="col-sm-1">
@@ -111,8 +113,6 @@
                                                   <br><span class="error_report" id="cafeteriaValue_error_message"></span>
                                                 </div>
                                               </div>
-
-
                                               Date: <u>{!! date('Y-m-d') !!}</u>
                                           </div>
                                           <div class="modal-footer">
@@ -127,8 +127,9 @@
                           </div>
                       </div>
                   </tr>
-
               @endforeach
+              <tr><td></td></tr>
+              <tr><td></td></tr>
               </tbody>
               {!! $students->render() !!}
           </table>
