@@ -260,6 +260,10 @@ class AdminController extends Controller{
             array_push($data, array('','financial_aid', $clearedStudentsFna, $pendingStudentsFna));
             array_push($data, array('','finance', $clearedStudentsFin, $totalStudentsPending));
 
+            $sheet->getStyle('B2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
+            $sheet->getStyle('C2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
+            $sheet->getStyle('D2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
+
             $sheet->fromArray($data);
            });
            $excel->sheet('Students by Schools', function($sheet) {
@@ -301,10 +305,17 @@ class AdminController extends Controller{
               array_push($data1, array('','CHT', $reqStudentCHT, $clearedStudentsCHT, $pendingStudentsCHT));
               array_push($data1, array('','SBS', $reqStudentSBS, $clearedStudentsSBS, $pendingStudentsSBS));
 
+              $sheet->getStyle('B2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
+              $sheet->getStyle('C2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
+              $sheet->getStyle('D2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
+              $sheet->getStyle('E2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
               $sheet->fromArray($data1);
           });
           $excel->sheet('Finance', function($sheet) {
-             $totalDep = DB::table('charge')->sum('department_value');
+              $totalDep = DB::table('charge')->sum('department_value');
+              if($totalDep == ''){
+                $totalDep = 0;
+              }
               //cafeteria
               $totalCaf = DB::table('charge')->sum('cafeteria_value');
               // library
@@ -321,6 +332,7 @@ class AdminController extends Controller{
 
               $data2 = [];
               array_push($data2, array('', 'Department Name', 'Ammount Owed'));
+              array_push($data2, array('','',''));
               array_push($data2, array('','Departments', $totalDep));
               array_push($data2, array('','Cafeteria',   $totalCaf));
               array_push($data2, array('','Library',     $totalLib));
@@ -329,7 +341,10 @@ class AdminController extends Controller{
               array_push($data2, array('','financial_aid', $totalFna));
               array_push($data2, array('','finance', $totalFin));
 
+              $sheet->getStyle('B2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
+              $sheet->getStyle('C2')->applyFromArray(array('font' => array('name' => 'Calibri','size' => 14,'bold' => true)));
               $sheet->fromArray($data2);
+
           });
       })->export('xls');
   }

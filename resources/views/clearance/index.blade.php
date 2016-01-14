@@ -4,6 +4,20 @@
 
 @section('content')
     <div class="container-fluid" style="font-family: 'Trebuchet MS'">
+      <div class="header clearfix" style="padding-top: 20px;">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+              @if($charge->queueFlag == 7)
+              <li role="presentation" class="active"><a href="../pdf"><span class="glyphicon glyphicon-floppy-save"></span> <span style="font-family: 'Segoe UI';font-size: 115%">PDF</span></a></li>
+              @else
+              <li role="presentation" class="disabled"><a href="#"><span class="glyphicon glyphicon-floppy-save"></span> <span style="font-family: 'Segoe UI';font-size: 115%">PDF</span></a></li>
+              @endif
+              <li role="presentation"><a href="auth/logout"><span class="glyphicon glyphicon-log-out"></span> <span style="font-family: 'Segoe UI';font-size: 115%">Log out</span></a></li>
+          </ul>
+        </nav>
+        <!-- <h3 class="text-muted">Strathmore University Clearance</h3> -->
+      </div>
+      <hr>
         <div class="page-header" style="border-bottom:hidden">
             <img src="../img/Strathmore_OK.png"  alt="Strathmore University" style="display: block; margin-left: auto; margin-right: auto "/>
             <h1><center>STUDENT CLEARANCE FORM </center></h1><br>
@@ -81,7 +95,7 @@
             <div>
                 <p><strong>FINANCE: </strong>The above named student is supposed to pay the university <b><u> Kshs.{{$charge->finance_value}}</u></b>  before he leaves.</p>
             </div>
-            
+
             <h3><a href="#">Financial Aid Office</a></h3>
             <div>
                 @if($charge->financial_aid_value== 0)
@@ -99,19 +113,9 @@
             </div>
         </div><br>
         <!--Fancy links!-->
-        <ul class="nav nav-pills">
-            @if($charge->queueFlag == 7)
-            <li role="presentation" class="active"><a href="../pdf"><span class="glyphicon glyphicon-floppy-save"></span> <span style="font-family: 'Segoe UI';font-size: 115%">PDF</span></a></li>
-            @else
-            <li role="presentation" class="disabled"><a href="#"><span class="glyphicon glyphicon-floppy-save"></span> <span style="font-family: 'Segoe UI';font-size: 115%">PDF</span></a></li>
-            @endif
-            <li role="presentation"><a href="auth/logout"><span class="glyphicon glyphicon-log-out"></span> <span style="font-family: 'Segoe UI';font-size: 115%">Log out</span></a></li>
-        </ul>
+
         <br>
         <label style="float:right">DAA-03-01-09/12</label>
         <br>
     </div>
 @endsection
-
-
-

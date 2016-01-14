@@ -45,7 +45,7 @@
                                       <!--start student information display-->
                                       <div class="">
                                           <label for="name"> STUDENT NAME</label>
-                                          <input class="form-control edit-input" type="text" value="{{$student-> sname}}, {{$student-> fname}}, {{$student-> lname}}" readonly><br>
+                                          <input class="form-control edit-input" type="text" value="{{$student-> sname}}, {{$student-> fname}} {{$student-> lname}}" readonly><br>
                                           <div class="row">
                                               <div class="col-md-6">
                                                   <label for="name"> REGISTRATION NUMBER</label>
@@ -92,7 +92,11 @@
                                               <p>The above named student has handed over to me in good order all keys, equipment and University property for which he/she
                                                   was responsible and which is under my Department with the exception of-</p>
                                               <input type="text" id="schoolComment" class="form-control" name="comment" placeholder="Please enter any items not returned(if any)">.<br>
-                                              <span id="schoolComment_error_message" class="error_report"></span>
+                                              <div class="row">
+                                                <div class="col-sm-6">
+                                                  <span id="schoolComment_error_message" class="error_report"></span>
+                                                </div>
+                                              </div>
                                               <div class="row">
                                                 <div class="col-sm-1">
                                                   <p>Value: </p>

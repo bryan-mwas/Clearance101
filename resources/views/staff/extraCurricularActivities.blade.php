@@ -47,7 +47,7 @@
 									  <!--start student information display-->
 									  <div class="">
 										  <label for="name"> STUDENT NAME</label>
-										  <input class="form-control edit-input" type="text" value="{{$student-> sname}}, {{$student->fname}}, {{$student-> lname}}" readonly><br>
+										  <input class="form-control edit-input" type="text" value="{{$student-> sname}}, {{$student->fname}} {{$student-> lname}}" readonly><br>
 										  <div class="row">
 											  <div class="col-md-6">
 												  <label for="name"> REGISTRATION NUMBER</label>
