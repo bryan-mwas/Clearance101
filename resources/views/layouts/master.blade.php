@@ -53,7 +53,7 @@
             </div>
 						<div class="footer-foot">
 	                <div class="container-fluid">
-	                      <center><p>Copyright © 15-12-17 - <a href="http://www.strathmore.edu/en/">Strathmore University</a>. All Rights Reserved.</p></center>
+	                      <center><p>Copyright © {!! date('Y-m-d') !!} - <a href="http://www.strathmore.edu/en/">Strathmore University</a>. All Rights Reserved.</p></center>
 	                </div>
 	          </div>
       </footer>

@@ -71,21 +71,6 @@ class FinanceController extends Controller{
       $financialAid = $post['financialAid'];
       $finance = $post['finance'];
 
-      if($school == '' || $school = null ){
-        $school = 0;
-      }
-      if($cafeteria == '' || $cafeteria = null ){
-        $cafeteria = 0;
-      }
-      if($library == '' || $library = null ){
-        $library = 0;
-      }
-      if($financialAid == '' || $financialAid = null ){
-        $financialAid = 0;
-      }
-      if($finance == '' || $finance = null ){
-        $finance = 0;
-      }
           DB::update("UPDATE charge
              SET department_value = '$school',
              charge.cafeteria_value = charge.cafeteria_value - '$cafeteria',
@@ -93,8 +78,6 @@ class FinanceController extends Controller{
              charge.finance_value = charge.finance_value - '$finance',
              charge.financial_aid_value = charge.financial_aid_value - '$financialAid'
     			WHERE charge.students_studentNo = '$id' ");
-
-          // UPDATE charge SET financial_aid_value = financial_aid_value - 200;
 
       return redirect('/finance');
     }

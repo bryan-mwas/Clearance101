@@ -18,10 +18,10 @@
         }
         footer {
             width: 100%;
-            position: fixed;
+            position: relative;
             bottom: 0;
-            background-color: #0000ff;
-            color: #fff;
+            /*background-color: #0000ff;*/
+            /*color: #fff;*/
             font-family: 'Segoe UI';
             font-size: 16px;
         }

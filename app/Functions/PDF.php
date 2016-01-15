@@ -152,19 +152,23 @@ class PDF
 
          $end = '
     	   <body>
-            <h4>Departments Report</h4>
-            <table class="table">
+         <div style="text-align:center;">
+        <img src="img/Strathmore_OK.png" align="middle" style="width:250px;height:80px; margin-left: auto; margin-right: auto">
+        </div>
+        <h2 style="text-align:center;">CLEARANCE REPORT</h2>
+            <h4>Department Report</h4>
+            <table class="table" style="border: 1px solid black; witdth:100%;" align="center">
                 <thead>
                     <tr>
-                    <th>Department Name</th>
-                    <th># Requests from students</th>
-                    <th># cleared Student</th>
-                    <th># Pending Students</th>
+                    <th style="border-bottom:1px solid black ">Department Name</th>
+                    <th style="border-bottom:1px solid black "># Requests from Students</th>
+                    <th style="border-bottom:1px solid black "># Cleared Students</th>
+                    <th style="border-bottom:1px solid black "># Pending Students</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Facultys</th>
+                        <th>Faculties</th>
                         <th>'.$appliedStudents.'</th>
                         <th>'.$clearedStudentsFac.'</th>
                         <th>'.$pendingStudentsFac.'</th>
@@ -188,19 +192,19 @@ class PDF
                         <th>'.$pendingStudentsGam.'</th>
                     </tr>
                     <tr>
-                        <th>Sports</th>
+                        <th>Extra Curricular</th>
                         <th>'.$appliedStudents.'</th>
                         <th>'.$clearedStudentsExa.'</th>
                         <th>'.$pendingStudentsExa.'</th>
                     </tr>
                     <tr>
-                        <th>Fiancial Aid</th>
+                        <th>Financial Aid</th>
                         <th>'.$appliedStudents.'</th>
                         <th>'.$clearedStudentsFna.'</th>
                         <th>'.$pendingStudentsFna.'</th>
                     </tr>
                     <tr>
-                        <th>finance</th>
+                        <th>Finance</th>
                         <th>'.$appliedStudents.'</th>
                         <th>'.$clearedStudentsFin.'</th>
                         <th>'.$pendingStudentsFin.'</th>
@@ -213,15 +217,15 @@ class PDF
                     </tr>
                 </tbody>
             </table>
-            <hr ><br><br>
+            <br><br><hr><br><br>
             <center><h4>Faculty Report</h4></center>
-            <table class=" table table-hover table-bordered" >
+            <table  class="table" style="border: 1px solid black; width:100%" align="center">
                 <thead bgcolor="#FF9900">
                     <tr>
-                        <th>Faculty Name</th>
-                        <th># Requests from students</th>
-                        <th># cleared Student</th>
-                        <th># Pending Students</th>
+                        <th style="border-bottom:1px solid black ">Faculty Name</th>
+                        <th style="border-bottom:1px solid black "># Requests from Students</th>
+                        <th style="border-bottom:1px solid black "># Cleared Student</th>
+                        <th style="border-bottom:1px solid black "># Pending Students</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -269,17 +273,17 @@ class PDF
                     </tr>
                 </tbody>
             </table>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <table class=" table" >
+            <br><hr><br><br>
+            <table class=" table" style="border: 1px solid black; width:75%;" align="center">
                 <thead bgcolor="#FF9900">
                     <tr>
-                        <th>Department Name</th>
-                        <th># Total Amount Owed</th>
+                        <th style="border-bottom:1px solid black ">Department Name</th>
+                        <th style="border-bottom:1px solid black "># Total Amount Owed</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Facultys</th>
+                        <th>Faculties</th>
                         <th>'.$totalDep.'</th>
                     </tr>
                     <tr>
@@ -299,11 +303,11 @@ class PDF
                         <th>'.$totalExc.'</th>
                     </tr>
                     <tr>
-                        <th>Fiancial Aid</th>
+                        <th>Financial Aid</th>
                         <th>'.$totalFna.'</th>
                     </tr>
                     <tr>
-                        <th>finance</th>
+                        <th>Finance</th>
                         <th>'.$totalFin.'</th>
                     </tr>
                 </tbody>

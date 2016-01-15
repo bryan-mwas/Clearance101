@@ -4,6 +4,9 @@
     <br><br>
     <div>
     	<center><u><H3>CAFETERIA DEPARTMENT</H3></u></center>
+      @foreach($userInformation as $infor)
+      <center><u>{{ $infor->lname }} , {{ $infor->fname }}</u><center>
+      @endforeach
     </div>
     <br><br>
       <div id="view">

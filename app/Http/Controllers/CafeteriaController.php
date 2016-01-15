@@ -7,19 +7,22 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 
 class CafeteriaController extends Controller{
     public function index(){
+        $user = Auth::user()->regNo;
+        $userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                      ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                      ->select('students.*', 'charge.queueFlag')
                      ->where('charge.queueFlag', '=', '1')
                      ->paginate(10);
-         return view('staff/cafeteria', compact('students','pending'));
+         return view('staff/cafeteria', compact('students','userInformation'));
+        // return $userInformation;
     }
 
 
