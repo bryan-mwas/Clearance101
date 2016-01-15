@@ -5,7 +5,7 @@
     <div>
     	<center><u><H3>CAFETERIA DEPARTMENT</H3></u></center>
       @foreach($userInformation as $infor)
-      <center><u>{{ $infor->lname }} , {{ $infor->fname }}</u><center>
+      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)<center>
       @endforeach
     </div>
     <br><br>

@@ -5,6 +5,9 @@
     <br><br>
     <div>
     	<center><H3>GAMES DEPARTMENT</H3></center>
+      @foreach($userInformation as $infor)
+      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)<center>
+      @endforeach
     </div>
     <br><br>
 	  <div id="view">

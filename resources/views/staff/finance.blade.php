@@ -5,7 +5,9 @@
     <br><br>
     <div>
     	<center><u><H3>FINANCE DEPARTMENT</H3></u></center>
-      <center><i>{{$FinanceGuy->id}}</i></center>
+      @foreach($userInformation as $infor)
+      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)<center>
+      @endforeach
     </div>
     <br><br>
 	  <ul class="nav nav-tabs" role="tablist">
