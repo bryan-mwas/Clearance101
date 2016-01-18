@@ -101,7 +101,7 @@ $(function(){
 
   function check_schoolComment(){
     var schoolCom = $("#schoolComment").val();
-    var regex = new RegExp("^[a-zA-Z0-9.]*$");
+    var regex = new RegExp("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$");
     if(!schoolCom.match(regex)){
       $("#schoolComment_error_message").html("It must contain letters and numbers only");
       $("#schoolComment_error_message").show();
@@ -112,7 +112,7 @@ $(function(){
   // cafeteria
   function check_cafeteriaComment(){
     var caftCom = $("#cafeteriaComment").val();
-    var regex = new RegExp("^[a-zA-Z0-9.]*$");
+    var regex = new RegExp("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$");
     if(!caftCom.match(regex)){
       $("#cafeteriaComment_error_message").html("It must contain letters and numbers only");
       $("#cafeteriaComment_error_message").show();
@@ -134,7 +134,7 @@ $(function(){
   // library
   function check_libraryComment(){
     var libCom = $("#libraryComment").val();
-    var regex = new RegExp("^[a-zA-Z0-9.]*$");
+    var regex = new RegExp("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$");
     if(!libCom.match(regex)){
       $("#libraryComment_error_message").html("It must contain letters and numbers only");
       $("#libraryComment_error_message").show();
@@ -186,7 +186,7 @@ $(function(){
   }
   function check_finAidLender(){
     var finAidLenderCom = $("#finAidLender").val();
-    var regex = new RegExp("^[a-zA-Z.]*$");
+    var regex = new RegExp("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$");
     if(!finAidLenderCom.match(regex)){
       $("#finAidLender_error_message").html("It must contain letters only");
       $("#finAidLender_error_message").show();
