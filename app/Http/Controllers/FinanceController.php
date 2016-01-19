@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class FinanceController extends Controller{
 
     public function index(){
+      $user = Auth::user()->regNo;
+  		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                     ->select('students.*', 'charge.queueFlag')
@@ -24,7 +28,7 @@ class FinanceController extends Controller{
                     ->where('charge.total','>','0')->where('charge.queueFlag', '=', '7')
                     ->paginate(15);
 
-         return view('staff/finance', compact('students','pending'));
+         return view('staff/finance', compact('students','pending', 'userInformation'));
     }
     public function clear(Request $request){
     	$post = $request->all();
@@ -72,7 +76,8 @@ class FinanceController extends Controller{
       $finance = $post['finance'];
 
           DB::update("UPDATE charge
-             SET department_value = '$school',
+             SET
+             charge.department_value = charge.department_value - '$school',
              charge.cafeteria_value = charge.cafeteria_value - '$cafeteria',
              charge.library_value = charge.library_value - '$library',
              charge.finance_value = charge.finance_value - '$finance',

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -14,12 +15,14 @@ use App\Http\Controllers\Controller;
 class FinancialAidController extends Controller{
 
     public function index(){
+      $user = Auth::user()->regNo;
+  		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                     ->select('students.*', 'charge.queueFlag')
                     ->where('charge.queueFlag', '=', '5')
                     ->paginate(15);
-         return view('staff/financialAid', compact('students'));
+         return view('staff/financialAid', compact('students', 'userInformation'));
     }
 
     public function clear(Request $request){

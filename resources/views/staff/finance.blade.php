@@ -254,7 +254,7 @@
       													</div>
                                 <div class="col-md-4">
                                   <div class="input-group"><div class="input-group-addon">Kshs</div>
-          													<input class="form-control" placeholder="{{$student->department_value}}" type="text" id="finPendschool" name="finAidPendschool">
+          													<input class="form-control" placeholder="{{$student->department_value}}" type="text" id="finPendschool" name="school">
           													<div class="input-group-addon">.00</div>
                                   </div>
       													</div>
