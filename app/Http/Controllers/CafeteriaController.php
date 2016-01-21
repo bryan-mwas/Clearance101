@@ -19,7 +19,8 @@ class CafeteriaController extends Controller{
 
       $appliedStudentsCaf = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
       if($appliedStudentsCaf > 0){
-        $message = "Please Attend to the following ( ".$appliedStudentsCaf." ) students Requesting to be cleared";
+        // $message = "Please Attend to the following ( ".$appliedStudentsCaf." ) students Requesting to be cleared";
+        $message = "Please Attend to the following students Requesting to be cleared";
       }elseif($appliedStudentsCaf == 0){
         $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
       }

@@ -25,7 +25,8 @@ class FacultyController extends Controller{
 				 											$q->select('students_studentNo')->from('charge');
 		 											})->count();
 		if($appliedStudentsFit > 0){
-			$message = "Please Attend to the following ( ".$appliedStudentsFit." ) students Requesting to be cleared";
+			// $message = "Please Attend to the following ( ".$appliedStudentsFit." ) students Requesting to be cleared";
+			$message = "Please Attend to the following students Requesting to be cleared";
 		}elseif($appliedStudentsFit == 0){
 			$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 		}
@@ -37,7 +38,8 @@ class FacultyController extends Controller{
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
 
-        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+        // return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+				return $appliedStudentsFit;
     }
   /* display students in SOA */
 	public function schoolofAccountancy(){
@@ -51,7 +53,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsSoa > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSoa." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following ( ".$appliedStudentsSoa." ) students Requesting to be cleared";
+					$message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSoa == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -75,7 +78,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsSfae > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSfae." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following ( ".$appliedStudentsSfae." ) students Requesting to be cleared";
+					$message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSfae == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -99,7 +103,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsShss > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsShss." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following ( ".$appliedStudentsShss." ) students Requesting to be cleared";
+					$message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsShss == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -111,7 +116,7 @@ class FacultyController extends Controller{
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
 
-        return view('staff/faculty', compact('name','title','students', 'userInformation'));
+        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
 	}
 
    /*display students in SMC*/
@@ -126,7 +131,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsSmc > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSmc." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following ( ".$appliedStudentsSmc." ) students Requesting to be cleared";
+					$message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSmc == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -152,7 +158,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsSbs > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSbs." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following ( ".$appliedStudentsSbs." ) students Requesting to be cleared";
+					$message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSbs == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -176,7 +183,8 @@ class FacultyController extends Controller{
 
 				$appliedStudentsSls = DB::table('students')->where('students.faculty', '=', 'SLS')->where('state', '=', 'Activated')->count();
 				if($appliedStudentsSls > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSls." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following ( ".$appliedStudentsSls." ) students Requesting to be cleared";
+					$message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSls == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -202,7 +210,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsCth > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsCth." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following ( ".$appliedStudentsCth." ) students Requesting to be cleared";
+					$message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsCth == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}

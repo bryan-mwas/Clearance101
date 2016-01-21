@@ -18,6 +18,13 @@ class FinancialAidController extends Controller{
       $user = Auth::user()->regNo;
       $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
+      $appliedStudentsFad = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
+      if($appliedStudentsFad > 0){
+        $message = "Please Attend to the following ( ".$appliedStudentsFad." ) students Requesting to be cleared";
+      }elseif($appliedStudentsFad == 0){
+        $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
+      }
+
       $appliedStudentsCaf = DB::table('charge')->where('charge.queueFlag', '=', '5')->count();
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
@@ -25,7 +32,7 @@ class FinancialAidController extends Controller{
                     ->select('students.*', 'charge.queueFlag')
                     ->where('charge.queueFlag', '=', '5')
                     ->paginate(15);
-         return view('staff/financialAid', compact('students', 'userInformation'));
+         return view('staff/financialAid', compact('students', 'userInformation', 'message'));
     }
 
     public function clear(Request $request){

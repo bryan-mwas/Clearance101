@@ -20,7 +20,8 @@ class FinanceController extends Controller{
 
       $appliedStudentsFin = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
       if($appliedStudentsFin > 0){
-        $message = "Please Attend to the following ( ".$appliedStudentsFin." ) students Requesting to be cleared";
+        // $message = "Please Attend to the following ( ".$appliedStudentsFin." ) students Requesting to be cleared";
+        $message = "Please Attend to the following students Requesting to be cleared";
       }elseif($appliedStudentsFin == 0){
         $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
       }

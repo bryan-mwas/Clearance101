@@ -47,11 +47,8 @@
             </div>
             </div>
         </div>
-<<<<<<< HEAD
     </div>
     <br>
-=======
->>>>>>> 815933ff8dea5ecfd8ca55933d731bf0ef5938ad
     @if(Session::has('flash_message'))
         <div class="alert alert-success col-md-8 col-md-offset-2" role="alert" style="font-family: 'Trebuchet MS';font-size: large">
             <center>{{Session::get('flash_message')}}</center>
