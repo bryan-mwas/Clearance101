@@ -11,19 +11,16 @@
     </div>
     <br><br>
 	  <ul class="nav nav-tabs" role="tablist">
-		  <li role="presentation" class="active"><a href="#urgent" aria-controls="general" role="tab" data-toggle="tab">Urgent!Clear Now</a></li>
-		  <li role="presentation"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending Students</a></li>
+		  <li role="presentation" class="active"><a href="#urgent" aria-controls="general" role="tab" data-toggle="tab">Pending Students</a></li>
+		  <li role="presentation"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Cleared Students</a></li>
 	  </ul>
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="urgent">
 		<div id="view">
       <!-- notification script -->
-      <div class="row" id="notification_message">
-        <center><i><label style="color: gray; font-size: 14px;"> {{ $message }} </label></i><center>
-      </div>
-      <!--  -->
-			<table class=" table table-hover table-bordered" >
-				<thead bgcolor="#FF9900">
+      <div class="row" id="notification_message"><center><i><label style="color: gray; font-size: 14px;"> {{ $message }} </label></i><class=" table table-hover table-bordered" ></div>
+        <table class=" table table-hover table-bordered">
+        <thead bgcolor="#FF9900">
 				<tr>
 					<th>Registration Number</th>
 					<th>First Name</th>
@@ -127,7 +124,7 @@
                           </div>
                         </div>
 												Date: <u>{!! date('Y-m-d') !!}</u>
-											</div>
+
 											<div class="modal-footer">
 												<button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 												<input title="Save changes and Clear student" type="submit" class="btn btn-primary" value="Save changes">
@@ -140,16 +137,17 @@
 						</div>
 					</tr>
 				@endforeach
-        <tr><td></td></tr>
-        <tr><td></td></tr>
+        <tr><td style="border: 1px;"><input type="hidden"></td></tr>
+        <tr><td style="border: 1px;"><input type="hidden"></td></tr>
 				</tbody>
 				{!! $students->render() !!}
 			</table>
 		</div>
 		</div>
         <!--pending tab-->
-		<div role="tabpanel" class="tab-pane" id="pending">
+		<div role="tabpanel" class="tab-pane" id="pending" style="font-family: 'Segoe UI'">
 			<div id="view">
+        <div class="row" id="notification_message"><center><i><label style="color: gray; font-size: 14px;">These students have already been cleared. It is up to the student to pay the amount he or she owes the school. </label></i><class=" table table-hover table-bordered" ></div>
 				<table class=" table table-hover table-bordered" >
 					<thead bgcolor="#FF9900">
 					<tr>
@@ -234,7 +232,7 @@
 													<input type="hidden" name="_token" value="{{ csrf_token() }}">
 													<input type="hidden" name="magic_value" value="0">
 													<input type="hidden" name="regNo" value="{{$student->studentNo}}">
-												  <!--start statment summary-->
+												  <!--start statement summary-->
                             <div class="">
                               <hr>
                               <!-- help -->
@@ -371,8 +369,8 @@
 							</div>
 						</tr>
 					@endforeach
-          <tr><td></td></tr>
-          <tr><td></td></tr>
+          <tr><td style="border: 1px;"><input type="hidden"></td></tr>
+          <tr><td style="border: 1px;"><input type="hidden"></td></tr>
 					</tbody>
 					{!! $students->render() !!}
 				</table>

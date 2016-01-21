@@ -163,8 +163,8 @@
 					  </div>
 				  </tr>
 			  @endforeach
-        <tr><td></td></tr>
-        <tr><td></td></tr>
+        <tr><td style="border: 1px;"><input type="hidden"></td></tr>
+        <tr><td style="border: 1px;"><input type="hidden"></td></tr>
 			  </tbody>
 			  {!! $students->render() !!}
 		  </table>
