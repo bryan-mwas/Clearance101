@@ -38,7 +38,7 @@
                     <h3 class="masthead-brand">Strathmore Clearance Application</h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="auth/logout">Home</a></li>
+                            <li class="active"><a href="auth/logout">Log out</a></li>
                         </ul>
                     </nav>
                 </div>

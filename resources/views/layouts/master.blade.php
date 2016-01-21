@@ -13,13 +13,6 @@
       <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
       <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 			<script type="text/javascript" src="{{asset('js/clearanceValidation.js')}}"></script>
-
-			<script type="text/javascript">
-				$(document).ready({
-					$("#notification_message").html("The following students are awaiting Clearance");
-		      $("#notification_message").show();
-				});
-			</script>
 </head>
 <body style="background-color: #F2F2F2;">
   <!-- start nav -->

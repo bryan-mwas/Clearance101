@@ -20,7 +20,8 @@ class FinancialAidController extends Controller{
 
       $appliedStudentsFad = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
       if($appliedStudentsFad > 0){
-        $message = "Please Attend to the following ( ".$appliedStudentsFad." ) students Requesting to be cleared";
+        // $message = "Please Attend to the following ( ".$appliedStudentsFad." ) students Requesting to be cleared";
+        $message = "Please Attend to the following students Requesting to be cleared";
       }elseif($appliedStudentsFad == 0){
         $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
       }
@@ -38,7 +39,7 @@ class FinancialAidController extends Controller{
     public function clear(Request $request){
     	$post = $request->all();
     	$comment = $post['lender'];
-    	$value = $post['balance'];
+    	// $value = $post['balance'];
     	$student = $post['regNo'];
       $loan = $post['amountTaken'];
       $repaid = $post['amountRepaid'];
@@ -48,6 +49,7 @@ class FinancialAidController extends Controller{
       $loan = preg_replace('/[^0-9]/','', $loan);
       $repaid = preg_replace('/[^0-9]/','', $repaid);
 
+      $value = $loan - $repaid;
             $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
                 ->select('administrators.email')->where('schools.department_name','=','Finance')

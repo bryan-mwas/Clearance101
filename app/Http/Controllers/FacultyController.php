@@ -38,8 +38,8 @@ class FacultyController extends Controller{
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
 
-        // return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
-				return $appliedStudentsFit;
+        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+				// return $appliedStudentsFit;
     }
   /* display students in SOA */
 	public function schoolofAccountancy(){
