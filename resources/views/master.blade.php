@@ -19,6 +19,7 @@
         footer {
             width: 100%;
             position: relative;
+            display: block;
             bottom: 0;
             /*background-color: #0000ff;*/
             /*color: #fff;*/
@@ -67,6 +68,7 @@
     $('div.alert').delay(3000).slideUp(300);
 </script>
 </body>
+<br>
 <footer>
     <center>
         Strathmore University. Copyright <span class="glyphicon glyphicon-copyright-mark"></span> {{date('Y')}}. All rights reserved.

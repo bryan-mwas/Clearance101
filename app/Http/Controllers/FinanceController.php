@@ -16,6 +16,15 @@ class FinanceController extends Controller{
 
     public function index(){
       $user = Auth::user()->regNo;
+      $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+      $appliedStudentsFin = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
+      if($appliedStudentsFin > 0){
+        $message = "Please Attend to the following ( ".$appliedStudentsFin." ) students Requesting to be cleared";
+      }elseif($appliedStudentsFin == 0){
+        $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
+      }
+
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
@@ -28,7 +37,7 @@ class FinanceController extends Controller{
                     ->where('charge.total','>','0')->where('charge.queueFlag', '=', '7')
                     ->paginate(15);
 
-         return view('staff/finance', compact('students','pending', 'userInformation'));
+         return view('staff/finance', compact('students','pending', 'userInformation','message'));
     }
     public function clear(Request $request){
     	$post = $request->all();
@@ -36,6 +45,9 @@ class FinanceController extends Controller{
     	$value = $post['amount'];
     	$student = $post['regNo'];
       $magic_val = $post['magic_value'];
+
+      $comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
+      $value = preg_replace('/[^0-9]/','', $value);
         /*
           * NOTE!!!
           * The magic value below is a hidden input that
@@ -74,6 +86,12 @@ class FinanceController extends Controller{
       $library = $post['library'];
       $financialAid = $post['financialAid'];
       $finance = $post['finance'];
+
+      $school = preg_replace('/[^0-9]/','', $school);
+      $cafeteria = preg_replace('/[^0-9]/','', $cafeteria);
+      $library = preg_replace('/[^0-9]/','', $library);
+      $financialAid = preg_replace('/[^0-9]/','', $financialAid);
+      $finance = preg_replace('/[^0-9]/','', $finance);
 
           DB::update("UPDATE charge
              SET

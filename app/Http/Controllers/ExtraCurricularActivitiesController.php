@@ -15,13 +15,23 @@ use App\Http\Controllers\Controller;
 class ExtraCurricularActivitiesController extends Controller{
    public function index(){
      $user = Auth::user()->regNo;
+     $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+     $appliedStudentsExa = DB::table('charge')->where('charge.queueFlag', '=', '3')->count();
+
+     if($appliedStudentsExa > 0){
+       $message = "Please Attend to the following ( ".$appliedStudentsExa." ) students Requesting to be cleared";
+     }elseif($appliedStudentsExa == 0){
+       $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
+     }
+
  		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                     ->select('students.*', 'charge.queueFlag')
                     ->where('charge.queueFlag', '=', '3')
                     ->paginate(15);
-         return view('staff/extraCurricularActivities', compact('students', 'userInformation'));
+         return view('staff/extraCurricularActivities', compact('students', 'userInformation','message'));
     }
     public function clear(Request $request){
     	$post = $request->all();

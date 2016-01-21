@@ -16,6 +16,15 @@ class GamesController extends Controller{
 
   public function index(){
     $user = Auth::user()->regNo;
+    $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+    $appliedStudentsGam = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
+    if($appliedStudentsGam > 0){
+      $message = "Please Attend to the following ( ".$appliedStudentsGam." ) students Requesting to be cleared";
+    }elseif($appliedStudentsGam == 0){
+      $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
+    }
+
 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
@@ -23,7 +32,7 @@ class GamesController extends Controller{
                     ->where('charge.queueFlag', '=', '4')
                     ->paginate(15);
 
-         return view('staff/games', compact('students','userInformation'));
+         return view('staff/games', compact('students','userInformation','message'));
     }
     public function clear(Request $request){
     	$post = $request->all();

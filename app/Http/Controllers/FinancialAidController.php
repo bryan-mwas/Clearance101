@@ -16,6 +16,9 @@ class FinancialAidController extends Controller{
 
     public function index(){
       $user = Auth::user()->regNo;
+      $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+      $appliedStudentsCaf = DB::table('charge')->where('charge.queueFlag', '=', '5')->count();
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
@@ -30,8 +33,13 @@ class FinancialAidController extends Controller{
     	$comment = $post['lender'];
     	$value = $post['balance'];
     	$student = $post['regNo'];
-        $loan = $post['amountTaken'];
-        $repaid = $post['amountRepaid'];
+      $loan = $post['amountTaken'];
+      $repaid = $post['amountRepaid'];
+
+      $comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
+      $value = preg_replace('/[^0-9]/','', $value);
+      $loan = preg_replace('/[^0-9]/','', $loan);
+      $repaid = preg_replace('/[^0-9]/','', $repaid);
 
             $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
@@ -42,7 +50,7 @@ class FinancialAidController extends Controller{
                 $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
             });
 
-            $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo
+        $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo
         SET comments.financial_aid = '$comment',
         comments.loan = '$loan',
         comments.repaid = '$repaid',

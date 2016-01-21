@@ -98,7 +98,7 @@ $(function(){
       $("#schoolValue_error_message").hide();
     }
   }
-  
+
   function check_schoolComment(){
     var schoolCom = $("#schoolComment").val();
     var regex = new RegExp("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$");

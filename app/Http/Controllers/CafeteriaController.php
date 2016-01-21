@@ -14,14 +14,23 @@ use App\Http\Controllers\Controller;
 
 class CafeteriaController extends Controller{
     public function index(){
-        $user = Auth::user()->regNo;
+      $user = Auth::user()->regNo;
+      $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+      $appliedStudentsCaf = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
+      if($appliedStudentsCaf > 0){
+        $message = "Please Attend to the following ( ".$appliedStudentsCaf." ) students Requesting to be cleared";
+      }elseif($appliedStudentsCaf == 0){
+        $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
+      }
+
         $userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
         $students = DB::table('students')
                      ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                      ->select('students.*', 'charge.queueFlag')
                      ->where('charge.queueFlag', '=', '1')
                      ->paginate(10);
-         return view('staff/cafeteria', compact('students','userInformation'));
+         return view('staff/cafeteria', compact('students','userInformation', 'message'));
         // return $userInformation;
     }
 
@@ -34,6 +43,8 @@ class CafeteriaController extends Controller{
         $value = $post['amount'];
         $student = $post['regNo'];
 
+        $comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
+        $value = preg_replace('/[^0-9]/','', $value);
         $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.cafeteria = '$comment', charge.cafeteria_value = '$value', charge.queueFlag = '2' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
         $admin = DB::table('schools')
                 ->join('administrators','schools.administrator','=','administrators.admin_id')
@@ -45,5 +56,6 @@ class CafeteriaController extends Controller{
         });
 
         return redirect('/cafeteria');
+        //return $comments;
     }
 }
