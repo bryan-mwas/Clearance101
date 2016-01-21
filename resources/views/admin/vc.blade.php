@@ -1,8 +1,9 @@
 @extends('layouts.vcmaster')
 @section('content')
-
 <div class="container" style="background-color: #fff">
-	<br><br>
+	<br>
+    <img src="../img/Strathmore_OK.png"  alt="Strathmore University" style="display: block; margin-left: auto; margin-right: auto "/>
+    <br>
 	<div>
 		<center><u><h3>Clearance Report</h3></u></center>
 	</div>
