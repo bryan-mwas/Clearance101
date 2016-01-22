@@ -70,7 +70,7 @@ class PDF
             </div>
             <h4>FINANCIAL AID OFFICE</h4>
             <div>
-               <p><br>Loan Taken <u><i>Kshs.</i></u> Amount Repaid <u><i>Kshs.</i></u> Balance <u><i>Ksh. </i></u><br>Lender <u><i></i></u> If there is an outstanding balance, show confirmation of registering with CRB **** Yes **** No ****<br>Name of Credit Reference Bureau Agency ****<br>Date <u><i></i></u> Signature **** (FINANCIAL AID OFFICER).</p>
+            <p> The above named student has settled all balance owed to the University </p>
  </div>
     </body>';
 
