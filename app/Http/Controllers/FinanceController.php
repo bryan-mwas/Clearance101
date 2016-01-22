@@ -83,7 +83,7 @@ class FinanceController extends Controller{
       $post = $request->all();
       $id = $post['regNo'];
       $school = $post['school'];
-      $cafeteria = $post['cafetria'];
+      $cafeteria = $post['cafeteria'];
       $library = $post['library'];
       $financialAid = $post['financialAid'];
       $finance = $post['finance'];

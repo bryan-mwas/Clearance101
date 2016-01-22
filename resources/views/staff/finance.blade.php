@@ -6,7 +6,7 @@
     <div>
     	<center><u><H3>FINANCE DEPARTMENT</H3></u></center>
       @foreach($userInformation as $infor)
-      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)<center>
+      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)</center>
       @endforeach
     </div>
     <br><br>
@@ -147,7 +147,7 @@
         <!--pending tab-->
 		<div role="tabpanel" class="tab-pane" id="pending" style="font-family: 'Segoe UI'">
 			<div id="view">
-        <div class="row" id="notification_message"><center><i><label style="color: gray; font-size: 14px;">These students have already been cleared. It is up to the student to pay the amount he or she owes the school. </label></i><class=" table table-hover table-bordered" ></div>
+        <div class="row" id="notification_message"></center><i><label style="color: gray; font-size: 14px;">These students have already been cleared. It is up to the student to pay the amount he or she owes the school. </label></i><class=" table table-hover table-bordered" ></div>
 				<table class=" table table-hover table-bordered" >
 					<thead bgcolor="#FF9900">
 					<tr>
@@ -268,14 +268,14 @@
                               <!-- caft -->
                               <div class="row">
       													<div class="col-md-4">
-      														<label for="name">Cafetria</label>
+      														<label for="name">Cafeteria</label>
       													</div>
       													<div class="col-md-1">
       														<label for="">{{$student->cafeteria_value}}</label>
       													</div>
                                 <div class="col-md-4">
                                   <div class="input-group"><div class="input-group-addon">Kshs</div>
-          													<input class="form-control" placeholder="{{$student->cafeteria_value}}" id="cafPendschool" type="text" name="cafetria">
+          													<input class="form-control" placeholder="{{$student->cafeteria_value}}" id="cafPendschool" type="text" name="cafeteria">
           													<div class="input-group-addon">.00</div>
                                   </div>
       													</div>
@@ -354,7 +354,7 @@
       												</div><br>
                               <!-- end report form -->
                             </div>
-                          <!--end statment summary-->
+                          <!--end statement summary-->
 												</div>
 												<div class="modal-footer">
 													<button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -12,7 +12,7 @@
     <br><br>
 	  <div id="view">
       <div class="row" id="notification_message">
-        <center><i><label style="color: gray; font-size: 14px;"> {{ $message }} </label></i><center>
+        <center><i><label style="color: gray; font-size: 14px;"> {{ $message }} </label></i></center>
       </div>
 		  <table class=" table table-hover table-bordered" >
 			  <thead bgcolor="#FF9900">

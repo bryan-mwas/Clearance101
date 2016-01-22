@@ -6,13 +6,13 @@
     <div>
     	<center><H3>GAMES DEPARTMENT</H3></center>
       @foreach($userInformation as $infor)
-      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)<center>
+      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)</center>
       @endforeach
     </div>
     <br><br>
 	  <div id="view">
       <div class="row" id="notification_message">
-        <center><i><label style="color: gray; font-size: 14px;"> {{ $message }} </label></i><center>
+        <center><i><label style="color: gray; font-size: 14px;"> {{ $message }} </label></i></center>
       </div>
 		  <table class=" table table-hover table-bordered" >
 			  <thead bgcolor="#FF9900">
@@ -101,7 +101,7 @@
 											  Date: <u>{!! date('Y-m-d') !!}</u>
 										  </div>
 										  <div class="modal-footer">
-											  <button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											  <button title="Cancel" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 											  <input title="Clear student" type="submit" class="btn btn-primary" value="Save changes">
 										  </div>
 									  </form>

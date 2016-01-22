@@ -5,7 +5,7 @@
     <div>
     	<center><u><H3>FINANCIAL-AID DEPARTMENT</H3></u></center>
       @foreach($userInformation as $infor)
-      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)<center>
+      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)</center>
       @endforeach
     </div>
     <br><br>
@@ -101,7 +101,7 @@
                             <div class="col-md-6">
                               Loan Taken
                               <div class="input-group"><div class="input-group-addon">Kshs</div>
-                                <input type="text" id="finAidLoan" placeholder="Please Enter the amount originaly borrowed" class="form-control" placeholder="Amount" name="amountTaken" id="loan">
+                                <input type="text" id="finAidLoan" placeholder="Please Enter the amount originally borrowed" class="form-control" placeholder="Amount" name="amountTaken" id="loan">
                                 <div class="input-group-addon">.00</div>
                               </div>
 
@@ -196,22 +196,6 @@
     	});
 
 	});
-	// JQuerz.validator.setDefaults({
-	// 	debug: true,
-	// 	success: "valid"
-	// });
-	// $("#fa").validate({
-	// 	rules: {
-	// 		amountTaken:{
-	// 			number: true
-	// 	 	}
-	// 	 	amountRepaid: {
-	// 	 		number: true
-	// 	 	}
-	// 	 	balance: {
-	// 	 		number: true
-	// 	 	}
-	// 	}
-	// });
+
   </script>
 @endsection

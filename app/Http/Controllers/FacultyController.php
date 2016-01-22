@@ -24,12 +24,12 @@ class FacultyController extends Controller{
 													ed')->whereNotIn('students.studentNo', function($q){
 				 											$q->select('students_studentNo')->from('charge');
 		 											})->count();
-		if($appliedStudentsFit > 0){
+		// if($appliedStudentsFit > 0){
 			// $message = "Please Attend to the following ( ".$appliedStudentsFit." ) students Requesting to be cleared";
 			$message = "Please Attend to the following students Requesting to be cleared";
-		}elseif($appliedStudentsFit == 0){
-			$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-		}
+		// }elseif($appliedStudentsFit == 0){
+			// $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
+		// }
 
 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
