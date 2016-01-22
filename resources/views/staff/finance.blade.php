@@ -147,7 +147,7 @@
         <!--pending tab-->
 		<div role="tabpanel" class="tab-pane" id="pending" style="font-family: 'Segoe UI'">
 			<div id="view">
-        <div class="row" id="notification_message"></center><i><label style="color: gray; font-size: 14px;">These students have already been cleared. It is up to the student to pay the amount he or she owes the school. </label></i><class=" table table-hover table-bordered" ></div>
+        <div class="row" id="notification_message"><center><i><label style="color: gray; font-size: 14px;">These students have already been cleared. It is up to the student to pay the amount he or she owes the school. </label></i><class=" table table-hover table-bordered" ></center></div>
 				<table class=" table table-hover table-bordered" >
 					<thead bgcolor="#FF9900">
 					<tr>

@@ -39,7 +39,7 @@
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button id="element" type="submit" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="right" data-content="Invalid username or password!">Sign in</button>
                                    <br><br>
-                                <a href="/auth/register"><u>First time to interact with the system? Click here pal.</u></a>
+                                <!-- <a href="/auth/register"><u>First time to interact with the system? Click here pal.</u></a> -->
                             </div>
                         </div>
                     </form>
