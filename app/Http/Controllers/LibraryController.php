@@ -20,18 +20,18 @@ class LibraryController extends Controller{
 
       $appliedStudentsLib = DB::table('charge')->where('charge.queueFlag', '=', '2')->count();
       if($appliedStudentsLib > 0){
-        // $message = "Please Attend to the following ( ".$appliedStudentsLib." ) students Requesting to be cleared";
-        $message = "Please Attend to the following students Requesting to be cleared";
+        $message = "Please Attend to the following ( ".$appliedStudentsLib." ) students Requesting to be cleared";
+        // $message = "Please Attend to the following students Requesting to be cleared";
       }elseif($appliedStudentsLib == 0){
         $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
       }
 
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
-        $students = DB::table('students')
-                    ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
-                    ->select('students.*', 'charge.queueFlag')
-                    ->where('charge.queueFlag', '=', '2')
-                    ->paginate(15);
+      $students = DB::table('students')
+                   ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
+                   ->select('students.*', 'cleared_by.cafeteria_cleared_by')
+                   ->where('cleared_by.library_cleared_by', '=', 'N/A')
+                   ->paginate(10);
          return view('staff/library', compact('students','userInformation','message'));
     }
     public function clear(Request $request){
@@ -39,13 +39,37 @@ class LibraryController extends Controller{
     	$comment = $post['comment'];
     	$value = $post['amount'];
     	$student = $post['regNo'];
+      $clearedAt = $post['signedAt'];
+      $clearedBy = $post['signedBy'];
 
       $comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
       $value = preg_replace('/[^0-9]/','', $value);
 
-            $admin = DB::table('schools')
-                ->join('administrators','schools.administrator','=','administrators.admin_id')
-                ->select('administrators.email')->where('schools.department_name','=','Extra-curricular')
+      DB::beginTransaction();
+      $submit = DB::update("UPDATE charge
+        INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo
+        INNER JOIN cleared_at ON charge.students_studentNo = cleared_at.students_studentNo
+        INNER JOIN cleared_by ON charge.students_studentNo = cleared_by.students_studentNo
+        SET
+        charge.library_value = '$value',
+        comments.library = '$comment',
+        cleared_at.library_cleared_at = '$clearedAt',
+        cleared_by.library_cleared_by = '$clearedBy'
+
+        WHERE charge.students_studentNo = '$student'
+        AND comments.students_studentNo = '$student'
+        AND cleared_at.students_studentNo = '$student'
+        AND cleared_by.students_studentNo='$student' ");
+
+        if($submit){
+          DB::commit();
+        }else{
+          DB::rollBack();
+        }
+
+            $admin = DB::table('departments')
+                ->join('administrators','departments.administrator','=','administrators.admin_id')
+                ->select('administrators.email')->where('departments.department_name','=','Extra-curricular')
                 ->pluck('email');
             //Send Mail
             Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){

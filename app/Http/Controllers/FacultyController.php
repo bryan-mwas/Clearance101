@@ -24,12 +24,12 @@ class FacultyController extends Controller{
 													ed')->whereNotIn('students.studentNo', function($q){
 				 											$q->select('students_studentNo')->from('charge');
 		 											})->count();
-		// if($appliedStudentsFit > 0){
-			// $message = "Please Attend to the following ( ".$appliedStudentsFit." ) students Requesting to be cleared";
-			$message = "Please Attend to the following students Requesting to be cleared";
-		// }elseif($appliedStudentsFit == 0){
-			// $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-		// }
+		if($appliedStudentsFit > 0){
+			$message = "Please Attend to the following ( ".$appliedStudentsFit." ) students Requesting to be cleared";
+			// $message = "Please Attend to the following students Requesting to be cleared";
+		}elseif($appliedStudentsFit == 0){
+			$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
+		}
 
 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
@@ -53,8 +53,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsSoa > 0){
-					// $message = "Please Attend to the following ( ".$appliedStudentsSoa." ) students Requesting to be cleared";
-					$message = "Please Attend to the following students Requesting to be cleared";
+					$message = "Please Attend to the following ( ".$appliedStudentsSoa." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSoa == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -78,8 +78,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsSfae > 0){
-					// $message = "Please Attend to the following ( ".$appliedStudentsSfae." ) students Requesting to be cleared";
-					$message = "Please Attend to the following students Requesting to be cleared";
+					$message = "Please Attend to the following ( ".$appliedStudentsSfae." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSfae == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -131,8 +131,8 @@ class FacultyController extends Controller{
 						 											$q->select('students_studentNo')->from('charge');
 				 											})->count();
 				if($appliedStudentsSmc > 0){
-					// $message = "Please Attend to the following ( ".$appliedStudentsSmc." ) students Requesting to be cleared";
-					$message = "Please Attend to the following students Requesting to be cleared";
+					$message = "Please Attend to the following ( ".$appliedStudentsSmc." ) students Requesting to be cleared";
+					// $message = "Please Attend to the following students Requesting to be cleared";
 				}elseif($appliedStudentsSmc == 0){
 					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
 				}
@@ -231,6 +231,8 @@ class FacultyController extends Controller{
         $std = $post['regNo'];
 				$value = $post['amount'];
 				$comment = $post['comment'];
+				$clearedAt = $post['signedAt'];
+	      $clearedBy = $post['signedBy'];
 
 				$comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
         $value = preg_replace('/[^0-9]/','', $value);
@@ -241,17 +243,26 @@ class FacultyController extends Controller{
             'queueFlag'          => '1',
             );
 
-        $com = array(
-            'students_studentNo' => $post['regNo'],
-            'department'         => $comment,
-        );
+      	$save = DB::table('charge')->insert($clear);
 
-        $status = array(
-            'students_studentNo' => $post['regNo'],
-        );
-             $save = DB::table('charge')->insert($clear);
-             $saveStatus = DB::table('clearstatus')->insert($status);
-             $comSave = DB::table('comments')->insert($com);
+				DB::beginTransaction();
+					$submit = DB::update("UPDATE cleared_by
+						INNER JOIN comments ON cleared_by.students_studentNo = comments.students_studentNo
+						INNER JOIN cleared_at ON cleared_by.students_studentNo = cleared_at.students_studentNo
+						SET
+						comments.department = '$comment',
+						cleared_at.department_cleared_at = '$clearedAt',
+						cleared_by.department_cleared_by = '$clearedBy'
+
+						WHERE comments.students_studentNo = '$std'
+						AND cleared_at.students_studentNo = '$std'
+						AND cleared_by.students_studentNo='$std' ");
+
+						if($submit){
+						  DB::commit();
+						}else{
+						  DB::rollBack();
+						}
 
              //Send Mail
              $emails = ['mwathibrian7@gmail.com','brianphiri.9523@gmail.com', 'anamikoye52@gmail.com'];

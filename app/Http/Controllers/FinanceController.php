@@ -27,11 +27,11 @@ class FinanceController extends Controller{
       }
 
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
-        $students = DB::table('students')
-                    ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
-                    ->select('students.*', 'charge.queueFlag')
-                    ->where('charge.queueFlag', '=', '6')->where('charge.finance_value', '<', '1')
-                    ->paginate(15);
+      $students = DB::table('students')
+                   ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
+                   ->select('students.*', 'cleared_by.finance_cleared_by')
+                   ->where('cleared_by.finance_cleared_by', '=', 'N/A')
+                   ->paginate(10);
         $pending = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                     ->select('students.*', 'charge.*')
@@ -46,35 +46,59 @@ class FinanceController extends Controller{
     	$value = $post['amount'];
     	$student = $post['regNo'];
       $magic_val = $post['magic_value'];
+      $clearedAt = $post['signedAt'];
+      $clearedBy = $post['signedBy'];
+
 
       $comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
       $value = preg_replace('/[^0-9]/','', $value);
+
+      DB::beginTransaction();
+      $submit = DB::update("UPDATE charge
+        INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo
+        INNER JOIN cleared_at ON charge.students_studentNo = cleared_at.students_studentNo
+        INNER JOIN cleared_by ON charge.students_studentNo = cleared_by.students_studentNo
+        SET
+        comments.finance = '$comment',
+        charge.finance_value = '$value',
+        charge.queueFlag = '7',
+
+        cleared_at.finance_cleared_at = '$clearedAt',
+        cleared_by.finance_cleared_by = '$clearedBy'
+
+        WHERE charge.students_studentNo = '$student'
+        AND comments.students_studentNo = '$student'
+        AND cleared_at.students_studentNo = '$student'
+        AND cleared_by.students_studentNo='$student' ");
+        if($submit){
+          DB::commit();
+        }else{
+          DB::rollBack();
+        }
+
         /*
           * NOTE!!!
           * The magic value below is a hidden input that
           * helps in evaluating which type of query is to be executed.
           * */
-        if($magic_val == 0){
-            DB::update("UPDATE charge INNER JOIN comments
-      			ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value'
-      			WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-        }
+        // if($magic_val == 0){
+        //     DB::update("UPDATE charge INNER JOIN comments
+      	// 		ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value'
+      	// 		WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
+        // }
 
             /**
              * Sends mail, but to whom?
              */
-//            $admin = DB::table('schools')
-//                ->join('administrators','schools.administrator','=','administrators.admin_id')
-//                ->select('administrators.email')->where('schools.department_name','=','Games')
+//            $admin = DB::table('departments')
+//                ->join('administrators','departments.administrator','=','administrators.admin_id')
+//                ->select('administrators.email')->where('departments.department_name','=','Games')
 //                ->pluck('email');
 //            //Send Mail
 //            Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
 //                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
 //            });
 
-      DB::update("UPDATE charge INNER JOIN comments
-			ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value', charge.queueFlag = '7'
-			WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
 
 		  return redirect('/finance');
     }

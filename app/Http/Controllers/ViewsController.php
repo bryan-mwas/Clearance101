@@ -44,7 +44,7 @@ class ViewsController extends Controller
         }
         else{
 //            For a null result in the above $std query. This block of code executes.
-            $admin = DB::table('schools')->where('schools.administrator','=',$user)->pluck('department_name');
+            $admin = DB::table('departments')->where('departments.administrator','=',$user)->pluck('department_name');
 
             if($admin == "FIT"){
                 return redirect()->intended('/fit');
@@ -181,7 +181,7 @@ class ViewsController extends Controller
      */
     public function findSpec(){
         $user = Auth::user()->regNo;
-        $admin = DB::table('schools')->where('schools.administrator','=',$user)->pluck('department_name');
+        $admin = DB::table('departments')->where('departments.administrator','=',$user)->pluck('department_name');
         return $admin;
     }
     /**

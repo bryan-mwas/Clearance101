@@ -116,7 +116,13 @@
                                                   <span id="schoolValue_error_message" class="error_report"></span>
                                                 </div>
                                               </div>
-                                              Date: <u>{!! date('Y-m-d') !!}</u>
+                                              
+                                              @foreach($userInformation as $infor)
+                                              Cleared by :  {{ $infor->lname }} , {{ $infor->fname }}
+                                              <input type="hidden" name="signedBy" value="{{ $infor->lname }} , {{ $infor->fname }}">
+                                              @endforeach
+                      											   Date: <u>{!! date('Y-m-d') !!}</u>
+                                               <input type="hidden" name="signedAt" value="{!! date('Y-m-d') !!}">
                                           </div>
                                           <div class="modal-footer">
                                               <button title="Cancel" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
