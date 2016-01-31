@@ -17,14 +17,7 @@ class GamesController extends Controller{
   public function index(){
     $user = Auth::user()->regNo;
     $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
-
-    $appliedStudentsGam = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
-    if($appliedStudentsGam > 0){
-      $message = "Please Attend to the following ( ".$appliedStudentsGam." ) students Requesting to be cleared";
-      // $message = "Please Attend to the following students Requesting to be cleared";
-    }elseif($appliedStudentsGam == 0){
-      $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-    }
+    $message = "Please Attend to the following students Requesting to be cleared";
 
 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
     $students = DB::table('students')
@@ -51,6 +44,7 @@ class GamesController extends Controller{
         INNER JOIN cleared_by ON charge.students_studentNo = cleared_by.students_studentNo
         SET
         charge.games_value = '$value',
+        charge.queueFlag = charge.queueFlag + 1,
         comments.games = '$comment',
         cleared_at.games_cleared_at = '$clearedAt',
         cleared_by.games_cleared_by = '$clearedBy'

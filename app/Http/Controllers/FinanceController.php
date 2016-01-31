@@ -18,19 +18,14 @@ class FinanceController extends Controller{
       $user = Auth::user()->regNo;
       $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-      $appliedStudentsFin = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
-      if($appliedStudentsFin > 0){
-        // $message = "Please Attend to the following ( ".$appliedStudentsFin." ) students Requesting to be cleared";
-        $message = "Please Attend to the following students Requesting to be cleared";
-      }elseif($appliedStudentsFin == 0){
-        $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-      }
-
+      $message = "Please Attend to the following students Requesting to be cleared";
+      
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
       $students = DB::table('students')
+                   ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                    ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
                    ->select('students.*', 'cleared_by.finance_cleared_by')
-                   ->where('cleared_by.finance_cleared_by', '=', 'N/A')
+                   ->where('cleared_by.finance_cleared_by', '=', 'N/A')->where('charge.queueFlag','=','6')
                    ->paginate(10);
         $pending = DB::table('students')
                     ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')

@@ -19,13 +19,8 @@ class ExtraCurricularActivitiesController extends Controller{
 
      $appliedStudentsExa = DB::table('charge')->where('charge.queueFlag', '=', '3')->count();
 
-     if($appliedStudentsExa > 0){
-       $message = "Please Attend to the following ( ".$appliedStudentsExa." ) students Requesting to be cleared";
-      // $message = "Please Attend to the following students Requesting to be cleared";
-     }elseif($appliedStudentsExa == 0){
-       $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-     }
-
+     $message = "Please Attend to the following students Requesting to be cleared";
+ 
  		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
     $students = DB::table('students')
                  ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
@@ -50,6 +45,7 @@ class ExtraCurricularActivitiesController extends Controller{
         INNER JOIN cleared_by ON charge.students_studentNo = cleared_by.students_studentNo
         SET
         charge.extra_curricular_value = '$value',
+        charge.queueFlag = charge.queueFlag + 1,
         comments.extra_curricular = '$comment',
         cleared_at.extra_curricular_cleared_at = '$clearedAt',
         cleared_by.extra_curricular_cleared_by = '$clearedBy'

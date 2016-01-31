@@ -126,16 +126,7 @@ class FacultyController extends Controller{
 				$user = Auth::user()->regNo;
 				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-				$appliedStudentsSmc = DB::table('students')->where('students.faculty', '=', 'SMC')->where('state', '=', 'Activated')
-															->whereNotIn('students.studentNo', function($q){
-						 											$q->select('students_studentNo')->from('charge');
-				 											})->count();
-				if($appliedStudentsSmc > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSmc." ) students Requesting to be cleared";
-					// $message = "Please Attend to the following students Requesting to be cleared";
-				}elseif($appliedStudentsSmc == 0){
-					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-				}
+				$message = "Please Attend to the following students Requesting to be cleared";
 
 				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')

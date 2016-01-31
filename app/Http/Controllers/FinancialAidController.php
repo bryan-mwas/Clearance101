@@ -17,14 +17,7 @@ class FinancialAidController extends Controller{
     public function index(){
       $user = Auth::user()->regNo;
       $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
-
-      $appliedStudentsFad = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
-      if($appliedStudentsFad > 0){
-        $message = "Please Attend to the following ( ".$appliedStudentsFad." ) students Requesting to be cleared";
-        // $message = "Please Attend to the following students Requesting to be cleared";
-      }elseif($appliedStudentsFad == 0){
-        $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-      }
+      $message = "Please Attend to the following students Requesting to be cleared";
 
       $appliedStudentsCaf = DB::table('charge')->where('charge.queueFlag', '=', '5')->count();
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
@@ -61,6 +54,7 @@ class FinancialAidController extends Controller{
         INNER JOIN cleared_by ON charge.students_studentNo = cleared_by.students_studentNo
         SET
         charge.financial_aid_value = '$value',
+        charge.queueFlag = charge.queueFlag + 1,
         comments.financial_aid = '$comment',
         comments.loan = '$loan',
         comments.repaid = '$repaid',

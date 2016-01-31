@@ -18,13 +18,7 @@ class LibraryController extends Controller{
       $user = Auth::user()->regNo;
       $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-      $appliedStudentsLib = DB::table('charge')->where('charge.queueFlag', '=', '2')->count();
-      if($appliedStudentsLib > 0){
-        $message = "Please Attend to the following ( ".$appliedStudentsLib." ) students Requesting to be cleared";
-        // $message = "Please Attend to the following students Requesting to be cleared";
-      }elseif($appliedStudentsLib == 0){
-        $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-      }
+      $message = "Please Attend to the following students Requesting to be cleared";
 
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
       $students = DB::table('students')
@@ -52,6 +46,7 @@ class LibraryController extends Controller{
         INNER JOIN cleared_by ON charge.students_studentNo = cleared_by.students_studentNo
         SET
         charge.library_value = '$value',
+        charge.queueFlag = charge.queueFlag + 1,
         comments.library = '$comment',
         cleared_at.library_cleared_at = '$clearedAt',
         cleared_by.library_cleared_by = '$clearedBy'

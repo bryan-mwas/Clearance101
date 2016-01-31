@@ -17,25 +17,16 @@ class CafeteriaController extends Controller{
       $user = Auth::user()->regNo;
       $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-      $appliedStudentsCaf = DB::table('charge')->where('charge.queueFlag', '=', '1')->count();
-      if($appliedStudentsCaf > 0){
-        // $message = "Please Attend to the following ( ".$appliedStudentsCaf." ) students Requesting to be cleared";
-        $message = "Please Attend to the following students Requesting to be cleared";
-      }elseif($appliedStudentsCaf == 0){
-        $message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-      }
+      $message = "Please Attend to the following students Requesting to be cleared";
 
-        $userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
-        $students = DB::table('students')
-                     ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
-                     ->select('students.*', 'cleared_by.cafeteria_cleared_by')
-                     ->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')
-                     ->paginate(10);
-
-         return view('staff/cafeteria', compact('students','userInformation', 'message'));
-        // return $userInformation;
+      $userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+      $students = DB::table('students')
+                   ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
+                   ->select('students.*', 'cleared_by.cafeteria_cleared_by')
+                   ->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')
+                   ->paginate(10);
+      return view('staff/cafeteria', compact('students','userInformation', 'message'));
     }
-
 
 
     public function clear(Request $request){
@@ -58,6 +49,7 @@ class CafeteriaController extends Controller{
             INNER JOIN cleared_by ON charge.students_studentNo = cleared_by.students_studentNo
             SET
             charge.cafeteria_value = '$value',
+            charge.queueFlag = charge.queueFlag + 1,
             comments.cafeteria = '$comment',
             cleared_at.cafeteria_cleared_at = '$clearedAt',
             cleared_by.cafeteria_cleared_by = '$clearedBy'
