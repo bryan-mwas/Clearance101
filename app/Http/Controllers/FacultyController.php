@@ -20,16 +20,7 @@ class FacultyController extends Controller{
 		$user = Auth::user()->regNo;
 		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-		$appliedStudentsFit = DB::table('students')->where('students.faculty', '=', 'FIT')->where('state', '=', 'Activat
-													ed')->whereNotIn('students.studentNo', function($q){
-				 											$q->select('students_studentNo')->from('charge');
-		 											})->count();
-		if($appliedStudentsFit > 0){
-			$message = "Please Attend to the following ( ".$appliedStudentsFit." ) students Requesting to be cleared";
-			// $message = "Please Attend to the following students Requesting to be cleared";
-		}elseif($appliedStudentsFit == 0){
-			$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-		}
+		$message = "Please Attend to the following students Requesting to be cleared";
 
 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
@@ -38,85 +29,56 @@ class FacultyController extends Controller{
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
 
-        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
-				// return $appliedStudentsFit;
+    	return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
     }
   /* display students in SOA */
 	public function schoolofAccountancy(){
-        $name = 'SCHOOL OF ACCOUNTANCY';
-        $title = 'SOA';
-				$user = Auth::user()->regNo;
-				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
-
-				$appliedStudentsSoa = DB::table('students')->where('students.faculty', '=', 'SOA')->where('state', '=', 'Activated')
-															->whereNotIn('students.studentNo', function($q){
-						 											$q->select('students_studentNo')->from('charge');
-				 											})->count();
-				if($appliedStudentsSoa > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSoa." ) students Requesting to be cleared";
-					// $message = "Please Attend to the following students Requesting to be cleared";
-				}elseif($appliedStudentsSoa == 0){
-					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-				}
-				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+    $name = 'SCHOOL OF ACCOUNTANCY';
+    $title = 'SOA';
+		$user = Auth::user()->regNo;
+		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+		$message = "Please Attend to the following students Requesting to be cleared";
+		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SOA')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
-        return view('staff/faculty', compact('name','title','students', 'userInformation', 'message'));
+    return view('staff/faculty', compact('name','title','students', 'userInformation', 'message'));
 	}
   /*DISPLAY students in sfae*/
 	public function schoolOfFinanceAndAppliedEconomics(){
-        $name = 'SCHOOL OF FINANCE AND APPLIED ECONOMICS';
-        $title = 'SFAE';
-				$user = Auth::user()->regNo;
-				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+    $name = 'SCHOOL OF FINANCE AND APPLIED ECONOMICS';
+    $title = 'SFAE';
+		$user = Auth::user()->regNo;
+		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-				$appliedStudentsSfae = DB::table('students')->where('students.faculty', '=', 'SFAE')->where('state', '=', 'Activated')
-															->whereNotIn('students.studentNo', function($q){
-						 											$q->select('students_studentNo')->from('charge');
-				 											})->count();
-				if($appliedStudentsSfae > 0){
-					$message = "Please Attend to the following ( ".$appliedStudentsSfae." ) students Requesting to be cleared";
-					// $message = "Please Attend to the following students Requesting to be cleared";
-				}elseif($appliedStudentsSfae == 0){
-					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-				}
-				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+		$message = "Please Attend to the following students Requesting to be cleared";
+		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SFAE')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
-        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
 	}
    /*display students in SHSS*/
 	public function schoolOfHumanitiesAndSocialSciences(){
-        $name = 'SCHOOL OF HUMANITIES AND SOCIAL SCIENCES';
-        $title = 'SHSS';
-				$user = Auth::user()->regNo;
-				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+    $name = 'SCHOOL OF HUMANITIES AND SOCIAL SCIENCES';
+    $title = 'SHSS';
+		$user = Auth::user()->regNo;
+		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-				$appliedStudentsShss = DB::table('students')->where('students.faculty', '=', 'SHSS')->where('state', '=', 'Activated')
-															->whereNotIn('students.studentNo', function($q){
-						 											$q->select('students_studentNo')->from('charge');
-				 											})->count();
-				if($appliedStudentsShss > 0){
-					// $message = "Please Attend to the following ( ".$appliedStudentsShss." ) students Requesting to be cleared";
-					$message = "Please Attend to the following students Requesting to be cleared";
-				}elseif($appliedStudentsShss == 0){
-					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-				}
+		$message = "Please Attend to the following students Requesting to be cleared";
 
-				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SHSS')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
 
-        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
 	}
 
    /*display students in SMC*/
@@ -139,81 +101,57 @@ class FacultyController extends Controller{
 
     /* display student is SBS */
 	public function strathmoreBusinessSchool(){
-        $name = 'STRATHMORE BUSSINESS SCHOOL';
-        $title = 'SBS';
-				$user = Auth::user()->regNo;
-				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-				$appliedStudentsSbs = DB::table('students')->where('students.faculty', '=', 'SBS')->where('state', '=', 'Activated')
-															->whereNotIn('students.studentNo', function($q){
-						 											$q->select('students_studentNo')->from('charge');
-				 											})->count();
-				if($appliedStudentsSbs > 0){
-					// $message = "Please Attend to the following ( ".$appliedStudentsSbs." ) students Requesting to be cleared";
-					$message = "Please Attend to the following students Requesting to be cleared";
-				}elseif($appliedStudentsSbs == 0){
-					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-				}
+    $name = 'STRATHMORE BUSSINESS SCHOOL';
+    $title = 'SBS';
+		$user = Auth::user()->regNo;
+		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+		$message = "Please Attend to the following students Requesting to be cleared";
+
+		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
-                    ->where('students.faculty', '=', 'SBS')->where('state', '=', 'Activated')
-                    ->whereNotIn('students.studentNo', function($q){
-                         $q->select('students_studentNo')->from('charge');
-                     })->paginate(15);
+                ->where('students.faculty', '=', 'SBS')->where('state', '=', 'Activated')
+                ->whereNotIn('students.studentNo', function($q){
+                     $q->select('students_studentNo')->from('charge');
+                 })->paginate(15);
 
-        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
 	}
 
       /*display sls students */
 	public function strathmoreLawSchool(){
-        $name = 'STRATHMORE LAW SCHOOL';
-        $title = 'SLS';
-				$user = Auth::user()->regNo;
-				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+    $name = 'STRATHMORE LAW SCHOOL';
+    $title = 'SLS';
+		$user = Auth::user()->regNo;
+		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-				$appliedStudentsSls = DB::table('students')->where('students.faculty', '=', 'SLS')->where('state', '=', 'Activated')->count();
-				if($appliedStudentsSls > 0){
-					// $message = "Please Attend to the following ( ".$appliedStudentsSls." ) students Requesting to be cleared";
-					$message = "Please Attend to the following students Requesting to be cleared";
-				}elseif($appliedStudentsSls == 0){
-					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-				}
-
-				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+		$message = "Please Attend to the following students Requesting to be cleared";
+		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SLS')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
-        return view('staff/faculty', compact('name','title','students', 'userInformation'));
+    return view('staff/faculty', compact('name','title','students', 'userInformation'));
 	}
 
       /*display students is CTH*/
 	public function centreForTourismAndHospitality(){
-        $name = 'CENTER FOR TOURISIM AND HOSPITALITY';
-        $title = 'CTH';
-				$user = Auth::user()->regNo;
-				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+      $name = 'CENTER FOR TOURISIM AND HOSPITALITY';
+      $title = 'CTH';
+			$user = Auth::user()->regNo;
+			$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email')
 
-				$appliedStudentsCth = DB::table('students')->where('students.faculty', '=', 'CTH')->where('state', '=', 'Activated')
-															->whereNotIn('students.studentNo', function($q){
-						 											$q->select('students_studentNo')->from('charge');
-				 											})->count();
-				if($appliedStudentsCth > 0){
-					// $message = "Please Attend to the following ( ".$appliedStudentsCth." ) students Requesting to be cleared";
-					$message = "Please Attend to the following students Requesting to be cleared";
-				}elseif($appliedStudentsCth == 0){
-					$message = "No students have requested to be cleared we will notify you using your Email(".$userMail.") when you have students waiting to be cleared";
-				}
+			$message = "Please Attend to the following students Requesting to be cleared";
 
-				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
-				$students = DB::table('students')
-                    ->where('students.faculty', '=', 'CTH')->where('state', '=', 'Activated')
-                    ->whereNotIn('students.studentNo', function($q){
-                         $q->select('students_studentNo')->from('charge');
-                     })->paginate(15);
-        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+			$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+			$students = DB::table('students')
+                  ->where('students.faculty', '=', 'CTH')->where('state', '=', 'Activated')
+                  ->whereNotIn('students.studentNo', function($q){
+                        $q->select('students_studentNo')->from('charge');
+                    })->paginate(15);
+    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
 	}
 
 	/*clear off student*/

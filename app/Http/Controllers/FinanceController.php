@@ -19,7 +19,7 @@ class FinanceController extends Controller{
       $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
       $message = "Please Attend to the following students Requesting to be cleared";
-      
+
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
       $students = DB::table('students')
                    ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
@@ -27,13 +27,13 @@ class FinanceController extends Controller{
                    ->select('students.*', 'cleared_by.finance_cleared_by')
                    ->where('cleared_by.finance_cleared_by', '=', 'N/A')->where('charge.queueFlag','=','6')
                    ->paginate(10);
-        $pending = DB::table('students')
-                    ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
-                    ->select('students.*', 'charge.*')
-                    ->where('charge.total','>','0')->where('charge.queueFlag', '=', '7')
-                    ->paginate(15);
+      $pending = DB::table('students')
+                   ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
+                   ->select('students.*', 'charge.*')
+                   ->where('charge.total','>','0')->where('charge.queueFlag', '=', '7')
+                   ->paginate(15);
 
-         return view('staff/finance', compact('students','pending', 'userInformation','message'));
+      return view('staff/finance', compact('students','pending', 'userInformation','message'));
     }
     public function clear(Request $request){
     	$post = $request->all();
