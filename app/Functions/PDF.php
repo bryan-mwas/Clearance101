@@ -6,7 +6,7 @@ namespace App\Functions;
 class PDF
 {
 
-    public static function make($std)
+    public static function make($std,$serial)
     {
 
         $end = '
@@ -72,7 +72,31 @@ class PDF
             <div>
             <p> The above named student has settled all balance owed to the University </p>
  </div>
-    </body>';
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <p></p><p></p><p></p>
+ <br><br><br><br><br><br><br><br><br>
+ <hr>
+ <footer style="position:absolute; width:100%;">
+   <div>
+     <table>
+       <tr><td>Serial Number</td><td></td><td>Document Number</td></tr>
+       <tr><td>'.$serial->serialNo.'</td><td>Strathmore University</td><td>DAA-03-01-09/12</td></tr>
+     </table>
+   </div>
+ </footer>
+    </body>
+    ';
 
 
         return $end;
@@ -80,7 +104,7 @@ class PDF
 
     }
 
-    public static function create($std,$charge){
+    public static function create($std,$charge,$serial){
 
         $blah = '
            <body>
@@ -141,8 +165,16 @@ class PDF
         <p></p><p></p><p></p>
         <p></p><p></p><p></p>
         <p></p><p></p><p></p>
-        <p></p><p></p><p></p>
-        <footer align=right>DAA-03-01-09/12</footer>
+        <p></p>
+        <hr>
+        <footer style="position:absolute; width:100%;">
+          <div>
+            <table>
+              <tr><td>Serial Number</td><td></td><td>Document Number</td></tr>
+              <tr><td>'.$serial->serialNo.'</td><td>Strathmore University</td><td>DAA-03-01-09/12</td></tr>
+            </table>
+          </div>
+        </footer>
     </body>';
 
         return $blah;

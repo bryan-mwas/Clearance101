@@ -6,6 +6,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Functions\PDF;
 use\App\Models\Student;
+use\App\Models\Serial;
 use App\Models\Charges;
 use App\Http\Requests;
 //use App\Http\Controllers\Controller;
@@ -101,27 +102,6 @@ class ViewsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -132,10 +112,11 @@ class ViewsController extends Controller
         $user = Auth::user()->regNo;
         $std = student::where('studentNo','=',$user)->first();
         $charge=charges::where('students_studentNo','=',$user)->first();
+        $serial = Serial::where('students_studentNo','=',$user)->first();
         if($charge->total==0)
-            $html = PDF::make($std);
+            $html = PDF::make($std, $serial);
         else
-            $html = PDF::create($std,$charge);
+            $html = PDF::create($std,$charge, $serial);
         $mpdf=new mpdf();
         $mpdf->WriteHTML($html);
         $mpdf->Output();
