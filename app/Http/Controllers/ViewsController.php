@@ -11,7 +11,7 @@ use App\Models\Charges;
 use App\Http\Requests;
 //use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use mPDF;
+// use mPDF;
 use Redirect;
 use Illuminate\Support\Facades\DB;
 
@@ -35,7 +35,8 @@ class ViewsController extends Controller
         $charge=charges::where('students_studentNo','=',$user)->first();
         $comment=comment::where('students_studentNo','=',$user)->first();
             if ($std->state == 'Inactive') {
-                return view('clearance.init');
+                $student = DB::connection('oracle')->table('CLEARANCE.STUDENT')->where('student_no', '=', '$user');
+                return view('clearance.init')->with('student', $student);
             } else {
                 return view('clearance.index')->with('std', $std)
                                               ->with('charge',$charge)

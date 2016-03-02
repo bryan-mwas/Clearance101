@@ -43,14 +43,24 @@
                     </nav>
                 </div>
             </div>
+            <form class="" action="" method="post">
+              <div class="inner cover">
+                  <h1 class="cover-heading">Apply to kick start the clearance process!</h1>
+                  <p class="lead">Click the apply button to start the clearance process</p>
+                  @foreach ($student as $student)
+                    <input type="hidden" value="{{$student->student_no}}">
+                    <input type="hidden" value="{{$student->surname}}">
+                    <input type="hidden" value="{{$student->other_names}}">
+                    <input type="hidden" value="{{$student->courses}}">
+                    <input type="hidden" value="{{$student->faculties}}">
+                    <input type="hidden" value="{{$student->gender}}">
+                  @endforeach
+                  <p class="lead">
+                      <a href="/mail" class="btn btn-lg btn-primary">Apply</a>
+                  </p>
+              </div>
+            </form>
 
-            <div class="inner cover">
-                <h1 class="cover-heading">Apply to kick start the clearance process!</h1>
-                <p class="lead">Click the apply button to start the clearance process</p>
-                <p class="lead">
-                    <a href="/mail" class="btn btn-lg btn-primary">Apply</a>
-                </p>
-            </div>
 
             <div class="mastfoot">
                 <div class="inner">

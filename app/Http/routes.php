@@ -10,11 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::get('/test', function(){
+  return $student = DB::connection('oracle')->table('CLEARANCE.STUDENT')->get();
+});
 Route::get('mwas','ViewsController@leadership');
 
 Route::get('/home',function(){return 'HELLO THERE! YOU ARE ALREADY LOGGED IN';});
 Route::get('/', 'Auth\AuthController@getLogin');
-
 
 Route::get('/apply', function () {
     return view('clearance.init');
@@ -42,6 +45,7 @@ Route::get('student',['middleware' => 'auth', 'uses' => 'ViewsController@index']
 //PDF route !!!
 Route::get('pdf',['middleware' => 'auth','uses' => 'ViewsController@show']);
 
+//Staff Views
 Route::get('/cafeteria', ['middleware' => 'caf','uses' =>'CafeteriaController@index']);
 Route::post('/cafeteria', ['middleware' => 'caf','uses' =>'CafeteriaController@index']);
 Route::post('/caftclear', 'CafeteriaController@clear');

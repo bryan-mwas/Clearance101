@@ -136,8 +136,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Kendu\Mpdf\ServiceProvider::class,
+        // Kendu\Mpdf\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Subfission\Cas\CasServiceProvider::class,
+        Yajra\Oci8\Oci8ServiceProvider::class,
         //Illuminate\Html\HtmlServiceProvider::class,
 
         /*
@@ -196,8 +198,9 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 //        'Html'      => Illuminate\Html\HtmlFacade::class,
 //        'Form'      => Illuminate\Html\FormFacade::class,
-        'mpdf'      => Kendu\Mpdf\Facades\Pdf::class,
+        // 'mpdf'      => Kendu\Mpdf\Facades\Pdf::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
+        'Cas'       => Subfission\Cas\Facades\Cas::class,
     ],
 
 ];

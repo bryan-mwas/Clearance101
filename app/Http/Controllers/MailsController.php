@@ -21,6 +21,7 @@ class MailsController extends Controller
     {
         $user = Auth::user()->regNo;
         $res = DB::table('students')->select('faculty')->where('studentNo','=',$user)->pluck('faculty');
+        
         //Query below gets the email of the specific administrator
         $admin = DB::table('departments')
                         ->join('administrators','departments.administrator','=','administrators.admin_id')

@@ -7,9 +7,10 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-		"predis/predis": "~1.1@dev",
-        "kendu/l5-mpdf": "dev-master",
-        "maatwebsite/excel": "~2.0"
+		"predis/predis": "~1.1@dev",  
+        "maatwebsite/excel": "~2.0",
+        "subfission/cas": "dev-cas-php7",
+        "yajra/laravel-oci8": "~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
