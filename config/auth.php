@@ -15,8 +15,8 @@ return [
     |
     */
 
-    // 'driver' => 'eloquent',
-    'driver' => 'custome',
+    'driver' => 'eloquent',
+    // 'driver' => 'custom',
 
 
     /*

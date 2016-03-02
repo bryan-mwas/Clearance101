@@ -45,7 +45,7 @@ class Kernel extends HttpKernel
         'extra' => \App\Http\Middleware\SpecificExtraCurricular::class,
         'mail' => \App\Http\Middleware\SpecificMail::class,
         'vc' => \App\Http\Middleware\VC::class,
-        'cas.auth'  => Subfission\Cas\Middleware\CASAuth::class,
-        'cas.guest' => Subfission\Cas\Middleware\RedirectCASAuthenticated::class,
+        'cas.auth'  => \Subfission\Cas\Middleware\CASAuth::class,
+        'cas.guest' => \Subfission\Cas\Middleware\RedirectCASAuthenticated::class,
     ];
 }

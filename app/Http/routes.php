@@ -13,8 +13,8 @@
 
 Route::group(['middleware' => ['cas.auth']], function ()
 {
-  Route::get('/testlogin', function(){
-    return 'it works';
+  Route::get('home', function(){
+    return "hello";
   });
 });
 
