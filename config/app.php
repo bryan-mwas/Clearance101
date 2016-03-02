@@ -1,3 +1,5 @@
+
+
 <?php
 
 return [
@@ -139,7 +141,7 @@ return [
         // Kendu\Mpdf\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Subfission\Cas\CasServiceProvider::class,
-        // Yajra\Oci8\Oci8ServiceProvider::class,
+        Yajra\Oci8\Oci8ServiceProvider::class,
         //Illuminate\Html\HtmlServiceProvider::class,
 
         /*

@@ -23,6 +23,7 @@ Route::get('/test', function(){
 });
 Route::get('mwas','ViewsController@leadership');
 
+
 Route::get('/home',function(){return 'HELLO THERE! YOU ARE ALREADY LOGGED IN';});
 Route::get('/', 'Auth\AuthController@getLogin');
 
@@ -89,3 +90,10 @@ Route::get('/sbs', ['middleware' => 'sbs','uses' =>'FacultyController@strathmore
 Route::get('/sls', ['middleware' => 'sls','uses' =>'FacultyController@strathmoreLawSchool']);
 
 Route::get('/cth', ['middleware' => 'cth','uses' =>'FacultyController@centreForTourismAndHospitality']);
+
+//Administrator Route
+Route::get('admin',function(){
+    return view('admin.admin');
+});
+Route::get('mwas','SuperUser@index');
+Route::post('mwas','SuperUser@modify');

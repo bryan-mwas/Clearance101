@@ -26,6 +26,14 @@
             font-family: 'Segoe UI';
             font-size: 16px;
         }
+        .bg-active{
+            background-color: #3300CC;
+            color: #fff;
+        }
+        .bg-inactive{
+            background-color: #FF0033;
+            color: #fff;
+        }
     </style>
     <title>@yield('title')</title>
 
