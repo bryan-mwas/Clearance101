@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 // use mPDF;
 use Redirect;
 use Illuminate\Support\Facades\DB;
+use App\Models\Administrators;
 
 
 class ViewsController extends Controller
@@ -25,6 +26,9 @@ class ViewsController extends Controller
      */
     public function index()
     {
+
+//      I anticipate some rough time in this bit. Cause its Oracle database for students and MySQL for the HR Department!
+
         $user = Auth::user()->regNo;
 
 //      Attempts to get details of the student who is logged in.
@@ -46,51 +50,59 @@ class ViewsController extends Controller
         }
         else{
 //            For a null result in the above $std query. This block of code executes.
-            $admin = DB::table('departments')->where('departments.administrator','=',$user)->pluck('department_name');
+//            This query will be vital for the delegation purposes.
+//            $admin = DB::table('departments')->where('departments.administrator','=',$user)->first();
+            $admin = Administrators::where('administrator',$user)->first();
+            $dept = $admin->department_name;
+            $status =$admin->status;
+//            return $delegation;
 
-            if($admin == "FIT"){
+            if($dept == 'FIT' && $status == 'Active'){
                 return redirect()->intended('/fit');
             }
-            else if($admin == "SLS"){
+//            else{
+//                return 'Hey there! You are an admin but you need to be delegated some authority from above.';
+//            }
+            else if($dept == "SLS"){
                 return redirect()->intended('/sls');
             }
-            else if($admin == "SBS"){
+            else if($dept == "SBS"){
                 return redirect()->intended('/sbs');
             }
-            else if($admin == "SFAE"){
+            else if($dept == "SFAE"){
                 return redirect()->intended('/sfae');
             }
-            else if($admin == "CTH"){
+            else if($dept == "CTH"){
                 return redirect()->intended('/cth');
             }
-            else if($admin == "SOA"){
+            else if($dept == "SOA"){
                 return redirect()->intended('/soa');
             }
-            else if($admin == "MTI"){
+            else if($dept == "MTI"){
                 return redirect()->intended('/mti');
             }
-            else if($admin == "SHSS"){
+            else if($dept == "SHSS"){
                 return redirect()->intended('/shss');
             }
-            else if($admin == "SMC"){
+            else if($dept == "SMC"){
                 return redirect()->intended('/smc');
             }
-            else if($admin == "Cafeteria"){
+            else if($dept == "Cafeteria"){
                 return redirect()->intended('/cafeteria');
             }
-            else if($admin == "Library"){
+            else if($dept == "Library"){
                 return redirect()->intended('/library');
             }
-            else if($admin == "Finance"){
+            else if($dept == "Finance"){
                 return redirect()->intended('/finance');
             }
-            else if($admin == "Financial Aid"){
+            else if($dept == "Financial Aid"){
                 return redirect()->intended('/financialAid');
             }
-            else if($admin == "Games"){
+            else if($dept == "Games"){
                 return redirect()->intended('/games');
             }
-            else if($admin == "Extra-curricular"){
+            else if($dept == "Extra-curricular"){
                 return redirect()->intended('/extraCurricularActivities');
             }
             else{

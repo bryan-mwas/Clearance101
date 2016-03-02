@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+<<<<<<< Updated upstream
 
 Route::group(['middleware' => ['cas.auth']], function ()
 {
@@ -22,6 +23,8 @@ Route::get('/test', function(){
   return $student = DB::connection('oracle')->table('CLEARANCE.STUDENT')->get();
 });
 Route::get('mwas','ViewsController@leadership');
+=======
+>>>>>>> Stashed changes
 
 Route::get('/home',function(){return 'HELLO THERE! YOU ARE ALREADY LOGGED IN';});
 Route::get('/', 'Auth\AuthController@getLogin');
@@ -89,3 +92,10 @@ Route::get('/sbs', ['middleware' => 'sbs','uses' =>'FacultyController@strathmore
 Route::get('/sls', ['middleware' => 'sls','uses' =>'FacultyController@strathmoreLawSchool']);
 
 Route::get('/cth', ['middleware' => 'cth','uses' =>'FacultyController@centreForTourismAndHospitality']);
+
+//Administrator Route
+Route::get('admin',function(){
+    return view('admin.admin');
+});
+Route::get('mwas','SuperUser@index');
+Route::post('mwas','SuperUser@modify');

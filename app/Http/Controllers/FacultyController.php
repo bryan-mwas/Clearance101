@@ -141,7 +141,7 @@ class FacultyController extends Controller{
       $name = 'CENTER FOR TOURISIM AND HOSPITALITY';
       $title = 'CTH';
 			$user = Auth::user()->regNo;
-			$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email')
+			$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
 			$message = "Please Attend to the following students Requesting to be cleared";
 
@@ -158,10 +158,10 @@ class FacultyController extends Controller{
 	 public function clear(Request $request){
         $post = $request->all();
         $std = $post['regNo'];
-				$value = $post['amount'];
-				$comment = $post['comment'];
-				$clearedAt = $post['signedAt'];
-	      $clearedBy = $post['signedBy'];
+		$value = $post['amount'];
+		$comment = $post['comment'];
+		$clearedAt = $post['signedAt'];
+	  	$clearedBy = $post['signedBy'];
 
 				$comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
         $value = preg_replace('/[^0-9]/','', $value);

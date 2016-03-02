@@ -1,3 +1,5 @@
+
+
 <?php
 
 return [
@@ -138,7 +140,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Kendu\Mpdf\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+<<<<<<< Updated upstream
         Subfission\Cas\CasServiceProvider::class,
+=======
+>>>>>>> Stashed changes
         Yajra\Oci8\Oci8ServiceProvider::class,
         //Illuminate\Html\HtmlServiceProvider::class,
 
