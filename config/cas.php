@@ -6,7 +6,7 @@ return [
     |--------------------------------------------------------------------------
     | Example: 'cas.myuniv.edu'.
     */
-    'cas_hostname'        => ('https://su-sso.strathmore.edu/cas-prd/login'),
+    'cas_hostname'        => ('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return [
     | recommended for protecting against DOS attacks.  If using load
     | balanced hosts, then seperate each with a comma.
     */
-    'cas_real_hosts'      => ('https://su-sso.strathmore.edu/cas-prd/login'),
+    'cas_real_hosts'      => ('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'),
 
 
     /*
