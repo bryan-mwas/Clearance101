@@ -11,6 +11,13 @@
 |
 */
 
+Route::group(['middleware' => ['cas.auth']], function ()
+{
+  Route::get('/testlogin', function(){
+    return 'it works';
+  });
+});
+
 Route::get('/test', function(){
   return $student = DB::connection('oracle')->table('CLEARANCE.STUDENT')->get();
 });
