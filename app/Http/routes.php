@@ -13,14 +13,11 @@
 
 Route::group(['middleware' => ['cas.auth']], function ()
 {
-  Route::get('home', function(){
+  Route::get('/test', function(){
     return "hello";
   });
 });
 
-Route::get('/test', function(){
-  return $student = DB::connection('oracle')->table('CLEARANCE.STUDENT')->get();
-});
 Route::get('mwas','ViewsController@leadership');
 
 

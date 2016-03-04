@@ -6,7 +6,7 @@ return [
     |--------------------------------------------------------------------------
     | Example: 'cas.myuniv.edu'.
     */
-    'cas_hostname'        => ('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'),
+    'cas_hostname'        => ('su-sso.strathmore.edu'),
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return [
     | recommended for protecting against DOS attacks.  If using load
     | balanced hosts, then seperate each with a comma.
     */
-    'cas_real_hosts'      => ('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'),
+    'cas_real_hosts'      => ('su-sso.strathmore.edu/cas-prd/login?service='),
 
 
     /*
@@ -87,7 +87,7 @@ return [
     | intermediaries, here is where you can.  Recommended to leave
     | this set with default (true).
     */
-    'cas_validate_cn'     => env('CAS_VALIDATE_CN', true),
+    'cas_validate_cn'     => env('CAS_VALIDATE_CN', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
     |--------------------------------------------------------------------------
     | Empty is fine
     */
-    'cas_login_url'       => env('CAS_LOGIN_URL', 'https://su-sso.strathmore.edu/cas-prd/login'),
+    'cas_login_url'       => env('CAS_LOGIN_URL', 'https://su-sso.strathmore.edu/cas-prd/login?service=http://clearance.app:8000/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     | CAS Successful Logon Redirection Url
     |--------------------------------------------------------------------------
     */
-    'cas_redirect_path'   => env('CAS_REDIRECT_PATH', 'home'),
+    'cas_redirect_path'   => env('CAS_REDIRECT_PATH', 'http://clearance.app:8000/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,7 +118,7 @@ return [
     | this feature, you may be able to retrieve user meta data.
     |--------------------------------------------------------------------------
     */
-    'cas_enable_saml'     => env('CAS_ENABLE_SAML', true),
+    'cas_enable_saml'     => env('CAS_ENABLE_SAML', false),
 
     /*
     |--------------------------------------------------------------------------
