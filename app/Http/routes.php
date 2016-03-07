@@ -18,6 +18,7 @@ Route::group(['middleware' => ['cas.auth']], function ()
     return "hello";
   });
   Route::get('/', 'RedirectController@index');
+    Route::get('/logout','RedirectController@destroy');
 });
 
 Route::get('mwas','ViewsController@leadership');

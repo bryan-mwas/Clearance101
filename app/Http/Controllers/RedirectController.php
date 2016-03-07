@@ -28,7 +28,7 @@ class RedirectController extends Controller
     Cas::getCurrentUser();
     $user = session('cas_user');
     $client = new \GuzzleHttp\Client();
-    $response = $client->get('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'.user);
+    $response = $client->get('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'.user.'');
     dd($response->getBody());
   }
 }
