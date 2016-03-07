@@ -13,16 +13,19 @@
 
 Route::group(['middleware' => ['cas.auth']], function ()
 {
+  Route::get('/clearance', 'RedirectController@index');
   Route::get('/test', function(){
     return "hello";
   });
+  Route::get('/', 'RedirectController@index');
 });
 
 Route::get('mwas','ViewsController@leadership');
 
 
 Route::get('/home',function(){return 'HELLO THERE! YOU ARE ALREADY LOGGED IN';});
-Route::get('/', 'Auth\AuthController@getLogin');
+// Route::get('/', 'Auth\AuthController@getLogin');
+
 
 Route::get('/apply', function () {
     return view('clearance.init');

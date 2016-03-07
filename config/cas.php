@@ -87,7 +87,7 @@ return [
     | intermediaries, here is where you can.  Recommended to leave
     | this set with default (true).
     */
-    'cas_validate_cn'     => env('CAS_VALIDATE_CN', false),
+    'cas_validate_cn'     => env('CAS_VALIDATE_CN', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,7 +118,7 @@ return [
     | this feature, you may be able to retrieve user meta data.
     |--------------------------------------------------------------------------
     */
-    'cas_enable_saml'     => env('CAS_ENABLE_SAML', false),
+    'cas_enable_saml'     => env('CAS_ENABLE_SAML', true),
 
     /*
     |--------------------------------------------------------------------------
