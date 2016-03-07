@@ -31,4 +31,7 @@ class RedirectController extends Controller
     $response = $client->get('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'.$user)->json();
     return $response;
   }
+  public function destroy(){
+    Cas::logout();
+  }
 }

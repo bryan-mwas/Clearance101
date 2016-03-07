@@ -95,7 +95,7 @@ return [
     |--------------------------------------------------------------------------
     | Empty is fine
     */
-    'cas_login_url'       => env('CAS_LOGIN_URL', 'https://su-sso.strathmore.edu/cas-prd/login?service=http://clearance.app:8000/'),
+    'cas_login_url'       => env('CAS_LOGIN_URL', 'https://su-sso.strathmore.edu/cas-prd/login?service=http://clearance.app/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     | CAS Successful Logon Redirection Url
     |--------------------------------------------------------------------------
     */
-    'cas_redirect_path'   => env('CAS_REDIRECT_PATH', 'http://clearance.app:8000/'),
+    'cas_redirect_path'   => env('CAS_REDIRECT_PATH', 'http://clearance.app/'),
 
     /*
     |--------------------------------------------------------------------------
