@@ -3636,78 +3636,130 @@
         ]
     },
     {
-        "name": "yajra/laravel-pdo-via-oci8",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
+        "name": "mpdf/mpdf",
+        "version": "v5.7.4",
+        "version_normalized": "5.7.4.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/yajra/pdo-via-oci8.git",
-            "reference": "c01a3f80ab875304c86abafa0b512233c54f8990"
+            "url": "https://github.com/mpdf/mpdf.git",
+            "reference": "f9a374c7ea975ce8c795cec4dfd17ef55addac9c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yajra/pdo-via-oci8/zipball/c01a3f80ab875304c86abafa0b512233c54f8990",
-            "reference": "c01a3f80ab875304c86abafa0b512233c54f8990",
-            "shasum": ""
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.0.*"
-        },
-        "time": "2016-02-02 01:02:41",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Yajra\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Arjay Angeles",
-                "email": "aqangeles@gmail.com"
-            }
-        ],
-        "description": "PDO userspace driver proxying calls to PHP OCI8 driver"
-    },
-    {
-        "name": "yajra/laravel-oci8",
-        "version": "v4.2.6",
-        "version_normalized": "4.2.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yajra/laravel-oci8.git",
-            "reference": "0b7797f33fb8285b97fe3fbb13cb486c1332d9e9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yajra/laravel-oci8/zipball/0b7797f33fb8285b97fe3fbb13cb486c1332d9e9",
-            "reference": "0b7797f33fb8285b97fe3fbb13cb486c1332d9e9",
+            "url": "https://api.github.com/repos/mpdf/mpdf/zipball/f9a374c7ea975ce8c795cec4dfd17ef55addac9c",
+            "reference": "f9a374c7ea975ce8c795cec4dfd17ef55addac9c",
             "shasum": ""
         },
         "require": {
-            "illuminate/database": "~5.1.20|5.2.*",
-            "illuminate/support": "5.1.*|5.2.*",
-            "php": ">=5.5.9",
-            "yajra/laravel-pdo-via-oci8": "1.*"
+            "ext-mbstring": "*",
+            "php": ">=4.3.10"
         },
-        "require-dev": {
-            "mockery/mockery": "0.9.*",
-            "phpunit/phpunit": "4.0.*"
-        },
-        "time": "2016-02-09 09:04:47",
+        "time": "2014-12-14 18:32:11",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
-            "files": [
-                "src/helper.php"
-            ],
-            "psr-4": {
-                "Yajra\\": "src/"
+            "classmap": [
+                "mpdf.php",
+                "classes"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-1.0+"
+        ],
+        "authors": [
+            {
+                "name": "Ian Back"
             }
+        ],
+        "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
+        "homepage": "http://www.mpdf1.com/mpdf/index.php",
+        "keywords": [
+            "pdf",
+            "php",
+            "utf-8"
+        ]
+    },
+    {
+        "name": "kendu/l5-mpdf",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kendu/l5-mpdf.git",
+            "reference": "da49fef2b6bdf12e0a393daedee85c72490f7f62"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kendu/l5-mpdf/zipball/da49fef2b6bdf12e0a393daedee85c72490f7f62",
+            "reference": "da49fef2b6bdf12e0a393daedee85c72490f7f62",
+            "shasum": ""
+        },
+        "require": {
+            "mpdf/mpdf": "5.7.*",
+            "php": ">=5.3.0"
+        },
+        "time": "2015-07-16 07:31:42",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Kendu\\Mpdf": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache 2.0"
+        ],
+        "authors": [
+            {
+                "name": "Kendu",
+                "email": "info@kendu.si"
+            }
+        ],
+        "description": "mPDF wrapper for Laravel 5",
+        "keywords": [
+            "laravel",
+            "mpdf",
+            "pdf"
+        ]
+    },
+    {
+        "name": "guzzlehttp/streams",
+        "version": "2.1.0",
+        "version_normalized": "2.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/streams.git",
+            "reference": "f91b721d73f0e561410903b3b3c90a5d0e40b534"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/streams/zipball/f91b721d73f0e561410903b3b3c90a5d0e40b534",
+            "reference": "f91b721d73f0e561410903b3b3c90a5d0e40b534",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2014-08-17 21:15:53",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Stream\\": "src/"
+            },
+            "files": [
+                "src/functions.php"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -3715,18 +3767,83 @@
         ],
         "authors": [
             {
-                "name": "Arjay Angeles",
-                "email": "aqangeles@gmail.com"
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
             }
         ],
-        "description": "Oracle DB driver for Laravel 4|5 via OCI8",
+        "description": "Provides a simple abstraction over streams of data (Guzzle 4+)",
+        "homepage": "http://guzzlephp.org/",
         "keywords": [
-            "laravel",
-            "laravel4",
-            "laravel5",
-            "oci8",
-            "oracle",
-            "pdo_oci"
+            "Guzzle",
+            "stream"
+        ]
+    },
+    {
+        "name": "guzzlehttp/guzzle",
+        "version": "4.2.3",
+        "version_normalized": "4.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/guzzle.git",
+            "reference": "66fd916e9f9130bc22c51450476823391cb2f67c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/66fd916e9f9130bc22c51450476823391cb2f67c",
+            "reference": "66fd916e9f9130bc22c51450476823391cb2f67c",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "guzzlehttp/streams": "~2.1",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "ext-curl": "*",
+            "phpunit/phpunit": "~4.0",
+            "psr/log": "~1.0"
+        },
+        "suggest": {
+            "ext-curl": "Guzzle will use specific adapters if cURL is present"
+        },
+        "time": "2014-10-05 19:29:14",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\": "src/"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
         ]
     }
 ]
