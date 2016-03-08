@@ -14,11 +14,11 @@
 Route::group(['middleware' => ['cas.auth']], function ()
 {
   Route::get('/clearance', 'RedirectController@index');
-  Route::get('/test', function(){
-    return "hello";
-  });
+
   Route::get('/', 'RedirectController@index');
-    Route::get('/logout','RedirectController@destroy');
+  Route::get('/logout','RedirectController@destroy');
+  Route::get('/activate','ActivateController@index');
+
 });
 
 Route::get('mwas','ViewsController@leadership');
@@ -37,7 +37,7 @@ Route::get('/vc', ['middleware'=>'vc','uses'=>'AdminController@index']);
 Route::get('/vcpdf', ['middleware'=>'vc','uses'=>'AdminController@report']);
 Route::get('/vcxls', ['middleware'=>'vc','uses'=>'AdminController@exReport']);
 //This is for the email functionality.
-Route::get('/mail','MailsController@index');
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -50,7 +50,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 //Student View
 //One cannot access this route if not logged in.
-Route::get('student',['middleware' => 'auth', 'uses' => 'ViewsController@index']);
+Route::get('/student',['middleware' => 'auth', 'uses' => 'ViewsController@index']);
 //PDF route !!!
 Route::get('pdf',['middleware' => 'auth','uses' => 'ViewsController@show']);
 

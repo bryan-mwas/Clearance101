@@ -38,25 +38,19 @@
                     <h3 class="masthead-brand">Strathmore Clearance Application</h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="auth/logout">Log out</a></li>
+                            <li class="active"><a href="/logout">Log out</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
             <form class="" action="" method="post">
               <div class="inner cover">
-                  <h1 class="cover-heading">Apply to kick start the clearance process!</h1>
+                  <h1 class="cover-heading">Welcome to the Strathmore Clearance service {{ $student['studentNames'] }}</h1>
+                  <h3 class=""><u>Apply to kick start the clearance process!</u></h3>
                   <p class="lead">Click the apply button to start the clearance process</p>
-                  @foreach ($student as $student)
-                    <input type="hidden" value="{{$student->student_no}}">
-                    <input type="hidden" value="{{$student->surname}}">
-                    <input type="hidden" value="{{$student->other_names}}">
-                    <input type="hidden" value="{{$student->courses}}">
-                    <input type="hidden" value="{{$student->faculties}}">
-                    <input type="hidden" value="{{$student->gender}}">
-                  @endforeach
+
                   <p class="lead">
-                      <a href="/mail" class="btn btn-lg btn-primary">Apply</a>
+                      <a href="/activate" class="btn btn-lg btn-primary">Apply</a>
                   </p>
               </div>
             </form>

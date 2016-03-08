@@ -39,7 +39,7 @@ class ViewsController extends Controller
         $charge=charges::where('students_studentNo','=',$user)->first();
         $comment=comment::where('students_studentNo','=',$user)->first();
             if ($std->state == 'Inactive') {
-                $student = DB::connection('oracle')->table('CLEARANCE.STUDENT')->where('student_no', '=', '$user');
+                $student = DB::connection('oracle')->table('students')->where('student_no', '=', '$user');
                 return view('clearance.init')->with('student', $student);
             } else {
                 return view('clearance.index')->with('std', $std)
@@ -133,8 +133,6 @@ class ViewsController extends Controller
         $mpdf=new mpdf();
         $mpdf->WriteHTML($html);
         $mpdf->Output();
-
-
     }
 
     /**

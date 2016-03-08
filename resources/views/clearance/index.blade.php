@@ -12,7 +12,7 @@
               @else
               <li role="presentation" class="disabled"><a href="#"><span class="glyphicon glyphicon-floppy-save"></span> <span style="font-family: 'Segoe UI';font-size: 115%">PDF</span></a></li>
               @endif
-              <li role="presentation"><a href="auth/logout"><span class="glyphicon glyphicon-log-out"></span> <span style="font-family: 'Segoe UI';font-size: 115%">Log out</span></a></li>
+              <li role="presentation"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> <span style="font-family: 'Segoe UI';font-size: 115%">Log out</span></a></li>
           </ul>
         </nav>
         <!-- <h3 class="text-muted">Strathmore University Clearance</h3> -->

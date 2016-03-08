@@ -158,9 +158,9 @@ class FacultyController extends Controller{
 	 public function clear(Request $request){
         $post = $request->all();
         $std = $post['regNo'];
-		$value = $post['amount'];
-		$comment = $post['comment'];
-		$clearedAt = $post['signedAt'];
+				$value = $post['amount'];
+				$comment = $post['comment'];
+				$clearedAt = $post['signedAt'];
 	  	$clearedBy = $post['signedBy'];
 
 				$comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
