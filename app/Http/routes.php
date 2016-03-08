@@ -17,7 +17,7 @@ Route::group(['middleware' => ['cas.auth']], function ()
 
   Route::get('/', 'RedirectController@index');
   Route::get('/logout','RedirectController@destroy');
-  Route::get('/activate','ActivateController@index');
+  Route::get('/activate','InitiateController@index');
 
 });
 
