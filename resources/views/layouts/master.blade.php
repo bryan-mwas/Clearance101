@@ -28,7 +28,7 @@
                 </li>
                 <li><a href="www.strathmore.edu">Strathmore AMS</a>
                 </li>
-                <li><a href="/auth/logout">Logout</a>
+                <li><a href="/logout">Logout</a>
                 </li>
             </ul>
         </div>

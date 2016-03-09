@@ -10,22 +10,28 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use cas;
 
 class CafeteriaController extends Controller{
+
     public function index(){
-      $user = Auth::user()->regNo;
-      $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+      // $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
       $message = "Please Attend to the following students Requesting to be cleared";
 
-      $userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+      // get signed in admin
+      // Cas::getCurrentUser();
+      // $user = session('cas_user');
+      $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/2214');
+   		$staffInformation = json_decode($response, true);
+
       $students = DB::table('students')
                    ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
                    ->select('students.*', 'cleared_by.cafeteria_cleared_by')
                    ->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')
                    ->paginate(10);
-      return view('staff/cafeteria', compact('students','userInformation', 'message'));
+
+      return view('staff/cafeteria', compact('students','staffInformation', 'message'));
     }
 
 
@@ -66,14 +72,14 @@ class CafeteriaController extends Controller{
             }
 
 
-        $admin = DB::table('departments')
-                ->join('administrators','departments.administrator','=','administrators.admin_id')
-                ->select('administrators.email')->where('departments.department_name','=','Library')
-                ->pluck('email');
+        // $admin = DB::table('departments')
+        //         ->join('administrators','departments.administrator','=','administrators.admin_id')
+        //         ->select('administrators.email')->where('departments.department_name','=','Library')
+        //         ->pluck('email');
             //Send Mail
-        Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
-            $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
-        });
+        // Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+        //     $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
+        // });
 
         return redirect('/cafeteria');
     }

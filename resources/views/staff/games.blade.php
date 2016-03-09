@@ -6,7 +6,7 @@
     <div>
     	<center><H3>GAMES DEPARTMENT</H3></center>
       @foreach($userInformation as $infor)
-      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)</center>
+      <center>(<i><label style="color: gray;"> {{ $staffInformation['names'] }} </label></i>)</center>
       @endforeach
     </div>
     <br><br>
@@ -99,13 +99,11 @@
 											  <input type="hidden" name="date" value="{!! date('Y-m-d') !!}">
 											  <p>The above named student has returned all games equipment and property borrowed under his name.</p>
 
-                        @foreach($userInformation as $infor)
-                        Cleared by :  {{ $infor->lname }} , {{ $infor->fname }}
+                        Cleared by :  {{ $staffInformation['names'] }}
                         <input type="hidden" name="signedBy" value="{{ $infor->lname }} , {{ $infor->fname }}">
-                        @endforeach
 											   Date: <u>{!! date('Y-m-d') !!}</u>
                          <input type="hidden" name="signedAt" value="{!! date('Y-m-d') !!}">
-                         
+
 										  </div>
 										  <div class="modal-footer">
 											  <button title="Cancel" type="button" class="btn btn-default" data-dismiss="modal">Close</button>

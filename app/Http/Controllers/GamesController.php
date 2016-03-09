@@ -15,18 +15,20 @@ use App\Http\Controllers\Controller;
 class GamesController extends Controller{
 
   public function index(){
-    $user     = Auth::user()->regNo;
-    $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
-    $message  = "Please Attend to the following students Requesting to be cleared";
 
-		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+    //  get signed in admin
+    Cas::getCurrentUser();
+    $user = session('cas_user');
+    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+    $staffInformation = json_decode($response, true);
+
     $students = DB::table('students')
                  ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
                  ->select('students.*', 'cleared_by.games_cleared_by')
                  ->where('cleared_by.games_cleared_by', '=', 'N/A')
                  ->paginate(10);
 
-    return view('staff/games', compact('students','userInformation','message'));
+    return view('staff/games', compact('students','staffInformation','message'));
     }
 
 

@@ -14,20 +14,20 @@ use App\Http\Controllers\Controller;
 
 class ExtraCurricularActivitiesController extends Controller{
    public function index(){
-     $user = Auth::user()->regNo;
-     $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-     $appliedStudentsExa = DB::table('charge')->where('charge.queueFlag', '=', '3')->count();
+    //  get signed in admin
+    Cas::getCurrentUser();
+    $user = session('cas_user');
+    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+    $staffInformation = json_decode($response, true);
 
-     $message = "Please Attend to the following students Requesting to be cleared";
-
- 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+    $message = "Please Attend to the following students Requesting to be cleared";
     $students = DB::table('students')
                  ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
                  ->select('students.*', 'cleared_by.extra_curricular_cleared_by')
                  ->where('cleared_by.extra_curricular_cleared_by', '=', 'N/A')
                  ->paginate(10);
-         return view('staff/extraCurricularActivities', compact('students', 'userInformation','message'));
+         return view('staff/extraCurricularActivities', compact('students', 'staffInformation','message'));
     }
     public function clear(Request $request){
     	$post = $request->all();
@@ -61,15 +61,15 @@ class ExtraCurricularActivitiesController extends Controller{
           DB::rollBack();
         }
 
-      $admin = DB::table('departments')
-          ->join('administrators','departments.administrator','=','administrators.admin_id')
-          ->select('administrators.email')->where('departments.department_name','=','Games')
-          ->pluck('email');
-
-      //Send Mail
-      Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
-          $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
-      });
+      // $admin = DB::table('departments')
+      //     ->join('administrators','departments.administrator','=','administrators.admin_id')
+      //     ->select('administrators.email')->where('departments.department_name','=','Games')
+      //     ->pluck('email');
+      //
+      // //Send Mail
+      // Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+      //     $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
+      // });
 
 
       return redirect('/extraCurricularActivities');

@@ -11,57 +11,66 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Cas;
 
 class FacultyController extends Controller{
 	public function facultyInformationTechnology(){
     $name     = 'FACULTY OF INFORMATION TECHNOLOGY';
     $title    = 'FIT';
 		$message  = "Please Attend to the following students Requesting to be cleared";
-		$user     = Auth::user()->regNo;
-		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-
-
-		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+		//  get signed in admin
+    Cas::getCurrentUser();
+    $user = session('cas_user');
+    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+    $staffInformation = json_decode($response, true);
 		$students = DB::table('students')
-                    ->where('students.faculty', '=', 'FIT')->where('state', '=', 'Activated')
+                    ->where('students.faculty', '=', 'FIT')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
 
-    	return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    	return view('staff/faculty', compact('name','title','students', 'staffInformation','message'));
+			// return $staffName;
+
     }
   /* display students in SOA */
 	public function schoolofAccountancy(){
     $name = 'SCHOOL OF ACCOUNTANCY';
     $title = 'SOA';
-		$user = Auth::user()->regNo;
-		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+		//  get signed in admin
+    Cas::getCurrentUser();
+    $user = session('cas_user');
+    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+    $staffInformation = json_decode($response, true);
+
 		$message = "Please Attend to the following students Requesting to be cleared";
-		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SOA')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
-    return view('staff/faculty', compact('name','title','students', 'userInformation', 'message'));
+    return view('staff/faculty', compact('name','title','students', 'staffInformation', 'message'));
 	}
   /*DISPLAY students in sfae*/
 	public function schoolOfFinanceAndAppliedEconomics(){
     $name = 'SCHOOL OF FINANCE AND APPLIED ECONOMICS';
     $title = 'SFAE';
-		$user = Auth::user()->regNo;
-		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+		//  get signed in admin
+    Cas::getCurrentUser();
+    $user = session('cas_user');
+    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+    $staffInformation = json_decode($response, true);
 
 		$message = "Please Attend to the following students Requesting to be cleared";
-		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SFAE')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
-    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    return view('staff/faculty', compact('name','title','students', 'staffInformation','message'));
 	}
    /*display students in SHSS*/
 	public function schoolOfHumanitiesAndSocialSciences(){
@@ -71,33 +80,34 @@ class FacultyController extends Controller{
 		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
 		$message = "Please Attend to the following students Requesting to be cleared";
-
-		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SHSS')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
 
-    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    return view('staff/faculty', compact('name','title','students', 'staffInformation','message'));
 	}
 
    /*display students in SMC*/
 	public function schoolOfManagementAndCommerce(){
-        $name = 'SCHOOL OF MANAGEMENT AND COMMERCE';
-        $title = 'SMC';
-				$user = Auth::user()->regNo;
-				$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+    $name = 'SCHOOL OF MANAGEMENT AND COMMERCE';
+    $title = 'SMC';
+		//  get signed in admin
+		Cas::getCurrentUser();
+		$user = session('cas_user');
+		$response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+		$staffInformation = json_decode($response, true);
 
-				$message = "Please Attend to the following students Requesting to be cleared";
+		$message = "Please Attend to the following students Requesting to be cleared";
 
-				$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SMC')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
-        return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+   return view('staff/faculty', compact('name','title','students', 'staffInformation','message'));
 	}
 
     /* display student is SBS */
@@ -105,54 +115,59 @@ class FacultyController extends Controller{
 
     $name = 'STRATHMORE BUSSINESS SCHOOL';
     $title = 'SBS';
-		$user = Auth::user()->regNo;
-		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
-
+		//  get signed in admin
+    Cas::getCurrentUser();
+    $user = session('cas_user');
+    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+    $staffInformation = json_decode($response, true);
 		$message = "Please Attend to the following students Requesting to be cleared";
 
-		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')
                 ->where('students.faculty', '=', 'SBS')->where('state', '=', 'Activated')
                 ->whereNotIn('students.studentNo', function($q){
                      $q->select('students_studentNo')->from('charge');
                  })->paginate(15);
 
-    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    return view('staff/faculty', compact('name','title','students', 'staffInformation','message'));
 	}
 
       /*display sls students */
 	public function strathmoreLawSchool(){
     $name = 'STRATHMORE LAW SCHOOL';
     $title = 'SLS';
-		$user = Auth::user()->regNo;
-		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+		//  get signed in admin
+    Cas::getCurrentUser();
+    $user = session('cas_user');
+    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+    $staffInformation = json_decode($response, true);
 
 		$message = "Please Attend to the following students Requesting to be cleared";
-		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
+
 		$students = DB::table('students')
                     ->where('students.faculty', '=', 'SLS')->where('state', '=', 'Activated')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
-    return view('staff/faculty', compact('name','title','students', 'userInformation'));
+    return view('staff/faculty', compact('name','title','students', 'staffInformation'));
 	}
 
       /*display students is CTH*/
 	public function centreForTourismAndHospitality(){
       $name = 'CENTER FOR TOURISIM AND HOSPITALITY';
       $title = 'CTH';
-			$user = Auth::user()->regNo;
-			$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+			//  get signed in admin
+	    Cas::getCurrentUser();
+	    $user = session('cas_user');
+	    $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+	    $staffInformation = json_decode($response, true);
 
 			$message = "Please Attend to the following students Requesting to be cleared";
-
-			$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 			$students = DB::table('students')
                   ->where('students.faculty', '=', 'CTH')->where('state', '=', 'Activated')
                   ->whereNotIn('students.studentNo', function($q){
                         $q->select('students_studentNo')->from('charge');
                     })->paginate(15);
-    return view('staff/faculty', compact('name','title','students', 'userInformation','message'));
+    return view('staff/faculty', compact('name','title','students', 'staffInformation','message'));
 	}
 
 	/*clear off student*/

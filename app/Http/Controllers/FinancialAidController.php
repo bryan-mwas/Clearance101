@@ -15,8 +15,13 @@ use App\Http\Controllers\Controller;
 class FinancialAidController extends Controller{
 
     public function index(){
-      $user     = Auth::user()->regNo;
-      $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+      //  get signed in admin
+      Cas::getCurrentUser();
+      $user = session('cas_user');
+      $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+      $staffInformation = json_decode($response, true);
+
       $message  = "Please Attend to the following students Requesting to be cleared";
 
       $appliedStudentsCaf = DB::table('charge')->where('charge.queueFlag', '=', '5')->count();
@@ -26,7 +31,7 @@ class FinancialAidController extends Controller{
                                 ->select('students.*', 'cleared_by.financial_aid_cleared_by')
                                 ->where('cleared_by.financial_aid_cleared_by', '=', 'N/A')
                                 ->paginate(10);
-      return view('staff/financialAid', compact('students', 'userInformation', 'message'));
+      return view('staff/financialAid', compact('students', 'staffInformation', 'message'));
     }
 
     public function clear(Request $request){

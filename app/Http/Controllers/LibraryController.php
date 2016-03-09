@@ -8,25 +8,28 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Cas;
 
 class LibraryController extends Controller{
 
     public function index(){
-      $user = Auth::user()->regNo;
-      $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+      //  get signed in admin
+      Cas::getCurrentUser();
+      $user = session('cas_user');
+      $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+      $staffInformation = json_decode($response, true);
 
       $message = "Please Attend to the following students Requesting to be cleared";
 
-  		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
       $students = DB::table('students')
                    ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
                    ->select('students.*', 'cleared_by.cafeteria_cleared_by')
                    ->where('cleared_by.library_cleared_by', '=', 'N/A')
                    ->paginate(10);
-         return view('staff/library', compact('students','userInformation','message'));
+         return view('staff/library', compact('students','staffInformation','message'));
     }
     public function clear(Request $request){
     	$post = $request->all();

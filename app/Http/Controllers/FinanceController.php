@@ -15,12 +15,14 @@ use App\Http\Controllers\Controller;
 class FinanceController extends Controller{
 
     public function index(){
-      $user     = Auth::user()->regNo;
-      $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
+
+      //  get signed in admin
+      Cas::getCurrentUser();
+      $user = session('cas_user');
+      $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+      $staffInformation = json_decode($response, true);
 
       $message  = "Please Attend to the following students Requesting to be cleared";
-
-  		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
       $students = DB::table('students')
                    ->join('charge', 'students.studentNo', '=', 'charge.students_studentNo')
                    ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
@@ -33,7 +35,7 @@ class FinanceController extends Controller{
                    ->where('charge.total','>','0')->where('charge.queueFlag', '=', '7')
                    ->paginate(15);
 
-      return view('staff/finance', compact('students','pending', 'userInformation','message'));
+      return view('staff/finance', compact('students','pending', 'staffInformation','message'));
     }
 
     public function clear(Request $request){

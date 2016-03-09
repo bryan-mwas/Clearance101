@@ -4,9 +4,8 @@
     <br><br>
     <div>
     	<center><u><H3>CAFETERIA DEPARTMENT</H3></u></center>
-      @foreach($userInformation as $infor)
-      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)<center>
-      @endforeach
+      <center>(<i><label style="color: gray;"> {{ $staffInformation['names'] }}</label></i>)<center>
+
     </div>
     <br><br>
       <div id="view">
@@ -119,10 +118,8 @@
                                                   <br><span class="error_report" id="cafeteriaValue_error_message"></span>
                                                 </div>
                                               </div>
-                                              @foreach($userInformation as $infor)
-                                              Cleared by :  {{ $infor->lname }} , {{ $infor->fname }}
-                                              <input type="hidden" name="signedBy" value="{{ $infor->lname }} , {{ $infor->fname }}">
-                                              @endforeach
+                                              Cleared by :  {{ $staffInformation['names'] }}
+                                              <input type="hidden" name="signedBy" value="{{ $staffInformation['names'] }}">
                       											   Date: <u>{!! date('Y-m-d') !!}</u>
                                                <input type="hidden" name="signedAt" value="{!! date('Y-m-d') !!}">
                                           </div>

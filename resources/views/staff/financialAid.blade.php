@@ -5,7 +5,7 @@
     <div>
     	<center><u><H3>FINANCIAL-AID DEPARTMENT</H3></u></center>
       @foreach($userInformation as $infor)
-      <center>(<i><label style="color: gray;"> {{ $infor->lname }} , {{ $infor->fname }} </label></i>)</center>
+      <center>(<i><label style="color: gray;"> {{ $staffInformation['names'] }} </label></i>)</center>
       @endforeach
     </div>
     <br><br>
@@ -148,13 +148,11 @@
 												  If there is an outstanding balance, show confirmation of registering with CRB <br> <input type="radio" class="" name="crbChoice" id="choiceYes" value="Yes"> Yes <input type="radio" class="" name="crbChoice" id="choiceNo" value="No"> No <br>
 												  Name of Credit Reference Bureau Agency <input type="text" class="form-control" placeholder="Please enter the name of Credit Reference Bureau Agency" name="crbName" id="crbName" disabled>.</p><br>
 
-                          @foreach($userInformation as $infor)
-                          Cleared by :  {{ $infor->lname }} , {{ $infor->fname }}
-                          <input type="hidden" name="signedBy" value="{{ $infor->lname }} , {{ $infor->fname }}">
-                          @endforeach
+                          Cleared by :  {{ $staffInformation['names'] }}
+                          <input type="hidden" name="signedBy" value="{{ $staffInformation['names'] }}">
   											   Date: <u>{!! date('Y-m-d') !!}</u>
                            <input type="hidden" name="signedAt" value="{!! date('Y-m-d') !!}">
-                           
+
 										  </div>
 										  <div class="modal-footer">
 											  <button title="Cancel" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
