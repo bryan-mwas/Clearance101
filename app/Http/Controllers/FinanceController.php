@@ -15,10 +15,10 @@ use App\Http\Controllers\Controller;
 class FinanceController extends Controller{
 
     public function index(){
-      $user = Auth::user()->regNo;
+      $user     = Auth::user()->regNo;
       $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-      $message = "Please Attend to the following students Requesting to be cleared";
+      $message  = "Please Attend to the following students Requesting to be cleared";
 
   		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
       $students = DB::table('students')
@@ -35,18 +35,19 @@ class FinanceController extends Controller{
 
       return view('staff/finance', compact('students','pending', 'userInformation','message'));
     }
+
     public function clear(Request $request){
-    	$post = $request->all();
-    	$comment = "N/A";
-    	$value = $post['amount'];
-    	$student = $post['regNo'];
+    	$post      = $request->all();
+    	$comment   = "N/A";
+    	$value     = $post['amount'];
+    	$student   = $post['regNo'];
       $magic_val = $post['magic_value'];
       $clearedAt = $post['signedAt'];
       $clearedBy = $post['signedBy'];
 
 
       $comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
-      $value = preg_replace('/[^0-9]/','', $value);
+      $value   = preg_replace('/[^0-9]/','', $value);
 
       DB::beginTransaction();
       $submit = DB::update("UPDATE charge
@@ -57,7 +58,6 @@ class FinanceController extends Controller{
         comments.finance = '$comment',
         charge.finance_value = '$value',
         charge.queueFlag = '7',
-
         cleared_at.finance_cleared_at = '$clearedAt',
         cleared_by.finance_cleared_by = '$clearedBy'
 
@@ -65,26 +65,13 @@ class FinanceController extends Controller{
         AND comments.students_studentNo = '$student'
         AND cleared_at.students_studentNo = '$student'
         AND cleared_by.students_studentNo='$student' ");
+
         if($submit){
           DB::commit();
         }else{
           DB::rollBack();
         }
 
-        /*
-          * NOTE!!!
-          * The magic value below is a hidden input that
-          * helps in evaluating which type of query is to be executed.
-          * */
-        // if($magic_val == 0){
-        //     DB::update("UPDATE charge INNER JOIN comments
-      	// 		ON charge.students_studentNo = comments.students_studentNo  SET comments.finance = '$comment', charge.finance_value = '$value'
-      	// 		WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
-        // }
-
-            /**
-             * Sends mail, but to whom?
-             */
 //            $admin = DB::table('departments')
 //                ->join('administrators','departments.administrator','=','administrators.admin_id')
 //                ->select('administrators.email')->where('departments.department_name','=','Games')
@@ -113,14 +100,14 @@ class FinanceController extends Controller{
       $financialAid = preg_replace('/[^0-9]/','', $financialAid);
       $finance = preg_replace('/[^0-9]/','', $finance);
 
-          DB::update("UPDATE charge
-             SET
-             charge.department_value = charge.department_value - '$school',
-             charge.cafeteria_value = charge.cafeteria_value - '$cafeteria',
-             charge.library_value = charge.library_value - '$library',
-             charge.finance_value = charge.finance_value - '$finance',
-             charge.financial_aid_value = charge.financial_aid_value - '$financialAid'
-    			WHERE charge.students_studentNo = '$id' ");
+      DB::update("UPDATE charge
+          SET
+          charge.department_value = charge.department_value - '$school',
+          charge.cafeteria_value = charge.cafeteria_value - '$cafeteria',
+          charge.library_value = charge.library_value - '$library',
+          charge.finance_value = charge.finance_value - '$finance',
+          charge.financial_aid_value = charge.financial_aid_value - '$financialAid'
+    	WHERE charge.students_studentNo = '$id' ");
 
       return redirect('/finance');
     }

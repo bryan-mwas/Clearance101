@@ -25,9 +25,6 @@ Route::get('mwas','ViewsController@leadership');
 
 
 Route::get('/home',function(){return 'HELLO THERE! YOU ARE ALREADY LOGGED IN';});
-// Route::get('/', 'Auth\AuthController@getLogin');
-
-
 Route::get('/apply', function () {
     return view('clearance.init');
 });

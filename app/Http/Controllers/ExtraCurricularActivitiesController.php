@@ -20,7 +20,7 @@ class ExtraCurricularActivitiesController extends Controller{
      $appliedStudentsExa = DB::table('charge')->where('charge.queueFlag', '=', '3')->count();
 
      $message = "Please Attend to the following students Requesting to be cleared";
- 
+
  		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
     $students = DB::table('students')
                  ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
@@ -66,12 +66,12 @@ class ExtraCurricularActivitiesController extends Controller{
           ->select('administrators.email')->where('departments.department_name','=','Games')
           ->pluck('email');
 
-            //Send Mail
-            Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
-                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
-            });
+      //Send Mail
+      Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+          $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
+      });
 
 
-        return redirect('/extraCurricularActivities');
+      return redirect('/extraCurricularActivities');
     }
 }

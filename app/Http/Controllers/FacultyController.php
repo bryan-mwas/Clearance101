@@ -15,12 +15,13 @@ use App\Http\Controllers\Controller;
 
 class FacultyController extends Controller{
 	public function facultyInformationTechnology(){
-    $name = 'FACULTY OF INFORMATION TECHNOLOGY';
-    $title = 'FIT';
-		$user = Auth::user()->regNo;
+    $name     = 'FACULTY OF INFORMATION TECHNOLOGY';
+    $title    = 'FIT';
+		$message  = "Please Attend to the following students Requesting to be cleared";
+		$user     = Auth::user()->regNo;
 		$userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
 
-		$message = "Please Attend to the following students Requesting to be cleared";
+
 
 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
 		$students = DB::table('students')

@@ -15,9 +15,9 @@ use App\Http\Controllers\Controller;
 class GamesController extends Controller{
 
   public function index(){
-    $user = Auth::user()->regNo;
+    $user     = Auth::user()->regNo;
     $userMail = DB::table('administrators')->where('admin_id', '=', $user)->pluck('email');
-    $message = "Please Attend to the following students Requesting to be cleared";
+    $message  = "Please Attend to the following students Requesting to be cleared";
 
 		$userInformation = DB::table('administrators')->select('administrators.*')->where('admin_id', '=', $user)->get();
     $students = DB::table('students')
@@ -26,13 +26,15 @@ class GamesController extends Controller{
                  ->where('cleared_by.games_cleared_by', '=', 'N/A')
                  ->paginate(10);
 
-         return view('staff/games', compact('students','userInformation','message'));
+    return view('staff/games', compact('students','userInformation','message'));
     }
+
+
     public function clear(Request $request){
-    	$post = $request->all();
-    	$comment = "N/A";
-    	$value = 0;
-    	$student = $post['regNo'];
+    	$post      = $request->all();
+    	$comment   = "N/A";
+    	$value     = 0;
+    	$student   = $post['regNo'];
       $clearedAt = $post['signedAt'];
       $clearedBy = $post['signedBy'];
 
@@ -54,20 +56,21 @@ class GamesController extends Controller{
         AND cleared_at.students_studentNo = '$student'
         AND cleared_by.students_studentNo='$student' ");
 
-        if($submit){
-          DB::commit();
-        }else{
-          DB::rollBack();
-        }
-        $admin = DB::table('departments')
-            ->join('administrators','departments.administrator','=','administrators.admin_id')
-            ->select('administrators.email')->where('departments.department_name','=','Financial Aid')
-            ->pluck('email');
+      if($submit){
+        DB::commit();
+      }else{
+        DB::rollBack();
+      }
 
-            //Send Mail
-            Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
-                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
-            });
-        return redirect('/games');
+      $admin = DB::table('departments')
+          ->join('administrators','departments.administrator','=','administrators.admin_id')
+          ->select('administrators.email')->where('departments.department_name','=','Financial Aid')
+          ->pluck('email');
+
+      //Send Mail
+      Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+          $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
+      });
+      return redirect('/games');
     }
 }

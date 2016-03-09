@@ -32,15 +32,15 @@ class RedirectController extends Controller
     Cas::getCurrentUser();
     $user = session('cas_user');
     $client = new \GuzzleHttp\Client();
-    // student($user);
+
     // $response = $client->get('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'.$user);
     $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/student/getStudent/'.$user);
-    // $student = json_encode($response);
+
     $student = json_decode($response, true);
-    // return view('test')->with('std', $student);
 
     $std = student::where('studentNo', '=', $user)->first();
-//        If the query has a result ...
+    
+    //If the query has a result ...
     if($std === null){
         return view('clearance.init')->with('student', $student);
     }else{

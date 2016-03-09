@@ -76,6 +76,5 @@ class CafeteriaController extends Controller{
         });
 
         return redirect('/cafeteria');
-        //return $comments;
     }
 }

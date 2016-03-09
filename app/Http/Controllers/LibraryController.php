@@ -56,24 +56,24 @@ class LibraryController extends Controller{
         AND cleared_at.students_studentNo = '$student'
         AND cleared_by.students_studentNo='$student' ");
 
-        if($submit){
-          DB::commit();
-        }else{
-          DB::rollBack();
-        }
+      if($submit){
+        DB::commit();
+      }else{
+        DB::rollBack();
+      }
 
-            $admin = DB::table('departments')
-                ->join('administrators','departments.administrator','=','administrators.admin_id')
-                ->select('administrators.email')->where('departments.department_name','=','Extra-curricular')
-                ->pluck('email');
-            //Send Mail
-            Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
-                $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
-            });
+      $admin = DB::table('departments')
+          ->join('administrators','departments.administrator','=','administrators.admin_id')
+          ->select('administrators.email')->where('departments.department_name','=','Extra-curricular')
+          ->pluck('email');
 
-            $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.library = '$comment', charge.library_value = '$value', charge.queueFlag = '3' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
+      //Send Mail
+      Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+        $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
+      });
 
+      $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.library = '$comment', charge.library_value = '$value', charge.queueFlag = '3' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
 
-        return redirect('/library');
+     return redirect('/library');
     }
 }
