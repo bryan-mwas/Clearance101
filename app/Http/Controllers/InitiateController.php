@@ -39,10 +39,6 @@ class InitiateController extends Controller
             'course' => $student['courses'],
           ]
         );
-
-        DB::table('charge')->insert([ 'students_studentNo' => $student['studentNo'], ]);
-        DB::table('comments')->insert([ 'students_studentNo' => $student['studentNo'] ]);
-        
         Session::flash('flash_msg','You have initiated the clearance process');
         return redirect('/');
 

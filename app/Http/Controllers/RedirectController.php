@@ -45,9 +45,9 @@ class RedirectController extends Controller
       $std = student::where('studentNo', '=', $user)->first();
 
       // for testing, delete after test
-      if($student['studentNo'] == '78699'){
-        return redirect()->intended('/cafeteria');
-      }
+      // if($student['studentNo'] == '78699'){
+      //   return redirect()->intended('/cafeteria');
+      // }
 
 
       //If the query has a result ...
