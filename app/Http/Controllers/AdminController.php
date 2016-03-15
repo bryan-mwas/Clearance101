@@ -18,7 +18,7 @@ use mPDF;
 class AdminController extends Controller{
   public function index(){
        // $appliedStudents = DB::table('charge')->count();
-       $appliedStudents = DB::table('clearstatus')->count();
+       $appliedStudents = DB::table('students')->count();
 
        $clearedStudentsFac = DB::table('charge')->where('charge.department_value', '=', '0')->count();
        $pendingStudentsFac = DB::table('charge')->where('charge.department_value', '>', '0')->count();

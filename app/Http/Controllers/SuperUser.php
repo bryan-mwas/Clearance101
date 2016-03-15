@@ -49,7 +49,6 @@ class SuperUser extends Controller
       $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$staff_id);
       $staffInformation = json_decode($response, true);
       return view('admin.addstaff', compact('staffInformation'));
-      // return $staffInformation;
     }
 
     public function authorize(Request $request){
@@ -65,5 +64,22 @@ class SuperUser extends Controller
         );
         Session::flash('flash_msg','You have Authorized a new Clearance Administrator');
         // return Redirect::back();
+    }
+    // student functions
+
+    public function studentSearch(Request $request){
+      $post = $request->all();
+      $search = $post['search'];
+      if($search == ''){
+        $search = 0;
+      }
+      $students = DB::table('document_serialNo')->join('students', 'document_serialNo.students_studentNo', '=', 'students.studentNo')->where('document_serialNo.serialNo','=', $search)->get();
+
+      return view('admin.viewstudent', compact('students'));
+    }
+    public function studentView(){
+      $students = DB::table('document_serialNo')->join('students', 'document_serialNo.students_studentNo', '=', 'students.studentNo')->paginate(15);
+
+      return view('admin.viewstudent', compact('students'));
     }
 }

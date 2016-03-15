@@ -88,8 +88,10 @@ Route::post('/addStaff', 'SuperUser@search');
 Route::get('/addStaff', 'SuperUser@search');
 Route::get('/authenticateStaff', 'SuperUser@authorize');
 Route::post('/authenticateStaff', 'SuperUser@authorize');
-Route::post('/authenticateStaff', 'SuperUser@authorize');
 Route::post('mwas','SuperUser@modify');
+Route::get('/stdsearch', 'SuperUser@studentSearch');
+Route::post('/stdsearch', 'SuperUser@studentSearch');
+Route::get('/stdview', 'SuperUser@studentView');
 
 Route::get('/brian', function(){
   return view('test');
