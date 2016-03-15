@@ -48,11 +48,11 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Staff Authorization</a></li>
-            <li><a href="#">Student Reports</a></li>
-            <li><a href="#">Clearance Reports</a></li>
-            <li><a href="#">Financial Reports</a></li>
-            <li><a href="#">Export</a></li>
+            <li><a href="/authorize">Staff Authorization</a></li>
+            <li><a href="/studentview">Student Reports</a></li>
+            <li><a href="/clearancereport">Clearance Reports</a></li>
+            <li><a href="/financialreport">Financial Reports</a></li>
+            <li><a href="/exports">Export</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

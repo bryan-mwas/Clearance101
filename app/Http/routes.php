@@ -83,16 +83,20 @@ Route::get('admin',function(){
     return view('admin.admin');
 });
 Route::get('mwas','SuperUser@index');
-Route::get('/add', 'SuperUser@displayAdd');
+Route::get('/authorize', 'SuperUser@displayAdd');
 Route::post('/addStaff', 'SuperUser@search');
 Route::get('/addStaff', 'SuperUser@search');
 Route::get('/authenticateStaff', 'SuperUser@authorize');
 Route::post('/authenticateStaff', 'SuperUser@authorize');
 Route::post('mwas','SuperUser@modify');
-Route::get('/stdsearch', 'SuperUser@studentSearch');
-Route::post('/stdsearch', 'SuperUser@studentSearch');
-Route::get('/stdview', 'SuperUser@studentView');
+Route::get('/studentsearch', 'SuperUser@studentSearch');
+Route::post('/studentsearch', 'SuperUser@studentSearch');
+Route::get('/studentview', 'SuperUser@studentView');
+Route::get('/clearancereport', 'SuperUser@clearanceReport');
+Route::get('financialreport','SuperUser@financialReport');
 
-Route::get('/brian', function(){
-  return view('test');
+Route::get('/supdf', 'SuperUser@exportPdf');
+Route::get('/suexc', 'SuperUser@exportExc');
+Route::get('/exports', function(){
+  return view('admin.exports');
 });
