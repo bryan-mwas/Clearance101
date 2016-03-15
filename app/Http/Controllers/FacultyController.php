@@ -47,7 +47,7 @@ class FacultyController extends Controller{
 
 		$message = "Please Attend to the following students Requesting to be cleared";
 		$students = DB::table('students')
-                    ->where('students.faculty', '=', 'SOA')->where('state', '=', 'Activated')
+                    ->where('students.faculty', '=', 'SOA')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
@@ -65,11 +65,18 @@ class FacultyController extends Controller{
     $staffInformation = json_decode($response, true);
 
 		$message = "Please Attend to the following students Requesting to be cleared";
+		// $students = DB::table('students')
+    //                 ->where('students.faculty', '=', 'SFAE')
+    //                 ->whereNotIn('students.studentNo', function($q){
+    //                      $q->select('students_studentNo')->from('charge');
+    //                  })->paginate(15);
 		$students = DB::table('students')
-                    ->where('students.faculty', '=', 'SFAE')->where('state', '=', 'Activated')
-                    ->whereNotIn('students.studentNo', function($q){
-                         $q->select('students_studentNo')->from('charge');
-                     })->paginate(15);
+								 ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
+								 ->select('students.*', 'cleared_by.department_cleared_by')
+								 ->where('cleared_by.department_cleared_by', '=', 'N/A')
+								 ->where('students.faculty', '=', 'SFAE')
+								 ->paginate(10);
+
     return view('staff/faculty', compact('name','title','students', 'staffInformation','message'));
 	}
    /*display students in SHSS*/
@@ -81,7 +88,7 @@ class FacultyController extends Controller{
 
 		$message = "Please Attend to the following students Requesting to be cleared";
 		$students = DB::table('students')
-                    ->where('students.faculty', '=', 'SHSS')->where('state', '=', 'Activated')
+                    ->where('students.faculty', '=', 'SHSS')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
@@ -103,7 +110,7 @@ class FacultyController extends Controller{
 
 
 		$students = DB::table('students')
-                    ->where('students.faculty', '=', 'SMC')->where('state', '=', 'Activated')
+                    ->where('students.faculty', '=', 'SMC')
                     ->whereNotIn('students.studentNo', function($q){
                          $q->select('students_studentNo')->from('charge');
                      })->paginate(15);
@@ -123,7 +130,7 @@ class FacultyController extends Controller{
 		$message = "Please Attend to the following students Requesting to be cleared";
 
 		$students = DB::table('students')
-                ->where('students.faculty', '=', 'SBS')->where('state', '=', 'Activated')
+                ->where('students.faculty', '=', 'SBS')
                 ->whereNotIn('students.studentNo', function($q){
                      $q->select('students_studentNo')->from('charge');
                  })->paginate(15);
@@ -144,11 +151,11 @@ class FacultyController extends Controller{
 		$message = "Please Attend to the following students Requesting to be cleared";
 
 		$students = DB::table('students')
-                    ->where('students.faculty', '=', 'SLS')->where('state', '=', 'Activated')
-                    ->whereNotIn('students.studentNo', function($q){
-                         $q->select('students_studentNo')->from('charge');
-                     })->paginate(15);
-    return view('staff/faculty', compact('name','title','students', 'staffInformation'));
+										->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
+                    ->where('students.faculty', '=', 'SLS')
+										->where('cleared_by.department_cleared_by', '=', 'N/A')
+                    ->paginate(15);
+    return view('staff/faculty', compact('name','title','students', 'staffInformation', 'message'));
 	}
 
       /*display students is CTH*/
@@ -163,7 +170,7 @@ class FacultyController extends Controller{
 
 			$message = "Please Attend to the following students Requesting to be cleared";
 			$students = DB::table('students')
-                  ->where('students.faculty', '=', 'CTH')->where('state', '=', 'Activated')
+                  ->where('students.faculty', '=', 'CTH')
                   ->whereNotIn('students.studentNo', function($q){
                         $q->select('students_studentNo')->from('charge');
                     })->paginate(15);
@@ -181,14 +188,6 @@ class FacultyController extends Controller{
 
 				$comment = preg_replace('/[^A-Za-z0-9 _]/','', $comment);
         $value = preg_replace('/[^0-9]/','', $value);
-
-        $clear = array(
-            'students_studentNo' => $post['regNo'],
-            'department_value'   => $value,
-            'queueFlag'          => '1',
-            );
-
-      	$save = DB::table('charge')->insert($clear);
 
 				DB::beginTransaction();
 					$submit = DB::update("UPDATE cleared_by
@@ -210,11 +209,11 @@ class FacultyController extends Controller{
 						}
 
              //Send Mail
-             $emails = ['mwathibrian7@gmail.com','brianphiri.9523@gmail.com', 'anamikoye52@gmail.com'];
-             Mail::send('mails.clear', ['student' => $std ], function($message) use($emails)
-             {
-                 $message->to($emails)->from('strath.clearance@gmail.com', 'strath')->subject('Clearance');
-             });
+            //  $emails = ['mwathibrian7@gmail.com','brianphiri.9523@gmail.com', 'anamikoye52@gmail.com'];
+            //  Mail::send('mails.clear', ['student' => $std ], function($message) use($emails)
+            //  {
+            //      $message->to($emails)->from('strath.clearance@gmail.com', 'strath')->subject('Clearance');
+            //  });
 
         return Redirect::back();
     }

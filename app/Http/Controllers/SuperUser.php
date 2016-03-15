@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use Input;
 
 class SuperUser extends Controller
 {
@@ -18,13 +19,8 @@ class SuperUser extends Controller
     public function index()
     {
         //Resume from this point.
-        $users = DB::table('departments')->join('administrators','administrator','=','admin_id')
-                                       ->select(DB::raw('CONCAT_WS(" ",fname,lname,sname) as name'),'departments.*')
-//                                       ->where('departments.status','Inactive')
-//                                       ->where('departments.department_name','FIT')
-                                       ->get();
-//        return $users;
-        return view('admin.admin',compact('users'));
+        $users = DB::table('administrators')->get();
+        return view('admin.viewStaff',compact('users'));
     }
 
     public function modify(Request $request){
@@ -32,7 +28,7 @@ class SuperUser extends Controller
         $id = $post['adminID'];
 
         DB::beginTransaction();
-        $submit = DB::table('departments')->where('administrator',$id)->update(['status' => 'Active']);
+        $submit = DB::table('administrators')->where('payroll_number',$id)->update(['state' => 'Authorised']);
 
         if($submit){
             DB::commit();
@@ -40,5 +36,34 @@ class SuperUser extends Controller
             DB::rollBack();
         }
         return Redirect::back();
+    }
+    public function displayAdd(){
+      $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/0');
+      $staffInformation = json_decode($response, true);
+      return view('admin/addstaff', compact('staffInformation'));
+    }
+
+    public function search(Request $request){
+      $post = $request->all();
+      $staff_id = $post['searchEmp'];
+      $response = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$staff_id);
+      $staffInformation = json_decode($response, true);
+      return view('admin.addstaff', compact('staffInformation'));
+      // return $staffInformation;
+    }
+
+    public function authorize(Request $request){
+      $post = $request->all();
+
+      DB::table('administrators')->insert(
+          [
+            'payroll_number' => $post['payrollNo'],
+            'names' =>  $post['names'],
+            'email' => $post['email'],
+            'department' => $post['department'],
+          ]
+        );
+        Session::flash('flash_msg','You have Authorized a new Clearance Administrator');
+        // return Redirect::back();
     }
 }

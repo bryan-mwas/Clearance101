@@ -83,4 +83,14 @@ Route::get('admin',function(){
     return view('admin.admin');
 });
 Route::get('mwas','SuperUser@index');
+Route::get('/add', 'SuperUser@displayAdd');
+Route::post('/addStaff', 'SuperUser@search');
+Route::get('/addStaff', 'SuperUser@search');
+Route::get('/authenticateStaff', 'SuperUser@authorize');
+Route::post('/authenticateStaff', 'SuperUser@authorize');
+Route::post('/authenticateStaff', 'SuperUser@authorize');
 Route::post('mwas','SuperUser@modify');
+
+Route::get('/brian', function(){
+  return view('test');
+});

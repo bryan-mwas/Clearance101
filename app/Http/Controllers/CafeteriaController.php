@@ -28,7 +28,7 @@ class CafeteriaController extends Controller{
       $students = DB::table('students')
                    ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
                    ->select('students.*', 'cleared_by.cafeteria_cleared_by')
-                   ->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')
+                   ->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')->where('cleared_by.department_cleared_by', '!=', 'N/A')
                    ->paginate(10);
 
       return view('staff/cafeteria', compact('students','staffInformation', 'message'));

@@ -26,8 +26,8 @@ class LibraryController extends Controller{
 
       $students = DB::table('students')
                    ->join('cleared_by', 'students.studentNo', '=', 'cleared_by.students_studentNo')
-                   ->select('students.*', 'cleared_by.cafeteria_cleared_by')
-                   ->where('cleared_by.library_cleared_by', '=', 'N/A')
+                   ->select('students.*', 'cleared_by.library_cleared_by')
+                   ->where('cleared_by.library_cleared_by', '=', 'N/A')->where('cleared_by.department_cleared_by', '!=', 'N/A')
                    ->paginate(10);
          return view('staff/library', compact('students','staffInformation','message'));
     }
@@ -65,15 +65,15 @@ class LibraryController extends Controller{
         DB::rollBack();
       }
 
-      $admin = DB::table('departments')
-          ->join('administrators','departments.administrator','=','administrators.admin_id')
-          ->select('administrators.email')->where('departments.department_name','=','Extra-curricular')
-          ->pluck('email');
-
-      //Send Mail
-      Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
-        $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
-      });
+      // $admin = DB::table('departments')
+      //     ->join('administrators','departments.administrator','=','administrators.admin_id')
+      //     ->select('administrators.email')->where('departments.department_name','=','Extra-curricular')
+      //     ->pluck('email');
+      //
+      // //Send Mail
+      // Mail::send('mails.clear', ['student' => $student ], function($message) use($admin){
+      //   $message->to($admin)->from('strath.clearance@gmail.com', 'Strathmore University')->subject('Clearance');
+      // });
 
       $submit = DB::update("UPDATE charge INNER JOIN comments ON charge.students_studentNo = comments.students_studentNo  SET comments.library = '$comment', charge.library_value = '$value', charge.queueFlag = '3' WHERE charge.students_studentNo = '$student' AND comments.students_studentNo = '$student' ");
 

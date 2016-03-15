@@ -5,9 +5,7 @@
     <br><br>
     <div>
     	<center><u><H3>LIBRARYS DEPARTMENT</H3></u></center>
-      @foreach($userInformation as $infor)
       <center>(<i><label style="color: gray;"> {{ $staffInformation['names'] }} </label></i>)</center>
-      @endforeach
     </div>
     <br><br>
 	  <div id="view">
@@ -115,7 +113,7 @@
                           </div>
                         </div><br>
                         Cleared by :  {{ $staffInformation['names'] }}
-                        <input type="hidden" name="signedBy" value="{{ $infor->lname }} , {{ $infor->fname }}">
+                        <input type="hidden" name="signedBy" value="{{ $staffInformation['names'] }}">
 											   Date: <u>{!! date('Y-m-d') !!}</u>
                          <input type="hidden" name="signedAt" value="{!! date('Y-m-d') !!}">
 										  </div>
