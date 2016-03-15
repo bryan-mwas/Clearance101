@@ -66,54 +66,54 @@ class RedirectController extends Controller
     // If logged in user in a member of staff...
     elseif($responseStaff != '' && $responseStudent == '') {
       $staffMember = json_decode($responseStaff, true);
-      $school_staff_belongs_to = $staffMember['departmentShortName'];
+      $department_staff_belongs_to = $staffMember['departmentShortName'];
 
       // redirect the staff member to thier page depending on the school they admin..
-      if($school_staff_belongs_to == 'FIT'){
+      if($department_staff_belongs_to == 'FIT'){
           return redirect()->intended('/fit');
       }
 
-      else if($school_staff_belongs_to == "SLS"){
+      else if($department_staff_belongs_to == "SLS"){
           return redirect()->intended('/sls');
       }
-      else if($school_staff_belongs_to == "SBS"){
+      else if($department_staff_belongs_to == "SBS"){
           return redirect()->intended('/sbs');
       }
-      else if($school_staff_belongs_to == "SFAE"){
+      else if($department_staff_belongs_to == "SFAE"){
           return redirect()->intended('/sfae');
       }
-      else if($school_staff_belongs_to == "CTH"){
+      else if($department_staff_belongs_to == "CTH"){
           return redirect()->intended('/cth');
       }
-      else if($school_staff_belongs_to == "SOA"){
+      else if($department_staff_belongs_to == "SOA"){
           return redirect()->intended('/soa');
       }
-      else if($school_staff_belongs_to == "MTI"){
+      else if($department_staff_belongs_to == "MTI"){
           return redirect()->intended('/mti');
       }
-      else if($school_staff_belongs_to == "SHSS"){
+      else if($department_staff_belongs_to == "SHSS"){
           return redirect()->intended('/shss');
       }
-      else if($school_staff_belongs_to == "SMC"){
+      else if($department_staff_belongs_to == "SMC"){
           return redirect()->intended('/smc');
       }else{
         // if the admin does not admin a school. Query by department name
-        if($school_staff_belongs_to == "Cafeteria"){
+        if($department_staff_belongs_to == "Cafeteria"){
             return redirect()->intended('/cafeteria');
         }
-        else if($school_staff_belongs_to == "Library"){
+        else if($department_staff_belongs_to == "Library"){
             return redirect()->intended('/library');
         }
-        else if($school_staff_belongs_to == "Finance"){
+        else if($department_staff_belongs_to == "Finance"){
             return redirect()->intended('/finance');
         }
-        else if($school_staff_belongs_to == "Financial Aid"){
+        else if($department_staff_belongs_to == "Financial Aid"){
             return redirect()->intended('/financialAid');
         }
-        else if($school_staff_belongs_to == "Games"){
+        else if($department_staff_belongs_to == "Games"){
             return redirect()->intended('/games');
         }
-        else if($school_staff_belongs_to == "Extra-curricular"){
+        else if($department_staff_belongs_to == "Extra-curricular"){
             return redirect()->intended('/extraCurricularActivities');
         }
       }
