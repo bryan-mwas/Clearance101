@@ -72,9 +72,9 @@ Route::get('mwas','ViewsController@leadership');
 
 
 //This is for the VC view
-Route::get('/vc', ['middleware'=>'vc','uses'=>'AdminController@index']);
-Route::get('/vcpdf', ['middleware'=>'vc','uses'=>'AdminController@report']);
-Route::get('/vcxls', ['middleware'=>'vc','uses'=>'AdminController@exReport']);
+Route::get('/vc', 'AdminController@index');
+Route::get('/vcpdf', 'AdminController@report');
+Route::get('/vcxls', 'AdminController@exReport');
 
 
 

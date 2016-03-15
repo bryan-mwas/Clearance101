@@ -20,57 +20,57 @@ class AdminController extends Controller{
        // $appliedStudents = DB::table('charge')->count();
        $appliedStudents = DB::table('students')->count();
 
-       $clearedStudentsFac = DB::table('charge')->where('charge.department_value', '=', '0')->count();
-       $pendingStudentsFac = DB::table('charge')->where('charge.department_value', '>', '0')->count();
+       $clearedStudentsFac = DB::table('cleared_by')->where('cleared_by.department_cleared_by', '!=', 'N/A')->count();
+       $pendingStudentsFac = DB::table('cleared_by')->where('cleared_by.department_cleared_by', '=', 'N/A')->count();
        //cafeteria
-       $clearedStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '=', '0')->count();
-       $pendingStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '>', '0')->count();
+       $clearedStudentsCaf = DB::table('cleared_by')->where('cleared_by.cafeteria_cleared_by', '!=', 'N/A')->count();
+       $pendingStudentsCaf = DB::table('cleared_by')->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')->count();
        //library
-       $clearedStudentsLib = DB::table('charge')->where('charge.library_value', '=', '0')->count();
-       $pendingStudentsLib = DB::table('charge')->where('charge.library_value', '>', '0')->count();
+       $clearedStudentsLib = DB::table('cleared_by')->where('cleared_by.library_cleared_by', '!=', 'N/A')->count();
+       $pendingStudentsLib = DB::table('cleared_by')->where('cleared_by.library_cleared_by', '=', 'N/A')->count();
        //Ex-Act
-       $clearedStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '=', '0')->count();
-       $pendingStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '>', '0')->count();
+       $clearedStudentsExa = DB::table('cleared_by')->where('cleared_by.extra_curricular_cleared_by', '!=', 'N/A')->count();
+       $pendingStudentsExa = DB::table('cleared_by')->where('cleared_by.extra_curricular_cleared_by', '=', 'N/A')->count();
        //Games
-       $clearedStudentsGam = DB::table('charge')->where('charge.games_value', '=', '0')->count();
-       $pendingStudentsGam = DB::table('charge')->where('charge.games_value', '>', '0')->count();
+       $clearedStudentsGam = DB::table('cleared_by')->where('cleared_by.games_cleared_by', '!=', 'N/A')->count();
+       $pendingStudentsGam = DB::table('cleared_by')->where('cleared_by.games_cleared_by', '=', 'N/A')->count();
        //F-Aid
-       $clearedStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '=', '0')->count();
-       $pendingStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '>', '0')->count();
+       $clearedStudentsFna = DB::table('cleared_by')->where('cleared_by.financial_aid_cleared_by', '!=', 'N/A')->count();
+       $pendingStudentsFna = DB::table('cleared_by')->where('cleared_by.financial_aid_cleared_by', '=', 'N/A')->count();
        //Fin
-       $clearedStudentsFin = DB::table('charge')->where('charge.finance_value', '=', '0')->count();
-       $pendingStudentsFin = DB::table('charge')->where('charge.finance_value', '>', '0')->count();
+       $clearedStudentsFin = DB::table('cleared_by')->where('cleared_by.finance_cleared_by', '!=', 'N/A')->count();
+       $pendingStudentsFin = DB::table('cleared_by')->where('cleared_by.finance_cleared_by', '=', 'N/A')->count();
        //total Students
        $totalStudentsCleared = DB::table('clearstatus')->where('status', '=', 'Cleared')->count();
        $totalStudentsPending = DB::table('clearstatus')->where('status', '=', 'Pending')->count();
 
        //faculty
        //FIT
-       $reqStudentFIT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'FIT')->count();
+       $reqStudentFIT = DB::table('students')->where('faculty', '=', 'FIT')->count();
        $clearedStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'FIT')->count();
        $pendingStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'FIT')->count();
        //SLS
-       $reqStudentSLS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SLS')->count();
+       $reqStudentSLS = DB::table('students')->where('faculty', '=', 'SLS')->count();
        $clearedStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SLS')->count();
        $pendingStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SLS')->count();
        //SOA
-       $reqStudentSOA = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SOA')->count();
+       $reqStudentSOA = DB::table('students')->where('faculty', '=', 'SOA')->count();
        $clearedStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SOA')->count();
        $pendingStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SOA')->count();
        //SHSS
-       $reqStudentSHSS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SHSS')->count();
+       $reqStudentSHSS = DB::table('students')->where('faculty', '=', 'SHSS')->count();
        $clearedStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SHSS')->count();
        $pendingStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SHSS')->count();
        //SFAE
-       $reqStudentSFAE = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SFAE')->count();
+       $reqStudentSFAE = DB::table('students')->where('faculty', '=', 'SFAE')->count();
        $clearedStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SFAE')->count();
        $pendingStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SFAE')->count();
        //SOA
-       $reqStudentCHT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'CHT')->count();
+       $reqStudentCHT = DB::table('students')->where('faculty', '=', 'CHT')->count();
        $clearedStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'CHT')->count();
        $pendingStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'CHT')->count();
        //SOA
-       $reqStudentSBS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SBS')->count();
+       $reqStudentSBS = DB::table('students')->where('faculty', '=', 'SBS')->count();
        $clearedStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SBS')->count();
        $pendingStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SBS')->count();
 
@@ -139,59 +139,58 @@ class AdminController extends Controller{
     }
 
   public static function report(){
-      $appliedStudents = DB::table('clearstatus')->count();
+    $appliedStudents = DB::table('students')->count();
 
-       $clearedStudentsFac = DB::table('charge')->where('charge.department_value', '=', '0')->count();
-       $pendingStudentsFac = DB::table('charge')->where('charge.department_value', '>', '0')->count();
-       //cafeteria
-       $clearedStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '=', '0')->count();
-       $pendingStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '>', '0')->count();
-       //library
-       $clearedStudentsLib = DB::table('charge')->where('charge.library_value', '=', '0')->count();
-       $pendingStudentsLib = DB::table('charge')->where('charge.library_value', '>', '0')->count();
-       //Ex-Act
-       $clearedStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '=', '0')->count();
-       $pendingStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '>', '0')->count();
-       //Games
-       $clearedStudentsGam = DB::table('charge')->where('charge.games_value', '=', '0')->count();
-       $pendingStudentsGam = DB::table('charge')->where('charge.games_value', '>', '0')->count();
-       //F-Aid
-       $clearedStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '=', '0')->count();
-       $pendingStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '>', '0')->count();
-       //Fin
-       $clearedStudentsFin = DB::table('charge')->where('charge.finance_value', '=', '0')->count();
-       $pendingStudentsFin = DB::table('charge')->where('charge.finance_value', '>', '0')->count();
-       //total Students
-       $totalStudentsCleared = DB::table('clearstatus')->where('status', '=', 'Cleared')->count();
-       $totalStudentsPending = DB::table('clearstatus')->where('status', '=', 'Pending')->count();
-
+    $clearedStudentsFac = DB::table('cleared_by')->where('cleared_by.department_cleared_by', '!=', 'N/A')->count();
+    $pendingStudentsFac = DB::table('cleared_by')->where('cleared_by.department_cleared_by', '=', 'N/A')->count();
+    //cafeteria
+    $clearedStudentsCaf = DB::table('cleared_by')->where('cleared_by.cafeteria_cleared_by', '!=', 'N/A')->count();
+    $pendingStudentsCaf = DB::table('cleared_by')->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')->count();
+    //library
+    $clearedStudentsLib = DB::table('cleared_by')->where('cleared_by.library_cleared_by', '!=', 'N/A')->count();
+    $pendingStudentsLib = DB::table('cleared_by')->where('cleared_by.library_cleared_by', '=', 'N/A')->count();
+    //Ex-Act
+    $clearedStudentsExa = DB::table('cleared_by')->where('cleared_by.extra_curricular_cleared_by', '!=', 'N/A')->count();
+    $pendingStudentsExa = DB::table('cleared_by')->where('cleared_by.extra_curricular_cleared_by', '=', 'N/A')->count();
+    //Games
+    $clearedStudentsGam = DB::table('cleared_by')->where('cleared_by.games_cleared_by', '!=', 'N/A')->count();
+    $pendingStudentsGam = DB::table('cleared_by')->where('cleared_by.games_cleared_by', '=', 'N/A')->count();
+    //F-Aid
+    $clearedStudentsFna = DB::table('cleared_by')->where('cleared_by.financial_aid_cleared_by', '!=', 'N/A')->count();
+    $pendingStudentsFna = DB::table('cleared_by')->where('cleared_by.financial_aid_cleared_by', '=', 'N/A')->count();
+    //Fin
+    $clearedStudentsFin = DB::table('cleared_by')->where('cleared_by.finance_cleared_by', '!=', 'N/A')->count();
+    $pendingStudentsFin = DB::table('cleared_by')->where('cleared_by.finance_cleared_by', '=', 'N/A')->count();
+    //total Students
+    $totalStudentsCleared = DB::table('clearstatus')->where('status', '=', 'Cleared')->count();
+    $totalStudentsPending = DB::table('clearstatus')->where('status', '=', 'Pending')->count();
        //faculty
        //FIT
-       $reqStudentFIT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'FIT')->count();
+       $reqStudentFIT = DB::table('students')->where('faculty', '=', 'FIT')->count();
        $clearedStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'FIT')->count();
        $pendingStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'FIT')->count();
        //SLS
-       $reqStudentSLS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SLS')->count();
+       $reqStudentSLS = DB::table('students')->where('faculty', '=', 'SLS')->count();
        $clearedStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SLS')->count();
        $pendingStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SLS')->count();
        //SOA
-       $reqStudentSOA = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SOA')->count();
+       $reqStudentSOA = DB::table('students')->where('faculty', '=', 'SOA')->count();
        $clearedStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SOA')->count();
        $pendingStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SOA')->count();
        //SHSS
-       $reqStudentSHSS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SHSS')->count();
+       $reqStudentSHSS = DB::table('students')->where('faculty', '=', 'SHSS')->count();
        $clearedStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SHSS')->count();
        $pendingStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SHSS')->count();
        //SFAE
-       $reqStudentSFAE = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SFAE')->count();
+       $reqStudentSFAE = DB::table('students')->where('faculty', '=', 'SFAE')->count();
        $clearedStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SFAE')->count();
        $pendingStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SFAE')->count();
        //SOA
-       $reqStudentCHT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'CHT')->count();
+       $reqStudentCHT = DB::table('students')->where('faculty', '=', 'CHT')->count();
        $clearedStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'CHT')->count();
        $pendingStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'CHT')->count();
        //SOA
-       $reqStudentSBS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SBS')->count();
+       $reqStudentSBS = DB::table('students')->where('faculty', '=', 'SBS')->count();
        $clearedStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SBS')->count();
        $pendingStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SBS')->count();
 
@@ -224,31 +223,31 @@ class AdminController extends Controller{
 
     Excel::create('StrathmoreClearanceReport', function($excel) {
         $excel->sheet('Students by Departments', function($sheet) {
-            $appliedStudents = DB::table('clearstatus')->count();
+          $appliedStudents = DB::table('students')->count();
 
-            $clearedStudentsFac = DB::table('charge')->where('charge.department_value', '=', '0')->count();
-            $pendingStudentsFac = DB::table('charge')->where('charge.department_value', '>', '0')->count();
-            //cafeteria
-            $clearedStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '=', '0')->count();
-            $pendingStudentsCaf = DB::table('charge')->where('charge.cafeteria_value', '>', '0')->count();
-            //library
-            $clearedStudentsLib = DB::table('charge')->where('charge.library_value', '=', '0')->count();
-            $pendingStudentsLib = DB::table('charge')->where('charge.library_value', '>', '0')->count();
-            //Ex-Act
-            $clearedStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '=', '0')->count();
-            $pendingStudentsExa = DB::table('charge')->where('charge.extra_curricular_value', '>', '0')->count();
-            //Games
-            $clearedStudentsGam = DB::table('charge')->where('charge.games_value', '=', '0')->count();
-            $pendingStudentsGam = DB::table('charge')->where('charge.games_value', '>', '0')->count();
-            //F-Aid
-            $clearedStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '=', '0')->count();
-            $pendingStudentsFna = DB::table('charge')->where('charge.financial_aid_value', '>', '0')->count();
-            //Fin
-            $clearedStudentsFin = DB::table('charge')->where('charge.finance_value', '=', '0')->count();
-            $pendingStudentsFin = DB::table('charge')->where('charge.finance_value', '>', '0')->count();
-            //total Students
-            $totalStudentsCleared = DB::table('clearstatus')->where('status', '=', 'Cleared')->count();
-            $totalStudentsPending = DB::table('clearstatus')->where('status', '=', 'Pending')->count();
+          $clearedStudentsFac = DB::table('cleared_by')->where('cleared_by.department_cleared_by', '!=', 'N/A')->count();
+          $pendingStudentsFac = DB::table('cleared_by')->where('cleared_by.department_cleared_by', '=', 'N/A')->count();
+          //cafeteria
+          $clearedStudentsCaf = DB::table('cleared_by')->where('cleared_by.cafeteria_cleared_by', '!=', 'N/A')->count();
+          $pendingStudentsCaf = DB::table('cleared_by')->where('cleared_by.cafeteria_cleared_by', '=', 'N/A')->count();
+          //library
+          $clearedStudentsLib = DB::table('cleared_by')->where('cleared_by.library_cleared_by', '!=', 'N/A')->count();
+          $pendingStudentsLib = DB::table('cleared_by')->where('cleared_by.library_cleared_by', '=', 'N/A')->count();
+          //Ex-Act
+          $clearedStudentsExa = DB::table('cleared_by')->where('cleared_by.extra_curricular_cleared_by', '!=', 'N/A')->count();
+          $pendingStudentsExa = DB::table('cleared_by')->where('cleared_by.extra_curricular_cleared_by', '=', 'N/A')->count();
+          //Games
+          $clearedStudentsGam = DB::table('cleared_by')->where('cleared_by.games_cleared_by', '!=', 'N/A')->count();
+          $pendingStudentsGam = DB::table('cleared_by')->where('cleared_by.games_cleared_by', '=', 'N/A')->count();
+          //F-Aid
+          $clearedStudentsFna = DB::table('cleared_by')->where('cleared_by.financial_aid_cleared_by', '!=', 'N/A')->count();
+          $pendingStudentsFna = DB::table('cleared_by')->where('cleared_by.financial_aid_cleared_by', '=', 'N/A')->count();
+          //Fin
+          $clearedStudentsFin = DB::table('cleared_by')->where('cleared_by.finance_cleared_by', '!=', 'N/A')->count();
+          $pendingStudentsFin = DB::table('cleared_by')->where('cleared_by.finance_cleared_by', '=', 'N/A')->count();
+          //total Students
+          $totalStudentsCleared = DB::table('clearstatus')->where('status', '=', 'Cleared')->count();
+          $totalStudentsPending = DB::table('clearstatus')->where('status', '=', 'Pending')->count();
 
             $data = [];
             array_push($data, array('', 'Department Name', 'Number of Cleared Students', 'Number of Pending Students'));
@@ -268,30 +267,30 @@ class AdminController extends Controller{
            });
            $excel->sheet('Students by Schools', function($sheet) {
                //FIT
-               $reqStudentFIT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'FIT')->count();
+               $reqStudentFIT = DB::table('students')->where('faculty', '=', 'FIT')->count();
                $clearedStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'FIT')->count();
                $pendingStudentsFIT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'FIT')->count();
                //SLS
-               $reqStudentSLS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SLS')->count();
+               $reqStudentSLS = DB::table('students')->where('faculty', '=', 'SLS')->count();
                $clearedStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SLS')->count();
                $pendingStudentsSLS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SLS')->count();
                //SOA
-               $reqStudentSOA = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SOA')->count();
+               $reqStudentSOA = DB::table('students')->where('faculty', '=', 'SOA')->count();
                $clearedStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SOA')->count();
                $pendingStudentsSOA = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SOA')->count();
                //SHSS
-               $reqStudentSHSS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SHSS')->count();
+               $reqStudentSHSS = DB::table('students')->where('faculty', '=', 'SHSS')->count();
                $clearedStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SHSS')->count();
                $pendingStudentsSHSS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SHSS')->count();
                //SFAE
-               $reqStudentSFAE = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SFAE')->count();
+               $reqStudentSFAE = DB::table('students')->where('faculty', '=', 'SFAE')->count();
                $clearedStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SFAE')->count();                $pendingStudentsSFAE = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SFAE')->count();
               //CHT
-              $reqStudentCHT = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'CHT')->count();
+              $reqStudentCHT = DB::table('students')->where('faculty', '=', 'CHT')->count();
               $clearedStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'CHT')->count();
               $pendingStudentsCHT = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'CHT')->count();
               //SBS
-              $reqStudentSBS = DB::table('students')->where('state', '=', 'Activated')->where('faculty', '=', 'SBS')->count();
+              $reqStudentSBS = DB::table('students')->where('faculty', '=', 'SBS')->count();
               $clearedStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'CLeared')->where('students.faculty', '=', 'SBS')->count();
               $pendingStudentsSBS = DB::table('clearstatus')->join('students', 'clearstatus.students_studentNo', '=', 'students.studentNo')->where('clearstatus.status', '=', 'Pending')->where('students.faculty', '=', 'SBS')->count();
 
