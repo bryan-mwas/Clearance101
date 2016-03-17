@@ -22,7 +22,8 @@ Route::group(['middleware' => ['cas.auth']], function (){
   Route::get('/activate','InitiateController@index');
   //PDF route !!!
   Route::get('pdf', 'ViewsController@show');
-
+  Route::get('/sustdpdf', 'ViewsController@studentPdf');
+  Route::post('/sustdpdf', 'ViewsController@studentPdf');
   //Staff Views
   // Departments
   Route::get('/cafeteria', 'CafeteriaController@index');

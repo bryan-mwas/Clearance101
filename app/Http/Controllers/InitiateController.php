@@ -39,6 +39,7 @@ class InitiateController extends Controller
             'course' => $student['courses'],
           ]
         );
+
         Session::flash('flash_msg','You have initiated the clearance process');
         return redirect('/');
 

@@ -70,12 +70,11 @@ class SuperUser extends Controller
     public function studentSearch(Request $request){
       $post = $request->all();
       $search = $post['search'];
-      if($search == ''){
-        $search = 0;
-      }
-      $students = DB::table('document_serialNo')->join('students', 'document_serialNo.students_studentNo', '=', 'students.studentNo')->where('document_serialNo.serialNo','=', $search)->get();
-
-      return view('admin.viewstudent', compact('students'));
+      if($search == '')
+        return $this->studentView();
+      else
+        $students = DB::table('document_serialNo')->join('students', 'document_serialNo.students_studentNo', '=', 'students.studentNo')->where('document_serialNo.serialNo','=', $search)->get();
+        return view('admin.viewstudent', compact('students'));
     }
     public function studentView(){
       $students = DB::table('document_serialNo')->join('students', 'document_serialNo.students_studentNo', '=', 'students.studentNo')->paginate(15);

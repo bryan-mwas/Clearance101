@@ -3,6 +3,7 @@
 @section('content')
 
 <form class="" role="search" method="post" action="{{ action('SuperUser@studentSearch') }}">
+  <input type="hidden" name="_token" value="{{ csrf_token()}}">
   <div class="form-group" style="width: 200px">
     <input type="text" class="form-control" name="search" placeholder="Search by Serial Number">
   </div>
@@ -73,11 +74,12 @@
                         </div>
                         <!--end student information display-->
                         <!-- display form -->
-                        <form id="caf" method="post" action="">
-
+                        <form id="caf" method="post" action="{{ action('ViewsController@studentPdf') }}">
+                          <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                          <input type="hidden" name="student" value="{{$student->studentNo}}">
                             <div class="modal-footer">
                                 <button title="Cancel"type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <input title="Download student's PDF report" type="button" class="btn btn-warning" value="PDF">
+                                <input title="Download student's PDF report" type="submit" class="btn btn-warning" value="PDF">
                             </div>
                         </form>
                         <!-- end form display -->
