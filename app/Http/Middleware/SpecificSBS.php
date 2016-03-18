@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificSBS extends ViewsController
+class SpecificSBS extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificSBS extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "SBS"){
+        if(RedirectController::getDepartment() != "SBS"){
             return 'Oops! Seems like you are not an SBS administrator';
         }
         return $next($request);

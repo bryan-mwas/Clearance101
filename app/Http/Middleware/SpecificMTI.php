@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificMTI extends ViewsController
+class SpecificMTI extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificMTI extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "MTI"){
+        if(RedirectController::getDepartment() != "MTI"){
             return 'Oops! Seems like you are not an MTI administrator';
         }
         return $next($request);

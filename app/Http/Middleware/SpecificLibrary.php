@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificLibrary extends ViewsController
+class SpecificLibrary extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificLibrary extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "Library"){
+        if(RedirectController::getDepartment() != "LIBRARY"){
             return 'Oops! Seems like you are not the library administrator';
         }
         return $next($request);

@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificFinancialAid extends ViewsController
+class SpecificFinancialAid extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificFinancialAid extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "Financial Aid"){
+        if(RedirectController::getDepartment() != "FINANCIAL AID"){
             return 'Oops! Seems like you are not the financial aid administrator';
         }
         return $next($request);

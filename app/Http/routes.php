@@ -21,51 +21,37 @@ Route::group(['middleware' => ['cas.auth']], function (){
   // student page
   Route::get('/activate','InitiateController@index');
   //PDF route !!!
-  Route::get('pdf', 'ViewsController@show');
-  Route::get('/sustdpdf', 'ViewsController@studentPdf');
-  Route::post('/sustdpdf', 'ViewsController@studentPdf');
-  //Staff Views
-  // Departments
-  Route::get('/cafeteria', 'CafeteriaController@index');
+  Route::get('pdf',['middleware' => 'auth','uses' => 'ViewsController@show']);
+
+  Route::get('/cafeteria', ['middleware' => 'caf','uses' =>'CafeteriaController@index']);
   Route::post('/caftclear', 'CafeteriaController@clear');
 
-  Route::get('/games', 'GamesController@index');
-  Route::post('/gamesclear', 'GamesController@clear');
-
-  Route::get('/library', 'LibraryController@index');
+  Route::get('/library', ['middleware' => 'lib','uses' =>'LibraryController@index']);
   Route::post('/libclear', 'LibraryController@clear');
 
-  Route::get('/extraCurricularActivities', 'ExtraCurricularActivitiesController@index');
+  Route::get('/games', ['middleware' => 'games','uses' =>'GamesController@index']);
+  Route::post('/gamesclear', 'GamesController@clear');
+
+  Route::get('/extraCurricularActivities', ['middleware' => 'extra','uses' =>'ExtraCurricularActivitiesController@index']);
   Route::post('/extraCurricularActivitiesclear', 'ExtraCurricularActivitiesController@clear');
 
-  Route::get('/finance', 'FinanceController@index');
+  Route::get('/finance', ['middleware' => 'finance','uses' =>'FinanceController@index']);
   Route::post('/financeclear', 'FinanceController@clear');
   Route::post('/financeupdate', 'FinanceController@update');
 
-  Route::get('/financialAid', 'FinancialAidController@index');
+  Route::get('/financialAid', ['middleware' => 'financial_aid','uses' =>'FinancialAidController@index']);
   Route::post('/financialAidclear', 'FinancialAidController@clear');
 
-  Route::get('/extraCurricularActivities', 'ExtraCurricularActivitiesController@index');
-  Route::post('/extraCurricularActivitiesclear', 'ExtraCurricularActivitiesController@clear');
-
-  Route::get('/finance', 'FinanceController@index');
-  Route::post('/financeclear', 'FinanceController@clear');
-  Route::post('/financeupdate', 'FinanceController@update');
-
-  Route::get('/financialAid', 'FinancialAidController@index');
-  Route::post('/financialAidclear', 'FinancialAidController@clear');
-
-  // Schools
   Route::post('facClear','FacultyController@clear');
+  Route::get('/fit', ['middleware' => 'fit','uses' =>'FacultyController@facultyInformationTechnology']);
+  Route::get('/soa', ['middleware' => 'soa','uses' =>'FacultyController@schoolofAccountancy']);
+  Route::get('/sfae', ['middleware' => 'sfae','uses' =>'FacultyController@schoolOfFinanceAndAppliedEconomics']);
+  Route::get('/shss', ['middleware' => 'shss','uses' =>'FacultyController@schoolOfHumanitiesAndSocialSciences']);
+  Route::get('/smc', ['middleware' => 'smc','uses' =>'FacultyController@schoolOfManagementAndCommerce']);
+  Route::get('/sbs', ['middleware' => 'sbs','uses' =>'FacultyController@strathmoreBusinessSchool']);
+  Route::get('/sls', ['middleware' => 'sls','uses' =>'FacultyController@strathmoreLawSchool']);
+  Route::get('/cth', ['middleware' => 'cth','uses' =>'FacultyController@centreForTourismAndHospitality']);
 
-  Route::get('/fit','FacultyController@facultyInformationTechnology');
-  Route::get('/soa','FacultyController@schoolofAccountancy');
-  Route::get('/sfae', 'FacultyController@schoolOfFinanceAndAppliedEconomics');
-  Route::get('/shss', 'FacultyController@schoolOfHumanitiesAndSocialSciences');
-  Route::get('/smc', 'FacultyController@schoolOfManagementAndCommerce');
-  Route::get('/sbs', 'FacultyController@strathmoreBusinessSchool');
-  Route::get('/sls', 'FacultyController@strathmoreLawSchool');
-  Route::get('/cth', 'FacultyController@centreForTourismAndHospitality');
 
 });
 

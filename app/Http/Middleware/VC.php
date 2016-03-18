@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 use Closure;
 
-class VC extends ViewsController
+class VC extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class VC extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::leadership() != "Vice Chancellor"){
+        if(RedirectController::getDepartment() != "Vice Chancellor"){
             return 'Warning! You do not have authorized access to this page.';
         }
         return $next($request);

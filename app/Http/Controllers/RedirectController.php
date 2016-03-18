@@ -75,6 +75,7 @@ class RedirectController extends Controller
         if($is_auth != 'Authorised'){
           return "Not Authorized";
         }else{
+<<<<<<< HEAD
           if($department_staff_belongs_to == 'FIT'){
               return redirect()->intended('/fit');
           }
@@ -122,6 +123,26 @@ class RedirectController extends Controller
             else if($department_staff_belongs_to == "Extra-curricular"){
                 return redirect()->intended('/extraCurricularActivities');
             }
+=======
+          // if the admin does not admin a school. Query by department name
+          if($department_staff_belongs_to == "CAFETERIA"){
+              return redirect()->intended('/cafeteria');
+          }
+          else if($department_staff_belongs_to == "LIBRARY"){
+              return redirect()->intended('/library');
+          }
+          else if($department_staff_belongs_to == "FINANCE"){
+              return redirect()->intended('/finance');
+          }
+          else if($department_staff_belongs_to == "FINANCIAL AID"){
+              return redirect()->intended('/financialAid');
+          }
+          else if($department_staff_belongs_to == "GAMES"){
+              return redirect()->intended('/games');
+          }
+          else if($department_staff_belongs_to == "EXTRA CURRICULAR ACTIVITIES"){
+              return redirect()->intended('/extraCurricularActivities');
+>>>>>>> d756e3cd4113a03e44650e6f043c7d409d0e8b5f
           }
         }
       }
@@ -133,4 +154,10 @@ class RedirectController extends Controller
    Cas::logout();
    return redirect()->intended('/');
  }
+    public function getDepartment(){
+        $responseStaff = file_get_contents('http://testserver.strathmore.edu:8082/dataservice/staff/getStaff/'.$user);
+        $staffMember = json_decode($responseStaff, true);
+        return $staffMember['departmentShortName'];
+
+    }
 }
