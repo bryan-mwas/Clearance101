@@ -40,6 +40,15 @@ class InitiateController extends Controller
           ]
         );
 
+        DB::beginTransaction();
+          $submit = DB::update("UPDATE charge SET charge.finance_value => $student['balance'] where charge.students_studentNo = $student['studentNo']");
+
+            if($submit){
+              DB::commit();
+            }else{
+              DB::rollBack();
+            }
+
         Session::flash('flash_msg','You have initiated the clearance process');
         return redirect('/');
 
