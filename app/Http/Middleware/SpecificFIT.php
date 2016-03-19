@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 use Closure;
 
-class SpecificFIT extends ViewsController
+class SpecificFIT extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificFIT extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "FIT"){
+        if(RedirectController::getDepartment() != "FIT"){
             return 'Oops! Seems like you are not an FIT administrator';
         }
         return $next($request);

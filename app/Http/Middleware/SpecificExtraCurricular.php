@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificExtraCurricular extends ViewsController
+class SpecificExtraCurricular extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificExtraCurricular extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "Extra-curricular"){
+        if(RedirectController::getDepartment() != "EXTRA CURRICULAR ACTIVITIES"){
             return 'Oops! Seems like you are not the Extra-Curricular administrator';
         }
         return $next($request);

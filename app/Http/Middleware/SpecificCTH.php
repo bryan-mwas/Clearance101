@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificCTH extends ViewsController
+class SpecificCTH extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificCTH extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "CHT"){
+        if(RedirectController::getDepartment() != "CHT"){
             return 'Oops! Seems like you are not the CHT administrator';
         }
         return $next($request);

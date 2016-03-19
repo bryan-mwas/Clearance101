@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificSFAE extends ViewsController
+class SpecificSFAE extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificSFAE extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "SFAE"){
+        if(RedirectController::getDepartment() != "SFAE"){
             return 'Oops! Seems like you are not an SFAE administrator';
         }
         return $next($request);

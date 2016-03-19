@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 
-class SpecificSLS extends ViewsController
+class SpecificSLS extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificSLS extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "SLS"){
+        if(RedirectController::getDepartment() != "SLS"){
             return 'Oops! Seems like you are not an SLS administrator';
         }
         return $next($request);

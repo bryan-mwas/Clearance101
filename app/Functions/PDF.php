@@ -21,7 +21,7 @@ class PDF
         <tbody>
             <tr>
             <th align=left>STUDENT NAME</th>
-            <td colspan="2">'.$std->sname.' '.$std->fname.' '.$std->lname.'</td>
+            <td colspan="2">'.$std->lname.'</td>
             </tr>
             <tr>
             <th align=left width="20%">REGISTRATION NUMBER</th>
@@ -94,6 +94,9 @@ class PDF
        <tr><td>'.$serial->serialNo.'</td><td>Strathmore University</td><td>DAA-03-01-09/12</td></tr>
      </table>
    </div>
+    Serial Number: '.$serial->serialNo.' <br>
+          DAA-03-01-09/12<br>
+          Strathmore University '.Date('d-F-Y').'<br>
  </footer>
     </body>
     ';
@@ -118,7 +121,7 @@ class PDF
         <tbody>
             <tr>
             <th align=left>STUDENT NAME</th>
-            <td colspan="2">'.$std->sname.' '.$std->fname.' '.$std->lname.'</td>
+            <td colspan="2">'.$std->lname.'</td>
             </tr>
             <tr>
             <th align=left width="20%">REGISTRATION NUMBER</th>
@@ -173,6 +176,8 @@ class PDF
               <tr><td>Serial Number</td><td></td><td>Document Number</td></tr>
               <tr><td>'.$serial->serialNo.'</td><td>Strathmore University</td><td>DAA-03-01-09/12</td></tr>
             </table>
+          </div>
+          <div>
           </div>
         </footer>
     </body>';

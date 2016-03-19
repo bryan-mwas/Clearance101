@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\RedirectController;
 use Closure;
 
-class SpecificSOA extends ViewsController
+class SpecificSOA extends RedirectController
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SpecificSOA extends ViewsController
      */
     public function handle($request, Closure $next)
     {
-        if(ViewsController::findSpec() != "SOA"){
+        if(RedirectController::getDepartment() != "SOA"){
             return 'Oops! Seems like you are not an SOA administrator';
         }
         return $next($request);
